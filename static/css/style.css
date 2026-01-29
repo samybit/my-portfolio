@@ -39,6 +39,45 @@ h6 {
     letter-spacing: 1px;
 }
 
+/* --- Custom Minimalist Scrollbar --- */
+
+/* 1. Firefox Support (Standard) */
+html {
+    scrollbar-width: thin;
+    /* Makes it slim */
+    scrollbar-color: #333 #0f0f0f;
+    /* Thumb Color / Track Color */
+}
+
+/* 2. WebKit Support (Chrome, Edge, Safari) */
+::-webkit-scrollbar {
+    width: 8px;
+    /* Slim width */
+}
+
+/* The Background Track */
+::-webkit-scrollbar-track {
+    background: #0f0f0f;
+    /* Matches body background */
+}
+
+/* The Moving Thumb */
+::-webkit-scrollbar-thumb {
+    background-color: #333;
+    /* Dark Grey (Subtle visibility) */
+    border-radius: 4px;
+    /* Modern rounded look */
+    border: 2px solid #0f0f0f;
+    /* Creates a "floating" effect */
+}
+
+/* Hover State */
+::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
+    /* Slightly lighter when you grab it */
+}
+
+
 /* --- Hero Section Styling --- */
 .hero-section {
     padding: 100px 0;
@@ -226,11 +265,18 @@ button,
 } */
 
 /* --- Valorant Style --- */
-html, body, .hover-char {
+html,
+body,
+.hover-char {
     cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path d="M4 2L10 21L13 14L22 10L4 2Z" fill="white" stroke="black" stroke-width="2" stroke-linejoin="miter"/></svg>') 4 2, auto;
 }
 
-a, button, .btn, .nav-link, .card, .ratio {
+a,
+button,
+.btn,
+.nav-link,
+.card,
+.ratio {
     cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path d="M4 2L10 21L13 14L22 10L4 2Z" fill="%2300ffcc" stroke="black" stroke-width="2" stroke-linejoin="miter"/></svg>') 4 2, pointer;
 }
 
