@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function () {
     ];
 
     textElements.forEach(element => {
-        // We use childNodes to safely handle the <br> tag in your title
+        // Use childNodes to safely handle the <br> tag in the title
         let newHtml = "";
 
         element.childNodes.forEach(node => {
