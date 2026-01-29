@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}About - My Portfolio{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+  <div class="row align-items-center">
+
+    <div class="col-md-6">
+      <h1 class="display-4 fw-bold mb-4">About Me.</h1>
+      <p class="lead text-secondary mb-4">
+        I am a developer based in Egypt, focused on building clean, efficient, and scalable web applications.
+      </p>
+      <p class="text-secondary">
+        My journey started with Python, and I have since expanded into full-stack development using Flask and Bootstrap.
+        I believe that good code is like good art—it should be simple, elegant, and functional.
+      </p>
+
+      <h5 class="mt-5 text-white">Tech Stack</h5>
+      <div class="d-flex gap-2 flex-wrap mt-3">
+        <span class="badge border border-secondary text-secondary bg-transparent p-2">Python</span>
+        <span class="badge border border-secondary text-secondary bg-transparent p-2">Flask</span>
+        <span class="badge border border-secondary text-secondary bg-transparent p-2">Bootstrap 5</span>
+        <span class="badge border border-secondary text-secondary bg-transparent p-2">WTForms</span>
+        <span class="badge border border-secondary text-secondary bg-transparent p-2">JavaScript</span>
+      </div>
+    </div>
+
+    <div class="col-md-6 text-center">
+      <div class="ratio ratio-1x1 rounded-circle bg-secondary bg-opacity-10 border border-secondary mx-auto"
+        style="max-width: 400px;">
+        <div class="d-flex align-items-center justify-content-center h-100">
+          <span class="text-muted">Your Photo Here</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

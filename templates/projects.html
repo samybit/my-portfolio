@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}Projects - My Portfolio{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+
+  <div class="text-center mb-5">
+    <h1 class="display-4 fw-bold">Selected Work.</h1>
+    <p class="text-secondary">A collection of projects I've built.</p>
+  </div>
+
+  <div class="row g-4">
+
+    <div class="col-md-6">
+      <div class="card bg-transparent border border-secondary text-white h-100 project-card">
+        <div class="card-body p-5 d-flex flex-column justify-content-end"
+          style="min-height: 350px; background: #1a1a1a;">
+          <h3 class="card-title">Portfolio V1</h3>
+          <p class="card-text text-secondary mb-4">My first personal website built with raw HTML & CSS.</p>
+          <a href="#" class="btn btn-outline-light w-100 mt-auto stretched-link">View Project</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="card bg-transparent border border-secondary text-white h-100 project-card">
+        <div class="card-body p-5 d-flex flex-column justify-content-end"
+          style="min-height: 350px; background: #1a1a1a;">
+          <h3 class="card-title">Task Master</h3>
+          <p class="card-text text-secondary mb-4">A To-Do app built with Python Flask and SQLite.</p>
+          <a href="#" class="btn btn-outline-light w-100 mt-auto stretched-link">View Project</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+{% endblock %}
