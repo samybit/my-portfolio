@@ -13,7 +13,7 @@ app = Flask(__name__)
 print(f"📧 EMAIL_USER is set to: {os.environ.get('EMAIL_USER')}")
 
 # Config
-app.config["SECRET_KEY"] = "your-secret-key-here"
+app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY")
 
 # Gmail config
 app.config["MAIL_SERVER"] = "smtp.gmail.com"
