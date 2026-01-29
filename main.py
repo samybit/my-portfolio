@@ -83,6 +83,12 @@ my_projects = [
         "tech": ["Python", "Spotipy", "Spotify API"],
         "url": "https://github.com/samybit/yearwave",
     },
+    {
+        "title": "Desktop UI Design",
+        "description": "High-fidelity interactive prototype created in Figma. Features modern typography and dark mode.",
+        "tech": ["Figma", "UI/UX", "Prototyping"],
+        "url": "/design-system",
+    },
 ]
 
 
@@ -125,6 +131,11 @@ def contact():
             return render_template("contact.html", form=form, success=False)
 
     return render_template("contact.html", form=form, success=False)
+
+
+@app.route("/design-system")
+def design_system():
+    return render_template("design_system.html")
 
 
 @app.errorhandler(404)
