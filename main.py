@@ -1,11 +1,11 @@
 from flask import Flask, render_template
 from flask_bootstrap import Bootstrap5
+from forms import ContactForm
 
 app = Flask(__name__)
 
 # Config for later (needed for WTForms to work securely)
 app.config["SECRET_KEY"] = "your-secret-key-here"
-
 bootstrap = Bootstrap5(app)
 
 
@@ -32,10 +32,23 @@ def projects():
     return render_template("projects.html")
 
 
-@app.route("/contact")
+@app.route("/contact", methods=["GET", "POST"])
 def contact():
-    # We will build the actual form logic in Step 4
-    return render_template("contact.html")
+    form = ContactForm()
+
+    # Runs when the user clicks "Submit" and data is valid
+    if form.validate_on_submit():
+        # TODO: send an email.
+        print(f"--------------------------------")
+        print(f"New Message from: {form.name.data}")
+        print(f"Email: {form.email.data}")
+        print(f"Message: {form.message.data}")
+        print(f"--------------------------------")
+
+        # Pass 'success=True' to the template to show a Thank You message
+        return render_template("contact.html", form=form, success=True)
+
+    return render_template("contact.html", form=form, success=False)
 
 
 if __name__ == "__main__":
