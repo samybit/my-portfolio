@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}Page Not Found - My Portfolio{% endblock %}
+
+{% block content %}
+<div class="container d-flex flex-column justify-content-center align-items-center" style="min-height: 60vh;">
+  <h1 class="display-1 fw-bold text-white">404</h1>
+  <h2 class="h4 text-secondary mb-4">Oops! That page doesn't exist.</h2>
+
+  <p class="text-muted text-center" style="max-width: 400px;">
+    It looks like you took a wrong turn. Let's get you back on track.
+  </p>
+
+  <a href="{{ url_for('home') }}" class="btn btn-outline-light rounded-pill px-5 mt-3">
+    Back to Home
+  </a>
+</div>
+{% endblock %}
