@@ -149,3 +149,50 @@ h6 {
     border-color: rgba(255, 255, 255, 0.4) !important;
     transition: border-color 0.3s ease;
 }
+
+/* =========================================
+   MOBILE RESPONSIVENESS OVERRIDES
+   ========================================= */
+@media (max-width: 991px) {
+
+    /* 1. Fix Hero Text Size */
+    .hero-title {
+        font-size: 2.5rem;
+        /* Shrink from 3.5rem to 2.5rem */
+        word-wrap: break-word;
+        /* Prevent aggressive word breaking */
+    }
+
+    .hero-subtitle {
+        font-size: 1rem;
+        padding: 0 15px;
+        /* Add breathing room on sides */
+    }
+
+    /* 2. Fix the "Squashed" Project Card (YearWave) */
+    /* On mobile, we disable the 16x9 ratio and let the content dictate height */
+    .ratio-16x9 {
+        aspect-ratio: auto;
+        height: auto !important;
+        min-height: 400px;
+        /* Ensure it's tall enough to breathe */
+    }
+
+    /* Reset the Bootstrap ratio hack */
+    .ratio::before {
+        display: none;
+    }
+
+    /* 3. Fix Card Padding */
+    .card-body,
+    .d-flex {
+        padding: 2rem 1.5rem !important;
+        /* More space inside boxes */
+    }
+
+    /* 4. Allow text to wrap naturally */
+    h1,
+    h2 {
+        hyphens: auto;
+    }
+}
