@@ -1,5 +1,6 @@
 import os
 from dotenv import load_dotenv
+from datetime import datetime
 from flask import Flask, render_template
 from flask_bootstrap import Bootstrap5
 from flask_mail import Mail, Message
@@ -33,6 +34,12 @@ mail = Mail(app)
 # 88`8b   88    88 88    88    88    88~~~~~   `Y8b.
 # 88 `88. `8b  d8' 88b  d88    88    88.     db   8D
 # 88   YD  `Y88P'  ~Y8888P'    YP    Y88888P `8888Y'
+
+
+# get and inject current year
+@app.context_processor
+def inject_now():
+    return {"year": datetime.now().year}
 
 
 @app.route("/")
