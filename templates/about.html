@@ -1,32 +1,28 @@
 {% extends "base.html" %}
 
-{% block title %}About - My Portfolio{% endblock %}
+{% block title %}About - Samy Barsoum{% endblock %}
 
 {% block content %}
 <div class="container py-5">
-  <div class="row align-items-center">
+  <div class="row align-items-center mb-5">
 
-    <div class="col-md-6">
+    <div class="col-md-7">
       <h1 class="display-4 fw-bold mb-4">About Me.</h1>
       <p class="lead text-secondary mb-4">
-        I am a developer based in Egypt, focused on building clean, efficient, and scalable web applications.
+        I am a Full Stack Developer based in Egypt, bridging the gap between modern JavaScript interfaces and powerful
+        Python backends.
       </p>
       <p class="text-secondary">
-        My journey started with Python, and I have since expanded into full-stack development using Flask and Bootstrap.
-        I believe that good code is like good art—it should be simple, elegant, and functional.
+        My journey began with Python automation and scripting, where I built tools to scrape data and automate tasks. I
+        then expanded into full-stack development, mastering the MERN stack to build dynamic web applications.
       </p>
-
-      <h5 class="mt-5 text-white">Tech Stack</h5>
-      <div class="d-flex gap-2 flex-wrap mt-3">
-        <span class="badge border border-secondary text-secondary bg-transparent p-2">Python</span>
-        <span class="badge border border-secondary text-secondary bg-transparent p-2">Flask</span>
-        <span class="badge border border-secondary text-secondary bg-transparent p-2">Bootstrap 5</span>
-        <span class="badge border border-secondary text-secondary bg-transparent p-2">WTForms</span>
-        <span class="badge border border-secondary text-secondary bg-transparent p-2">JavaScript</span>
-      </div>
+      <p class="text-secondary">
+        Today, I focus on building complete, containerized applications using Docker, ensuring that what runs on my
+        machine runs everywhere.
+      </p>
     </div>
 
-    <div class="col-md-6 text-center">
+    <div class="col-md-5 text-center mt-4 mt-md-0">
       <div class="ratio ratio-1x1 rounded-circle overflow-hidden border border-secondary mx-auto"
         style="max-width: 400px;">
         <img src="{{ url_for('static', filename='images/me.jpg') }}" alt="My Photo" class="bw-img"
@@ -34,5 +30,56 @@
       </div>
     </div>
   </div>
+
+  <div class="row mt-5">
+    <div class="col-12 mb-4">
+      <h3 class="fw-bold border-bottom border-secondary pb-3 mb-4">Technical Arsenal</h3>
+    </div>
+
+    <div class="col-md-6 mb-5">
+      <h5 class="text-white mb-3">Frontend & UI</h5>
+      <div class="d-flex gap-2 flex-wrap">
+        <span class="badge bg-transparent border border-secondary text-secondary p-2">React.js</span>
+        <span class="badge bg-transparent border border-secondary text-secondary p-2">Angular</span>
+        <span class="badge bg-transparent border border-secondary text-secondary p-2">JavaScript (ES6+)</span>
+        <span class="badge bg-transparent border border-secondary text-secondary p-2">HTML5 & CSS3</span>
+        <span class="badge bg-transparent border border-secondary text-secondary p-2">Bootstrap 5</span>
+        <span class="badge bg-transparent border border-secondary text-secondary p-2">Figma</span>
+      </div>
+    </div>
+
+    <div class="col-md-6 mb-5">
+      <h5 class="text-white mb-3">Backend & Database</h5>
+      <div class="d-flex gap-2 flex-wrap">
+        <span class="badge bg-transparent border border-secondary text-secondary p-2">Python</span>
+        <span class="badge bg-transparent border border-secondary text-secondary p-2">Node.js</span>
+        <span class="badge bg-transparent border border-secondary text-secondary p-2">Express.js</span>
+        <span class="badge bg-transparent border border-secondary text-secondary p-2">Flask</span>
+        <span class="badge bg-transparent border border-secondary text-secondary p-2">MongoDB</span>
+        <span class="badge bg-transparent border border-secondary text-secondary p-2">WTForms</span>
+      </div>
+    </div>
+
+    <div class="col-md-6 mb-5">
+      <h5 class="text-white mb-3">DevOps & Tools</h5>
+      <div class="d-flex gap-2 flex-wrap">
+        <span class="badge bg-transparent border border-secondary text-secondary p-2">Docker</span>
+        <span class="badge bg-transparent border border-secondary text-secondary p-2">Git / GitHub</span>
+        <span class="badge bg-transparent border border-secondary text-secondary p-2">Linux Basics</span>
+        <span class="badge bg-transparent border border-secondary text-secondary p-2">Nexus Repo Manager</span>
+      </div>
+    </div>
+
+    <div class="col-md-6 mb-5">
+      <h5 class="text-white mb-3">Automation & Scripting</h5>
+      <div class="d-flex gap-2 flex-wrap">
+        <span class="badge bg-transparent border border-secondary text-secondary p-2">Selenium</span>
+        <span class="badge bg-transparent border border-secondary text-secondary p-2">BeautifulSoup</span>
+        <span class="badge bg-transparent border border-secondary text-secondary p-2">Tkinter (GUI)</span>
+        <span class="badge bg-transparent border border-secondary text-secondary p-2">REST APIs</span>
+      </div>
+    </div>
+  </div>
+
 </div>
 {% endblock %}

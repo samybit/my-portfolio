@@ -1,53 +1,89 @@
 {% extends "base.html" %}
 
-{% block title %}Home - My Portfolio{% endblock %}
+{% block title %}Home - Samy Barsoum{% endblock %}
 
 {% block content %}
 <div class="container">
 
   <section class="hero-section text-center">
-    <p class="text-secondary text-uppercase small tracking-wide mb-3">Full Stack Developer</p>
-    <h1 class="hero-title display-3">Building digital experiences<br>that matter.</h1>
-    <p class="hero-subtitle mx-auto" style="max-width: 600px;">
-      I combine Python, Flask, and Design to create functional and beautiful web applications.
+    <p class="text-secondary text-uppercase small tracking-wide mb-3">MERN Stack & Python Developer</p>
+
+    <h1 class="hero-title display-3">Building scalable systems<br>with Code & Containerization.</h1>
+
+    <p class="hero-subtitle mx-auto" style="max-width: 650px;">
+      I engineer full-stack solutions using <strong>React, Node.js, and Flask</strong>, deployed in robust
+      <strong>Dockerized</strong> environments.
     </p>
   </section>
 
   <div class="row justify-content-center mb-5">
     <div class="col-lg-10">
-      <div
-        class="ratio ratio-16x9 bg-dark border border-secondary rounded-4 d-flex align-items-center justify-content-center">
-        <h3 class="text-secondary">Project Highlight / Image Goes Here</h3>
+      <div class="ratio ratio-16x9 border border-secondary rounded-4 overflow-hidden position-relative shadow-lg">
+        <div class="d-flex flex-column align-items-center justify-content-center h-100"
+          style="background: radial-gradient(circle at center, #2b3035 0%, #000000 100%);">
+
+          <span class="badge border border-secondary text-secondary mb-3">FEATURED PROJECT</span>
+          <h2 class="display-4 fw-bold text-white mb-2">YearWave</h2>
+          <p class="text-secondary mb-4">Spotify Playlist Generator using Billboard Charts</p>
+
+          <a href="https://github.com/samybit/yearwave" target="_blank" class="btn btn-outline-light rounded-pill px-4">
+            View Source
+          </a>
+
+        </div>
       </div>
     </div>
   </div>
 
-  <div class="row text-center py-5 grayscale-logos">
-    <div class="col text-secondary fw-bold fs-5 opacity-50">FLASK</div>
-    <div class="col text-secondary fw-bold fs-5 opacity-50">PYTHON</div>
-    <div class="col text-secondary fw-bold fs-5 opacity-50">BOOTSTRAP</div>
-    <div class="col text-secondary fw-bold fs-5 opacity-50">JAVASCRIPT</div>
+  <div class="row text-center py-5 grayscale-logos align-items-center justify-content-center">
+    <div class="col-6 col-md-2 text-secondary fw-bold fs-5 opacity-50 mb-3 mb-md-0">REACT</div>
+    <div class="col-6 col-md-2 text-secondary fw-bold fs-5 opacity-50 mb-3 mb-md-0">NODE.JS</div>
+    <div class="col-6 col-md-2 text-secondary fw-bold fs-5 opacity-50 mb-3 mb-md-0">PYTHON</div>
+    <div class="col-6 col-md-2 text-secondary fw-bold fs-5 opacity-50 mb-3 mb-md-0">FLASK</div>
+    <div class="col-6 col-md-2 text-secondary fw-bold fs-5 opacity-50 mb-3 mb-md-0">DOCKER</div>
+    <div class="col-6 col-md-2 text-secondary fw-bold fs-5 opacity-50 mb-3 mb-md-0">MONGODB</div>
   </div>
 
   <div class="row g-4 mt-5">
+
     <div class="col-md-6">
       <div class="card bg-transparent border border-secondary text-white h-100">
         <div class="card-body p-5 d-flex flex-column justify-content-end"
-          style="min-height: 300px; background: #1a1a1a;">
-          <h3 class="card-title">Project One</h3>
-          <p class="card-text text-secondary">A web app built with Flask.</p>
+          style="min-height: 350px; background: #1a1a1a;">
+          <h3 class="card-title">Lead Gen Tool</h3>
+          <p class="card-text text-secondary mb-4">
+            SaaS tool for automated e-commerce data extraction. Built with Flask, Docker, and Pandas.
+          </p>
+          <a href="https://github.com/samybit/lead-gen-tool" target="_blank"
+            class="btn btn-outline-light w-100 mt-auto stretched-link">
+            View Project
+          </a>
         </div>
       </div>
     </div>
+
     <div class="col-md-6">
       <div class="card bg-transparent border border-secondary text-white h-100">
         <div class="card-body p-5 d-flex flex-column justify-content-end"
-          style="min-height: 300px; background: #1a1a1a;">
-          <h3 class="card-title">Project Two</h3>
-          <p class="card-text text-secondary">A portfolio site using Bootstrap.</p>
+          style="min-height: 350px; background: #1a1a1a;">
+          <h3 class="card-title">Vanilla JS E-commerce</h3>
+          <p class="card-text text-secondary mb-4">
+            A fully functional shopping app with role-based auth and local storage persistence.
+          </p>
+          <a href="https://github.com/samybit/vanilla-js-ecommerce" target="_blank"
+            class="btn btn-outline-light w-100 mt-auto stretched-link">
+            View Project
+          </a>
         </div>
       </div>
     </div>
+
+  </div>
+
+  <div class="text-center mt-5 mb-5">
+    <a href="{{ url_for('projects') }}" class="text-secondary text-decoration-none small tracking-wide">
+      VIEW ALL PROJECTS &rarr;
+    </a>
   </div>
 
 </div>
