@@ -1,12 +1,25 @@
+import os
 from flask import Flask, render_template
 from flask_bootstrap import Bootstrap5
+from flask_mail import Mail, Message
 from forms import ContactForm
 
 app = Flask(__name__)
 
-# Config for later (needed for WTForms to work securely)
+# Config
 app.config["SECRET_KEY"] = "your-secret-key-here"
+
+# Gmail config
+app.config["MAIL_SERVER"] = "smtp.gmail.com"
+app.config["MAIL_PORT"] = 587
+app.config["MAIL_USE_TLS"] = True
+app.config["MAIL_USERNAME"] = os.environ.get("EMAIL_USER")
+app.config["MAIL_PASSWORD"] = os.environ.get("EMAIL_PASS")
+app.config["MAIL_DEFAULT_SENDER"] = os.environ.get("EMAIL_USER")
+
+# Extensions
 bootstrap = Bootstrap5(app)
+mail = Mail(app)
 
 
 # d8888b.  .d88b.  db    db d888888b d88888b .d8888.
@@ -58,17 +71,33 @@ def projects():
 def contact():
     form = ContactForm()
 
-    # Runs when the user clicks "Submit" and data is valid
     if form.validate_on_submit():
-        # TODO: send an email.
-        print(f"--------------------------------")
-        print(f"New Message from: {form.name.data}")
-        print(f"Email: {form.email.data}")
-        print(f"Message: {form.message.data}")
-        print(f"--------------------------------")
+        try:
+            # 1. Create message
+            msg = Message(
+                subject=f"New Portfolio Message from {form.name.data}",
+                recipients=[os.environ.get("EMAIL_USER")],
+            )
 
-        # Pass 'success=True' to the template to show a Thank You message
-        return render_template("contact.html", form=form, success=True)
+            # 2. Format body
+            msg.body = f"""
+            Name: {form.name.data}
+            Email: {form.email.data}
+            
+            Message:
+            {form.message.data}
+            """
+
+            # 3. Send
+            mail.send(msg)
+
+            # Pass 'success=True' to the template to show a Thank You message
+            return render_template("contact.html", form=form, success=True)
+
+        except Exception as e:
+            print(f"Email Error: {e}")
+            # You might want to pass an error flag to the template here if you want
+            return render_template("contact.html", form=form, success=False)
 
     return render_template("contact.html", form=form, success=False)
 
