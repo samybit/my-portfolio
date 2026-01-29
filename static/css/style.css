@@ -23,7 +23,16 @@ h5,
 h6 {
     color: #ffffff;
     letter-spacing: -0.5px;
-    /* Tighter letter spacing looks more modern */
+}
+
+/* Interactive Character Styling */
+.hover-char {
+    display: inline-block;
+    /* Allows transform effects if you want them later */
+    cursor: default;
+    /* Keeps the mouse as a pointer, not text-select */
+    transition: color 1.5s ease;
+    /* Default state: smooth fade back to white */
 }
 
 .tracking-wide {
