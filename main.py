@@ -42,22 +42,34 @@ def about():
 
 my_projects = [
     {
-        "title": "Portfolio V1",
-        "description": "My first personal website built with raw HTML & CSS.",
-        "tech": ["HTML", "CSS"],
-        "url": "#",
+        "title": "Lead Gen Tool",
+        "description": "SaaS tool for automated e-commerce data extraction. Built with Flask, Docker, and Pandas.",
+        "tech": ["Flask", "Docker", "Pandas"],
+        "url": "https://github.com/samybit/lead-gen-tool",
     },
     {
-        "title": "Task Master",
-        "description": "A To-Do app built with Python Flask and SQLite.",
-        "tech": ["Python", "Flask", "SQLite"],
-        "url": "#",
+        "title": "Vanilla JS E-commerce",
+        "description": "Full e-commerce app with role-based auth (Admin/Customer) and local storage persistence.",
+        "tech": ["JavaScript", "HTML/CSS", "LocalStorage"],
+        "url": "https://github.com/samybit/vanilla-js-ecommerce",
     },
     {
-        "title": "Weather Dashboard",
-        "description": "A real-time weather checker using a public API.",
-        "tech": ["JavaScript", "API", "Bootstrap"],
-        "url": "#",
+        "title": "BearBuzz",
+        "description": "Automated stock trading news alerts via SMS using Twilio, AlphaVantage, and NewsAPI.",
+        "tech": ["Python", "Twilio API", "NewsAPI"],
+        "url": "https://github.com/samybit/BearBuzz",
+    },
+    {
+        "title": "TrackIt",
+        "description": "A command-line interface (CLI) habit tracker built in Python using the Pixela API.",
+        "tech": ["Python", "Pixela API", "CLI"],
+        "url": "https://github.com/samybit/TrackIt",
+    },
+    {
+        "title": "YearWave",
+        "description": "Generates Spotify playlists from historical Billboard Hot 100 charts using Spotipy.",
+        "tech": ["Python", "Spotipy", "Spotify API"],
+        "url": "https://github.com/samybit/yearwave",
     },
 ]
 
