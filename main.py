@@ -27,9 +27,31 @@ def about():
     return render_template("about.html")
 
 
+my_projects = [
+    {
+        "title": "Portfolio V1",
+        "description": "My first personal website built with raw HTML & CSS.",
+        "tech": ["HTML", "CSS"],
+        "url": "#",
+    },
+    {
+        "title": "Task Master",
+        "description": "A To-Do app built with Python Flask and SQLite.",
+        "tech": ["Python", "Flask", "SQLite"],
+        "url": "#",
+    },
+    {
+        "title": "Weather Dashboard",
+        "description": "A real-time weather checker using a public API.",
+        "tech": ["JavaScript", "API", "Bootstrap"],
+        "url": "#",
+    },
+]
+
+
 @app.route("/projects")
 def projects():
-    return render_template("projects.html")
+    return render_template("projects.html", projects=my_projects)
 
 
 @app.route("/contact", methods=["GET", "POST"])

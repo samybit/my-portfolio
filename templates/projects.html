@@ -12,28 +12,28 @@
 
   <div class="row g-4">
 
+    {% for project in projects %}
     <div class="col-md-6">
       <div class="card bg-transparent border border-secondary text-white h-100 project-card">
         <div class="card-body p-5 d-flex flex-column justify-content-end"
           style="min-height: 350px; background: #1a1a1a;">
-          <h3 class="card-title">Portfolio V1</h3>
-          <p class="card-text text-secondary mb-4">My first personal website built with raw HTML & CSS.</p>
-          <a href="#" class="btn btn-outline-light w-100 mt-auto stretched-link">View Project</a>
+
+          <h3 class="card-title">{{ project.title }}</h3>
+
+          <div class="mb-3">
+            {% for tech in project.tech %}
+            <span class="badge border border-secondary text-secondary fw-normal me-1">{{ tech }}</span>
+            {% endfor %}
+          </div>
+
+          <p class="card-text text-secondary mb-4">{{ project.description }}</p>
+
+          <a href="{{ project.url }}" class="btn btn-outline-light w-100 mt-auto stretched-link">View Project</a>
         </div>
       </div>
     </div>
-
-    <div class="col-md-6">
-      <div class="card bg-transparent border border-secondary text-white h-100 project-card">
-        <div class="card-body p-5 d-flex flex-column justify-content-end"
-          style="min-height: 350px; background: #1a1a1a;">
-          <h3 class="card-title">Task Master</h3>
-          <p class="card-text text-secondary mb-4">A To-Do app built with Python Flask and SQLite.</p>
-          <a href="#" class="btn btn-outline-light w-100 mt-auto stretched-link">View Project</a>
-        </div>
-      </div>
-    </div>
-
+    {% endfor %}
+    
   </div>
 </div>
 {% endblock %}
