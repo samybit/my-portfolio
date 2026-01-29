@@ -91,3 +91,52 @@ h6 {
     text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
     transition: all 0.3s ease;
 }
+
+/* --- Card Hover Effects --- */
+
+/* 1. Make sure the cards can hold the absolute overlay */
+.card,
+.ratio {
+    position: relative;
+    /* We ensure the border is visible */
+    z-index: 1;
+}
+
+/* 2. The Spotlight Glow Layer */
+.card::after,
+.ratio::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+    /* Follows the card's rounded corners */
+
+    /* Transparent, but has a white glow at --x, --y */
+    background: radial-gradient(600px circle at var(--x) var(--y),
+            rgba(255, 255, 255, 0.1),
+            transparent 40%);
+
+    opacity: 0;
+    /* Hidden by default */
+    transition: opacity 0.3s ease;
+    z-index: 2;
+    /* Sits on top of the content but below clickable links */
+    pointer-events: none;
+    /* Lets clicks pass through to the buttons */
+}
+
+/* 3. Reveal on Hover */
+.card:hover::after,
+.ratio:hover::after {
+    opacity: 1;
+}
+
+/* 4. Optional: Subtle Border Glow */
+.card:hover,
+.ratio:hover {
+    border-color: rgba(255, 255, 255, 0.4) !important;
+    transition: border-color 0.3s ease;
+}
