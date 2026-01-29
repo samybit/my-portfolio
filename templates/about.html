@@ -27,11 +27,10 @@
     </div>
 
     <div class="col-md-6 text-center">
-      <div class="ratio ratio-1x1 rounded-circle bg-secondary bg-opacity-10 border border-secondary mx-auto"
+      <div class="ratio ratio-1x1 rounded-circle overflow-hidden border border-secondary mx-auto"
         style="max-width: 400px;">
-        <div class="d-flex align-items-center justify-content-center h-100">
-          <span class="text-muted">Your Photo Here</span>
-        </div>
+        <img src="{{ url_for('static', filename='images/me.jpg') }}" alt="My Photo" class="bw-img"
+          style="object-fit: cover; width: 100%; height: 100%;">
       </div>
     </div>
   </div>
