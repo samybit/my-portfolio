@@ -1,10 +1,15 @@
 import os
+from dotenv import load_dotenv
 from flask import Flask, render_template
 from flask_bootstrap import Bootstrap5
 from flask_mail import Mail, Message
 from forms import ContactForm
 
+load_dotenv()
+
 app = Flask(__name__)
+
+print(f"📧 EMAIL_USER is set to: {os.environ.get('EMAIL_USER')}")
 
 # Config
 app.config["SECRET_KEY"] = "your-secret-key-here"
@@ -89,6 +94,7 @@ def contact():
             msg = Message(
                 subject=f"New Portfolio Message from {form.name.data}",
                 recipients=[os.environ.get("EMAIL_USER")],
+                sender=os.environ.get("EMAIL_USER"),
             )
 
             # 2. Format body
