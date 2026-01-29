@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block title %}Home - My Portfolio{% endblock %}
+
+{% block content %}
+<div class="container">
+
+  <section class="hero-section text-center">
+    <p class="text-secondary text-uppercase small tracking-wide mb-3">Full Stack Developer</p>
+    <h1 class="hero-title display-3">Building digital experiences<br>that matter.</h1>
+    <p class="hero-subtitle mx-auto" style="max-width: 600px;">
+      I combine Python, Flask, and Design to create functional and beautiful web applications.
+    </p>
+  </section>
+
+  <div class="row justify-content-center mb-5">
+    <div class="col-lg-10">
+      <div
+        class="ratio ratio-16x9 bg-dark border border-secondary rounded-4 d-flex align-items-center justify-content-center">
+        <h3 class="text-secondary">Project Highlight / Image Goes Here</h3>
+      </div>
+    </div>
+  </div>
+
+  <div class="row text-center py-5 grayscale-logos">
+    <div class="col text-secondary fw-bold fs-5 opacity-50">FLASK</div>
+    <div class="col text-secondary fw-bold fs-5 opacity-50">PYTHON</div>
+    <div class="col text-secondary fw-bold fs-5 opacity-50">BOOTSTRAP</div>
+    <div class="col text-secondary fw-bold fs-5 opacity-50">JAVASCRIPT</div>
+  </div>
+
+  <div class="row g-4 mt-5">
+    <div class="col-md-6">
+      <div class="card bg-transparent border border-secondary text-white h-100">
+        <div class="card-body p-5 d-flex flex-column justify-content-end"
+          style="min-height: 300px; background: #1a1a1a;">
+          <h3 class="card-title">Project One</h3>
+          <p class="card-text text-secondary">A web app built with Flask.</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card bg-transparent border border-secondary text-white h-100">
+        <div class="card-body p-5 d-flex flex-column justify-content-end"
+          style="min-height: 300px; background: #1a1a1a;">
+          <h3 class="card-title">Project Two</h3>
+          <p class="card-text text-secondary">A portfolio site using Bootstrap.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+{% endblock %}

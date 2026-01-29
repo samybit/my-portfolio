@@ -1,0 +1,72 @@
+/* --- Global Styles --- */
+body {
+    background-color: #0f0f0f;
+    /* Deep Matte Black */
+    font-family: 'Inter', sans-serif;
+    /* Modern Font */
+    color: #e0e0e0;
+    /* Soft White */
+}
+
+/* Remove default Bootstrap focus glow for a cleaner look */
+.btn:focus,
+.form-control:focus {
+    box-shadow: none;
+}
+
+/* --- Typography --- */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: #ffffff;
+    letter-spacing: -0.5px;
+    /* Tighter letter spacing looks more modern */
+}
+
+.tracking-wide {
+    letter-spacing: 1px;
+}
+
+/* --- Hero Section Styling --- */
+.hero-section {
+    padding: 100px 0;
+    text-align: center;
+}
+
+.hero-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 20px;
+}
+
+.hero-subtitle {
+    color: #888;
+    font-size: 1.2rem;
+    margin-bottom: 40px;
+}
+
+/* --- Navigation --- */
+.navbar-brand {
+    font-weight: 700;
+    letter-spacing: -1px;
+}
+
+.nav-link {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #aaa !important;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: #fff !important;
+}
+
+/* --- Custom Utility --- */
+.no-border {
+    border: none;
+}
