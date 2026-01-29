@@ -174,7 +174,7 @@ h6 {
     .ratio-16x9 {
         aspect-ratio: auto;
         height: auto !important;
-        min-height: 400px;
+        min-height: 500px;
         /* Ensure it's tall enough to breathe */
     }
 
