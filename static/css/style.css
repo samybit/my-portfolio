@@ -16,6 +16,7 @@ body {
 
 /* ====================================================== */
 /* --- Base Background Setup --- */
+/* --- Cinematic Scroll Background --- */
 body::before {
     content: "";
     position: fixed;
@@ -25,10 +26,30 @@ body::before {
     height: 100%;
     z-index: -1;
     background-size: cover;
-    background-position: center;
-    will-change: transform;
-    /* The 60s slow pan animation */
-    animation: cinematicPan 60s ease-in-out infinite alternate;
+    background-repeat: no-repeat;
+    /* The Animation:
+       - 'parallaxPan': The name of the keyframe below
+       - 'linear': Moves at constant speed
+       - 'scroll()': The magic CSS function that links time to scrolling
+    */
+    animation: parallaxPan linear;
+    animation-timeline: scroll();
+    /* Fallback for browsers that don't support scroll-animations yet:
+       It will just stay fixed at the center-top. */
+    background-position: center top;
+}
+
+/* Define the movement: From Top Edge -> Bottom Edge */
+@keyframes parallaxPan {
+    0% {
+        background-position: center 0%;
+        /* Start at Top */
+    }
+
+    100% {
+        background-position: center 100%;
+        /* End at Bottom */
+    }
 }
 
 /* --- Page-Specific Images --- */
