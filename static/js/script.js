@@ -1,5 +1,12 @@
 document.addEventListener("DOMContentLoaded", function () {
 
+    // --- 0. INITIALIZE AOS (SCROLL ANIMATIONS) ---
+    AOS.init({
+        duration: 400,  // Animation lasts 400ms
+        once: true,     // Only animate once (don't fade out when scrolling up)
+        offset: 80      // Trigger animation 80px before element is visible
+    });
+
     // --- 1. SPOTLIGHT EFFECT ---
     const cards = document.querySelectorAll(".card, .ratio");
     cards.forEach((card) => {
