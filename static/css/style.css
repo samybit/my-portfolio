@@ -1,13 +1,75 @@
 /* --- Global Styles --- */
 body {
     background-color: #0f0f0f;
-    /* Deep Matte Black */
+    /* Fallback color */
+    background-size: cover;
+    /* Stretches image to fill screen */
+    background-position: center;
+    /* Centers the image */
+    background-attachment: fixed;
+    /* Keeps image still while you scroll (Parallax feel) */
+    background-repeat: no-repeat;
     font-family: 'Inter', sans-serif;
-    /* Modern Font */
+    /* Main font */
     color: #e0e0e0;
-    /* Soft White */
 }
 
+/* ====================================================== */
+/* --- Base Background Setup --- */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background-size: cover;
+    background-position: center;
+    will-change: transform;
+    /* The 60s slow pan animation */
+    animation: cinematicPan 60s ease-in-out infinite alternate;
+}
+
+/* --- Page-Specific Images --- */
+/* 1. HOME */
+body.bg-home::before {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+        url('../images/bg-home.avif');
+}
+
+/* 2. PROJECTS */
+body.bg-projects::before {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+        url('../images/bg-projects.avif');
+}
+
+/* 3. ABOUT */
+body.bg-about::before {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)),
+        url('../images/bg-about.avif');
+}
+
+/* 4. CONTACT */
+body.bg-contact::before {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+        url('../images/bg-contact.avif');
+}
+
+/* Animation Keyframes */
+@keyframes cinematicPan {
+    0% {
+        transform: scale(1);
+    }
+
+    100% {
+        transform: scale(1.15);
+    }
+}
+
+/* ====================================================== */
+
+/* --- Bootstrap Overrides --- */
 /* Remove default Bootstrap focus glow for a cleaner look */
 .btn:focus,
 .form-control:focus {
