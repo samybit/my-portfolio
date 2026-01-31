@@ -76,4 +76,32 @@ document.addEventListener("DOMContentLoaded", function () {
             this.style.transition = "color 0.1s ease 2s";
         });
     });
+
+    // --- 3. TIME TRAVEL (RETRO MODE) ---
+    const retroBtn = document.getElementById("retro-toggle");
+    const body = document.body;
+
+    // Check if user already activated it before
+    if (localStorage.getItem("theme") === "retro") {
+        body.classList.add("retro-mode");
+        retroBtn.innerText = "[ Back to Future ]";
+    }
+
+    retroBtn.addEventListener("click", () => {
+        body.classList.toggle("retro-mode");
+
+        if (body.classList.contains("retro-mode")) {
+            localStorage.setItem("theme", "retro");
+            retroBtn.innerText = "[ Back to Future ]";
+            // Disable Animations
+            document.querySelectorAll('[data-aos]').forEach(el => {
+                el.removeAttribute('data-aos');
+            });
+        } else {
+            localStorage.setItem("theme", "modern");
+            retroBtn.innerText = "[ Switch to 2007 ]";
+            // because AOS calculates positions on load.
+            location.reload();
+        }
+    });
 });

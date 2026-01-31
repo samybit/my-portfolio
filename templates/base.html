@@ -16,6 +16,13 @@
 </head>
 
 <body class="d-flex flex-column min-vh-100 {% block body_class %}{% endblock %}">
+  <div class="retro-header"
+    style="display: none; background: #000080; color: yellow; font-family: 'Comic Sans MS', cursive; padding: 5px; border-bottom: 2px solid white;">
+    <marquee scrollamount="5" scrolldelay="100">
+      ~*~ Welcome to Samy's World Wide Web Page ~*~ Best viewed in Internet Explorer 6.0 ~*~ Don't forget to sign my
+      Guestbook! ~*~
+    </marquee>
+  </div>
 
   <nav class="navbar navbar-expand-lg navbar-dark bg-transparent py-4">
     <div class="container">
@@ -74,8 +81,27 @@
         <i class="bi bi-linkedin fs-4"></i>
       </a>
     </div>
+
+    <div class="retro-counter mt-3" style="display: none;">
+      <p style="font-family: 'Courier New'; font-size: 14px; color: black;">
+        You are visitor number:
+        <span
+          style="background: black; color: red; padding: 2px 5px; border: 2px inset white; font-weight: bold;">13,337</span>
+      </p>
+      <div style="margin-top: 10px;">
+        <img
+          src="https://web.archive.org/web/20091027073128im_/http://geocities.com/Area51/Cavern/2645/construction.gif"
+          alt="Under Construction">
+      </div>
+    </div>
+    
     <p class="mb-0 small">© {{ year }} Designed by Samy Barsoum</p>
   </footer>
+
+  <button id="retro-toggle" class="btn btn-sm btn-light border border-dark position-fixed bottom-0 start-0 m-3"
+    style="z-index: 9999; font-family: 'Courier New', monospace; font-weight: bold;">
+    [ Switch to 2007 ]
+  </button>
 
   {{ bootstrap.load_js() }}
   <script src="{{ url_for('static', filename='js/script.js') }}"></script>

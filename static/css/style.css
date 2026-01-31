@@ -443,3 +443,165 @@ button,
 /* a, button, .btn, .nav-link, .card, .ratio {
     cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="rgba(255,255,255,0.2)" stroke="white" stroke-width="1.5"/></svg>') 12 12, pointer;
 } */
+
+
+/* =========================================
+   RETRO MODE (2007 STYLE)
+   ========================================= */
+
+/* 1. Global Resets */
+body.retro-mode {
+    /* The classic Windows 95/98 web background color */
+    background-color: #c0c0c0 !important;
+    background-image: none !important;
+    /* Kill the cinematic bg */
+    font-family: "Times New Roman", Times, serif !important;
+    color: #000000 !important;
+    cursor: auto !important;
+    /* Kill custom cursor */
+}
+
+/* Kill the Cinematic Animation */
+body.retro-mode::before {
+    display: none !important;
+}
+
+/* 2. Typography */
+body.retro-mode h1,
+body.retro-mode h2,
+body.retro-mode h3 {
+    font-family: "Verdana", sans-serif !important;
+    color: #000080 !important;
+    /* Classic Navy Blue Headers */
+    text-transform: uppercase;
+    text-shadow: 2px 2px #aaa;
+    /* Cheesy shadow */
+    letter-spacing: normal !important;
+}
+
+body.retro-mode p,
+body.retro-mode li {
+    font-size: 16px !important;
+    line-height: 1.2 !important;
+}
+
+/* 3. Links */
+body.retro-mode a {
+    color: blue !important;
+    text-decoration: underline !important;
+    cursor: pointer !important;
+}
+
+body.retro-mode a:visited {
+    color: purple !important;
+}
+
+body.retro-mode a:hover {
+    background-color: yellow !important;
+    color: red !important;
+}
+
+/* 4. Restore Default Scrollbar */
+body.retro-mode::-webkit-scrollbar {
+    width: auto !important;
+}
+
+body.retro-mode::-webkit-scrollbar-track {
+    background: #fff !important;
+}
+
+body.retro-mode::-webkit-scrollbar-thumb {
+    background-color: #c1c1c1 !important;
+    border: 2px outset #fff !important;
+    border-radius: 0 !important;
+}
+
+/* 5. The "Boxy" Layout */
+body.retro-mode .card,
+body.retro-mode .glass-card,
+body.retro-mode .ratio {
+    background: #ffffff !important;
+    border: 2px solid #000000 !important;
+    border-radius: 0 !important;
+    /* No rounded corners */
+    box-shadow: 4px 4px 0px #888888 !important;
+    /* Hard shadow */
+    backdrop-filter: none !important;
+}
+
+/* Remove gradient backgrounds from cards */
+body.retro-mode .card-body {
+    background: white !important;
+    color: black !important;
+    border: none !important;
+}
+
+/* 6. Buttons */
+body.retro-mode .btn {
+    background: #e0e0e0 !important;
+    color: black !important;
+    border: 2px outset #ffffff !important;
+    /* The 3D button look */
+    border-radius: 0 !important;
+    font-family: "Arial", sans-serif !important;
+    font-weight: bold !important;
+    box-shadow: none !important;
+}
+
+body.retro-mode .btn:active {
+    border: 2px inset #ffffff !important;
+}
+
+/* --- The Geocities Components --- */
+
+/* 1. Show the hidden retro elements */
+body.retro-mode .retro-header,
+body.retro-mode .retro-counter {
+    display: block !important;
+}
+
+/* 2. Turn Glass Cards into Windows 95 Windows */
+body.retro-mode .card,
+body.retro-mode .glass-card,
+body.retro-mode .ratio {
+    /* Classic Windows Gray */
+    background: #c0c0c0 !important;
+
+    /* The 3D Bevel Border (The secret to the 90s look) */
+    border-top: 2px solid #dfdfdf !important;
+    border-left: 2px solid #dfdfdf !important;
+    border-right: 2px solid #404040 !important;
+    border-bottom: 2px solid #404040 !important;
+
+    box-shadow: 4px 4px 0px #000000 !important;
+    /* Hard shadow */
+    border-radius: 0 !important;
+}
+
+/* 3. Make Inputs look like old fields */
+body.retro-mode .form-control {
+    background: #ffffff !important;
+    border: 2px inset #dfdfdf !important;
+    /* Sunken look */
+    color: black !important;
+    font-family: "Courier New", monospace !important;
+}
+
+/* 4. Hide modern elements that break the illusion */
+body.retro-mode .snake-mascot,
+body.retro-mode .js-mascot,
+body.retro-mode .card::after {
+    /* Hide the 3D peeping snake and spotlight glow */
+    display: none !important;
+}
+
+/* 5. Center the container like old fixed-width sites */
+body.retro-mode .container {
+    background: #ffffff;
+    border: 1px solid black;
+    max-width: 800px;
+    /* Force narrow layout */
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 20px;
+}
