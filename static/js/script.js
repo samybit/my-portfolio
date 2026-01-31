@@ -81,12 +81,66 @@ document.addEventListener("DOMContentLoaded", function () {
     const retroBtn = document.getElementById("retro-toggle");
     const body = document.body;
     const audio = document.getElementById("retro-audio");
-    const retroControls = document.getElementById("retro-controls");
+    const retroPlayer = document.getElementById("retro-player");
+    const volumeSlider = document.getElementById("retro-volume");
 
-    // Check if user already activated it before
+    // Elements for the visualizer
+    const bitrateEl = document.getElementById("retro-bitrate");
+    const khzEl = document.getElementById("retro-khz");
+    const stereoEl = document.getElementById("retro-stereo");
+
+    let visualizerInterval = null; // Variable to store the timer
+
+    // Helper: Stop function
+    window.stopMusic = function () {
+        if (audio) {
+            audio.pause();
+            audio.currentTime = 0;
+        }
+    };
+
+    if (volumeSlider && audio) {
+        volumeSlider.addEventListener("input", (e) => {
+            audio.volume = e.target.value;
+        });
+    }
+
+    // Check localStorage
     if (localStorage.getItem("theme") === "retro") {
         body.classList.add("retro-mode");
         retroBtn.innerText = "[ Back to Future ]";
+        if (retroPlayer) retroPlayer.style.display = "flex";
+        startVisualizer(); // Start effects immediately if loaded in retro mode
+    }
+
+    function startVisualizer() {
+        if (visualizerInterval) clearInterval(visualizerInterval); // clear existing to be safe
+
+        visualizerInterval = setInterval(() => {
+            // 1. Randomize Bitrate (Classic VBR behavior: 128, 160, 192, etc)
+            const bitrates = [128, 160, 192, 224, 320, 128, 128, 192];
+            const randomBitrate = bitrates[Math.floor(Math.random() * bitrates.length)];
+
+            // 2. Randomize kHz slightly (Glitch effect)
+            // Mostly stay at 44, rarely flicker to 48 or 22
+            const khzOptions = [44, 44, 44, 44, 44, 48, 22];
+            const randomKhz = khzOptions[Math.floor(Math.random() * khzOptions.length)];
+
+            // 3. Flicker Stereo (Blink effect)
+            const isStereo = Math.random() > 0.1; // 90% chance to show
+
+            if (bitrateEl) bitrateEl.innerText = randomBitrate;
+            if (khzEl) khzEl.innerText = randomKhz;
+            if (stereoEl) stereoEl.style.visibility = isStereo ? "visible" : "hidden";
+
+        }, 200); // Update every 200ms
+    }
+
+    function stopVisualizer() {
+        if (visualizerInterval) {
+            clearInterval(visualizerInterval);
+            visualizerInterval = null;
+        }
     }
 
     retroBtn.addEventListener("click", () => {
@@ -96,44 +150,41 @@ document.addEventListener("DOMContentLoaded", function () {
             // SWITCHING TO RETRO
             localStorage.setItem("theme", "retro");
             retroBtn.innerText = "[ Back to Future ]";
+            if (retroPlayer) retroPlayer.style.display = "flex";
 
-            // Show Controls
-            if (retroControls) retroControls.style.display = "block";
+            startVisualizer(); // <--- START THE EFFECT
 
-            // Try to play music (User interaction required by browsers)
             if (audio) {
-                audio.volume = 0.3; // (30% volume)
-                audio.play().catch(error => {
-                    console.log("Autoplay prevented by browser:", error);
-                });
+                audio.volume = 0.3;
+                if (volumeSlider) volumeSlider.value = 0.3;
+                audio.play().catch(e => console.log(e));
             }
 
-            // Disable Animations
-            document.querySelectorAll('[data-aos]').forEach(el => {
-                el.removeAttribute('data-aos');
-            });
+            // Disable AOS
+            document.querySelectorAll('[data-aos]').forEach(el => el.removeAttribute('data-aos'));
+
         } else {
-            // SWITCHING BACK TO MODERN
+            // SWITCHING BACK
             localStorage.setItem("theme", "modern");
             retroBtn.innerText = "[ Switch to 2007 ]";
+            if (retroPlayer) retroPlayer.style.display = "none";
 
-            if (retroControls) retroControls.style.display = "none";
+            stopVisualizer(); // <--- STOP THE EFFECT
+
             if (audio) {
                 audio.pause();
-                audio.currentTime = 0; // Rewind to start
+                audio.currentTime = 0;
             }
-
-            // because AOS calculates positions on load.
             location.reload();
         }
     });
     // Helper function to toggle music manually
-    window.toggleMusic = function () {
-        const audio = document.getElementById("retro-audio");
-        if (audio.paused) {
-            audio.play();
-        } else {
-            audio.pause();
-        }
-    };
+    // window.toggleMusic = function () {
+    //     const audio = document.getElementById("retro-audio");
+    //     if (audio.paused) {
+    //         audio.play();
+    //     } else {
+    //         audio.pause();
+    //     }
+    // };
 });
