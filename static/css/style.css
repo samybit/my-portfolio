@@ -451,14 +451,48 @@ button,
 
 /* 1. Global Resets */
 body.retro-mode {
-    /* The classic Windows 95/98 web background color */
     background-color: #c0c0c0 !important;
     background-image: none !important;
-    /* Kill the cinematic bg */
     font-family: "Times New Roman", Times, serif !important;
     color: #000000 !important;
-    cursor: auto !important;
-    /* Kill custom cursor */
+}
+
+/* --- FORCE RETRO CURSOR (Windows 7 Aero) --- */
+
+/* 1. DEFAULT STATE (The Arrow) */
+/* This forces the Arrow on everything by default (including the body and plain text) */
+body.retro-mode,
+body.retro-mode * {
+    cursor: url('https://www.rw-designer.com/cursor-extern.php?id=135794'), auto !important;
+}
+
+/* 2. LINK/CLICK STATE (The Hand) */
+/* This specifically targets anything clickable to show the Aero Hand.
+   We include .nav-link explicitly to fix your navbar issue. */
+body.retro-mode a,
+body.retro-mode button,
+body.retro-mode .btn,
+body.retro-mode .nav-link,
+body.retro-mode input[type="submit"],
+body.retro-mode input[type="button"],
+body.retro-mode label,
+body.retro-mode select {
+    cursor: url('https://www.rw-designer.com/cursor-extern.php?id=135798'), pointer !important;
+}
+
+/* 3. TEXT EDIT STATE (The I-Beam) */
+/* This targets input fields so you see the text bar when typing */
+body.retro-mode input[type="text"],
+body.retro-mode input[type="email"],
+body.retro-mode input[type="password"],
+body.retro-mode textarea {
+    cursor: url('https://www.rw-designer.com/cursor-extern.php?id=135803'), text !important;
+}
+
+/* --- DISABLE NEON TEXT EFFECT --- */
+body.retro-mode .hover-char {
+    color: inherit !important;
+    transition: none !important;
 }
 
 /* Kill the Cinematic Animation */
@@ -609,6 +643,5 @@ body.retro-mode .container {
 /* 6. Show the Retro Controls */
 body.retro-mode #retro-controls {
     display: block !important;
-    /* Force show in retro mode */
     box-shadow: 2px 2px 0px #000000;
 }

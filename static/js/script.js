@@ -152,7 +152,7 @@ document.addEventListener("DOMContentLoaded", function () {
             retroBtn.innerText = "[ Back to Future ]";
             if (retroPlayer) retroPlayer.style.display = "flex";
 
-            startVisualizer(); // <--- START THE EFFECT
+            startVisualizer();
 
             if (audio) {
                 audio.volume = 0.3;
