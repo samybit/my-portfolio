@@ -16,12 +16,23 @@
 </head>
 
 <body class="d-flex flex-column min-vh-100 {% block body_class %}{% endblock %}">
+  <!-- Retro Header -->
   <div class="retro-header"
     style="display: none; background: #000080; color: yellow; font-family: 'Comic Sans MS', cursive; padding: 5px; border-bottom: 2px solid white;">
     <marquee scrollamount="5" scrolldelay="100">
       ~*~ Welcome to Samy's World Wide Web Page ~*~ Best viewed in Internet Explorer 6.0 ~*~ Don't forget to sign my
       Guestbook! ~*~
     </marquee>
+  </div>
+
+  <!-- Retro Music -->
+  <audio id="retro-audio" loop>
+    <source src="{{ url_for('static', filename='images/retro-music.mp3') }}" type="audio/mpeg">
+  </audio>
+  <div id="retro-controls"
+    style="display: none; position: fixed; bottom: 20px; right: 20px; background: #c0c0c0; border: 2px outset white; padding: 5px; z-index: 10000; font-family: 'MS Sans Serif', sans-serif; font-size: 12px; color: black;">
+    <span style="margin-right: 5px;">🎵 Music:</span>
+    <button onclick="toggleMusic()" style="font-size: 10px; cursor: pointer;">ON/OFF</button>
   </div>
 
   <nav class="navbar navbar-expand-lg navbar-dark bg-transparent py-4">
@@ -94,7 +105,7 @@
           alt="Under Construction">
       </div>
     </div>
-    
+
     <p class="mb-0 small">© {{ year }} Designed by Samy Barsoum</p>
   </footer>
 

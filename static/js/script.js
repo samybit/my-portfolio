@@ -80,6 +80,8 @@ document.addEventListener("DOMContentLoaded", function () {
     // --- 3. TIME TRAVEL (RETRO MODE) ---
     const retroBtn = document.getElementById("retro-toggle");
     const body = document.body;
+    const audio = document.getElementById("retro-audio");
+    const retroControls = document.getElementById("retro-controls");
 
     // Check if user already activated it before
     if (localStorage.getItem("theme") === "retro") {
@@ -91,17 +93,48 @@ document.addEventListener("DOMContentLoaded", function () {
         body.classList.toggle("retro-mode");
 
         if (body.classList.contains("retro-mode")) {
+            // SWITCHING TO RETRO
             localStorage.setItem("theme", "retro");
             retroBtn.innerText = "[ Back to Future ]";
+
+            // Show Controls
+            if (retroControls) retroControls.style.display = "block";
+
+            // Try to play music (User interaction required by browsers)
+            if (audio) {
+                audio.volume = 0.3; // (30% volume)
+                audio.play().catch(error => {
+                    console.log("Autoplay prevented by browser:", error);
+                });
+            }
+
             // Disable Animations
             document.querySelectorAll('[data-aos]').forEach(el => {
                 el.removeAttribute('data-aos');
             });
         } else {
+            // SWITCHING BACK TO MODERN
             localStorage.setItem("theme", "modern");
             retroBtn.innerText = "[ Switch to 2007 ]";
+
+            if (retroControls) retroControls.style.display = "none";
+            if (audio) {
+                audio.pause();
+                audio.currentTime = 0; // Rewind to start
+            }
+
             // because AOS calculates positions on load.
             location.reload();
         }
     });
 });
+
+// Helper function to toggle music manually
+window.toggleMusic = function () {
+    const audio = document.getElementById("retro-audio");
+    if (audio.paused) {
+        audio.play();
+    } else {
+        audio.pause();
+    }
+};

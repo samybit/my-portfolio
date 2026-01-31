@@ -605,3 +605,10 @@ body.retro-mode .container {
     margin-bottom: 20px;
     padding: 20px;
 }
+
+/* 6. Show the Retro Controls */
+body.retro-mode #retro-controls {
+    display: block !important;
+    /* Force show in retro mode */
+    box-shadow: 2px 2px 0px #000000;
+}
