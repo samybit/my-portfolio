@@ -194,6 +194,11 @@ document.addEventListener("DOMContentLoaded", function () {
     const marioAudio = document.getElementById("mario-sound");
 
     document.addEventListener("keydown", function (e) {
+        // 0. Only work if Retro Mode is active
+        if (!document.body.classList.contains("retro-mode")) {
+            return;
+        }
+
         // 1. Ignore if user is typing in a form input
         if (e.target.tagName === "INPUT" || e.target.tagName === "TEXTAREA") {
             return;
