@@ -272,6 +272,82 @@ html {
     transition: border-color 0.3s ease;
 }
 
+/* --- Snake Peek Animation --- */
+
+/* 1. The Wrapper */
+/* This contains both the card and the hidden snake */
+.snake-wrapper {
+    position: relative;
+    z-index: 1;
+    /* Ensures the whole package layers correctly */
+}
+
+/* 2. The Snake Image */
+.snake-mascot {
+    position: absolute;
+    width: 80px;
+    /* Adjust size based on your image */
+
+    /* Position it at the top right corner */
+    top: -60px;
+    right: 40px;
+
+    z-index: -1;
+    /* Hides BEHIND the card */
+
+    /* Initial State: Ducked down hidden behind the card */
+    transform: translateY(80px) rotate(0deg);
+    opacity: 0;
+    /* Fade out so you don't see it glitching through the card transparency */
+
+    /* Smooth Bouncy Transition */
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* 3. The Hover Trigger */
+/* When you hover over the WRAPPER, the snake moves */
+.snake-wrapper:hover .snake-mascot {
+    opacity: 1;
+    /* Pop up and rotate head slightly to look at user */
+    transform: translateY(0px) rotate(-15deg);
+}
+
+/* --- JS Peek Animation --- */
+
+/* 1. The Wrapper */
+.js-wrapper {
+    position: relative;
+    z-index: 1;
+}
+
+/* 2. The JS Logo */
+.js-mascot {
+    position: absolute;
+    width: 70px;
+    /* Slightly smaller than the snake usually looks best for square icons */
+
+    /* Position: Top Right corner */
+    top: -50px;
+    right: 40px;
+
+    z-index: -1;
+    /* Hide behind card */
+
+    /* Initial State: Pushed down and invisible */
+    transform: translateY(70px) rotate(0deg);
+    opacity: 0;
+
+    /* Bouncy Transition */
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* 3. Hover Effect */
+.js-wrapper:hover .js-mascot {
+    opacity: 1;
+    /* Pop up and tilt playfully */
+    transform: translateY(0px) rotate(15deg);
+}
+
 /* =========================================
    MOBILE RESPONSIVENESS OVERRIDES
    ========================================= */
