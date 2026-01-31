@@ -188,8 +188,8 @@ document.addEventListener("DOMContentLoaded", function () {
     //     }
     // };
 
-    // --- 4. MARIO EASTER EGG (7 SPACES) ---
-    let spaceCount = 0;
+    // --- 4. MARIO EASTER EGG (7 "A" PRESSES) ---
+    let jumpKeyCount = 0;
     const marioImg = document.getElementById("mario-egg");
     const marioAudio = document.getElementById("mario-sound");
 
@@ -199,19 +199,17 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
-        // 2. Check for Spacebar
-        if (e.code === "Space") {
-            // e.preventDefault(); 
+        // 2. Check for "A" Key)
+        if (e.code === "KeyA") {
+            jumpKeyCount++;
 
-            spaceCount++;
-
-            if (spaceCount === 7) {
+            if (jumpKeyCount === 7) {
                 triggerMario();
-                spaceCount = 0;
+                jumpKeyCount = 0;
             }
         } else {
             // 3. Combo Breaker
-            spaceCount = 0;
+            jumpKeyCount = 0;
         }
     });
 
@@ -229,7 +227,6 @@ document.addEventListener("DOMContentLoaded", function () {
         marioImg.classList.add("mario-jump-anim");
 
         // 3. MIDWAY (1000ms): He just landed. Swap to Stand Pose.
-        // This matches the 50% mark of our 2-second CSS animation.
         setTimeout(() => {
             marioImg.src = marioImg.dataset.stand;
         }, 1000);
