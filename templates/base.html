@@ -140,8 +140,7 @@
     <div class="retro-counter mt-3" style="display: none;">
 
       <div class="mb-2">
-        <img
-          src="https://web.archive.org/web/20090729231928im_/http://de.geocities.com/th_lange65/icons/constrh.gif"
+        <img src="https://web.archive.org/web/20090729231928im_/http://de.geocities.com/th_lange65/icons/constrh.gif"
           alt="Under Construction" style="height: 60px;">
       </div>
 
@@ -167,6 +166,14 @@
     style="z-index: 9999; font-family: 'Courier New', monospace; font-weight: bold;">
     [ Switch to 2007 ]
   </button>
+
+  <!-- Mario easter egg -->
+  <img id="mario-egg" src="{{ url_for('static', filename='images/mario-stand.png') }}"
+    data-stand="{{ url_for('static', filename='images/mario-stand.png') }}"
+    data-jump="{{ url_for('static', filename='images/mario-jump.png') }}" alt="It's a me!"
+    style="position: fixed; left: 10%; bottom: -150px; width: 100px; z-index: 9999; pointer-events: none;">
+
+  <audio id="mario-sound" src="https://www.myinstants.com/media/sounds/small-jump.mp3"></audio>
 
   {{ bootstrap.load_js() }}
   <script src="{{ url_for('static', filename='js/script.js') }}"></script>

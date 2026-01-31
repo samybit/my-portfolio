@@ -187,4 +187,56 @@ document.addEventListener("DOMContentLoaded", function () {
     //         audio.pause();
     //     }
     // };
+
+    // --- 4. MARIO EASTER EGG (7 SPACES) ---
+    let spaceCount = 0;
+    const marioImg = document.getElementById("mario-egg");
+    const marioAudio = document.getElementById("mario-sound");
+
+    document.addEventListener("keydown", function (e) {
+        // 1. Ignore if user is typing in a form input
+        if (e.target.tagName === "INPUT" || e.target.tagName === "TEXTAREA") {
+            return;
+        }
+
+        // 2. Check for Spacebar
+        if (e.code === "Space") {
+            // e.preventDefault(); 
+
+            spaceCount++;
+
+            if (spaceCount === 7) {
+                triggerMario();
+                spaceCount = 0;
+            }
+        } else {
+            // 3. Combo Breaker
+            spaceCount = 0;
+        }
+    });
+
+    function triggerMario() {
+        if (!marioImg) return;
+
+        // 1. Play Sound
+        if (marioAudio) {
+            marioAudio.currentTime = 0;
+            marioAudio.play().catch(e => console.log("Audio blocked:", e));
+        }
+
+        // 2. START: Set to Jump Pose
+        marioImg.src = marioImg.dataset.jump;
+        marioImg.classList.add("mario-jump-anim");
+
+        // 3. MIDWAY (1000ms): He just landed. Swap to Stand Pose.
+        // This matches the 50% mark of our 2-second CSS animation.
+        setTimeout(() => {
+            marioImg.src = marioImg.dataset.stand;
+        }, 1000);
+
+        // 4. END (2000ms): Animation finished. Clean up.
+        setTimeout(() => {
+            marioImg.classList.remove("mario-jump-anim");
+        }, 2000);
+    }
 });

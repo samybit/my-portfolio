@@ -645,3 +645,35 @@ body.retro-mode #retro-controls {
     display: block !important;
     box-shadow: 2px 2px 0px #000000;
 }
+
+/* --- MARIO EASTER EGG ANIMATION --- */
+.mario-jump-anim {
+    animation: marioJumpSequence 2s ease-in-out forwards;
+}
+
+@keyframes marioJumpSequence {
+    0% {
+        bottom: -150px;
+        /* Start Hidden */
+    }
+
+    25% {
+        bottom: 300px;
+        /* Peak of Jump */
+    }
+
+    50% {
+        bottom: -10px;
+        /* Land on bottom edge (adjust -10px if he floats too high) */
+    }
+
+    75% {
+        bottom: -10px;
+        /* HOLD: Stay on bottom edge */
+    }
+
+    100% {
+        bottom: -150px;
+        /* Dive back down */
+    }
+}
