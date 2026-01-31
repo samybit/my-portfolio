@@ -127,14 +127,13 @@ document.addEventListener("DOMContentLoaded", function () {
             location.reload();
         }
     });
+    // Helper function to toggle music manually
+    window.toggleMusic = function () {
+        const audio = document.getElementById("retro-audio");
+        if (audio.paused) {
+            audio.play();
+        } else {
+            audio.pause();
+        }
+    };
 });
-
-// Helper function to toggle music manually
-window.toggleMusic = function () {
-    const audio = document.getElementById("retro-audio");
-    if (audio.paused) {
-        audio.play();
-    } else {
-        audio.pause();
-    }
-};

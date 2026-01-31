@@ -1,7 +1,7 @@
 import os
 from dotenv import load_dotenv
 from datetime import datetime
-from flask import Flask, render_template
+from flask import Flask, render_template, send_from_directory
 from flask_bootstrap import Bootstrap5
 from flask_mail import Mail, Message
 from forms import ContactForm
@@ -141,6 +141,16 @@ def design_system():
 @app.errorhandler(404)
 def page_not_found(e):
     return render_template("404.html"), 404
+
+
+@app.route("/retro-music")
+def retro_music():
+    # We serve the file explicitly with the correct MIME type
+    return send_from_directory(
+        directory=os.path.join(app.root_path, "static", "images"),
+        path="retro-music.mp3",
+        mimetype="audio/mpeg",
+    )
 
 
 if __name__ == "__main__":
