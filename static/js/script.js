@@ -241,4 +241,57 @@ document.addEventListener("DOMContentLoaded", function () {
             marioImg.classList.remove("mario-jump-anim");
         }, 2000);
     }
+
+    // --- 6. CLIPPY (THE UNHELPFUL ASSISTANT) ---
+    const clippyContainer = document.getElementById("clippy-container");
+    const clippyBubble = document.getElementById("clippy-bubble");
+    const clippyText = document.getElementById("clippy-text");
+
+    const uselessTips = [
+        "It looks like you're trying to view a portfolio. Would you like help with that?",
+        "I see you're scrolling. Great job!",
+        "Did you know? You can press 'A' 7 times for a secret.",
+        "Are you sure you want to be here?",
+        "Saving your progress... just kidding!",
+        "This looks like a nice spot for a banner ad."
+    ];
+
+    function showClippy() {
+        // 1. Only run in Retro Mode
+        if (!document.body.classList.contains("retro-mode")) {
+            if (clippyContainer) clippyContainer.style.display = "none";
+            return;
+        }
+
+        // 2. Pick a random tip
+        const randomTip = uselessTips[Math.floor(Math.random() * uselessTips.length)];
+        if (clippyText) clippyText.innerText = randomTip;
+
+        // 3. Show Clippy
+        if (clippyContainer) clippyContainer.style.display = "block";
+        if (clippyBubble) clippyBubble.style.display = "block";
+
+        // 4. Play a subtle 'pop' sound
+        // const audio = new Audio('path/to/pop.mp3'); audio.play();
+
+        // 5. Hide him after 6 seconds
+        setTimeout(() => {
+            if (clippyContainer) clippyContainer.style.display = "none";
+        }, 6000);
+    }
+
+    // Loop: Try to show Clippy every 20 seconds
+    setInterval(() => {
+        // 50% chance he actually shows up each cycle
+        if (Math.random() > 0.8) {
+            showClippy();
+        }
+    }, 10000); 
+
+    // Also hide Clippy immediately if the user switches back to Modern Mode
+    retroBtn.addEventListener("click", () => {
+        if (!document.body.classList.contains("retro-mode")) {
+             if (clippyContainer) clippyContainer.style.display = "none";
+        }
+    });
 });
