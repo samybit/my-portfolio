@@ -40,6 +40,12 @@
 
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto gap-3 align-items-center">
+          <li>
+            <button id="retro-toggle" class="btn btn-sm btn-outline-secondary ms-3 d-none d-md-inline-block"
+              style="font-family: 'Courier New', monospace; font-weight: bold; border-style: dashed;">
+              [ Switch to 2007 ]
+            </button>
+          </li>
           <li class="nav-item">
             <a class="nav-link" href="{{ url_for('home') }}">Home</a>
           </li>
@@ -162,10 +168,10 @@
     <p class="mb-0 small">© {{ year }} Designed by Samy Barsoum</p>
   </footer>
 
-  <button id="retro-toggle" class="btn btn-sm btn-light border border-dark position-fixed bottom-0 start-0 m-3"
+  <!-- <button id="retro-toggle" class="btn btn-sm btn-light border border-dark position-fixed bottom-0 start-0 m-3"
     style="z-index: 9999; font-family: 'Courier New', monospace; font-weight: bold;">
     [ Switch to 2007 ]
-  </button>
+  </button> -->
 
   <!-- Mario easter egg -->
   <img id="mario-egg" src="{{ url_for('static', filename='images/mario-stand.png') }}"
@@ -194,7 +200,8 @@
       <span id="clippy-text">It looks like you're trying to view a portfolio. Would you like some help?</span>
     </div>
 
-    <img src="https://web.archive.org/web/20001008042358if_/http://www.geocities.com:80/TimesSquare/Cavern/2924/pclip.gif"
+    <img
+      src="https://web.archive.org/web/20001008042358if_/http://www.geocities.com:80/TimesSquare/Cavern/2924/pclip.gif"
       alt="Clippy" style="width: 100px; cursor: pointer;" onclick="this.parentElement.style.display='none'">
   </div>
 
