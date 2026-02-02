@@ -1,92 +1,54 @@
 /* --- Global Styles --- */
 body {
     background-color: #0f0f0f;
-    /* Fallback color */
-    background-size: cover;
-    /* Stretches image to fill screen */
-    background-position: center;
-    /* Centers the image */
-    background-attachment: fixed;
-    /* Keeps image still while you scroll (Parallax feel) */
-    background-repeat: no-repeat;
     font-family: 'Inter', sans-serif;
-    /* Main font */
     color: #e0e0e0;
+    position: relative;
 }
 
 /* ====================================================== */
-/* --- Base Background Setup --- */
-/* --- Cinematic Scroll Background --- */
+/* --- Base Background Setup
+/* ====================================================== */
+
+/* 1. The Background Layer */
 body::before {
     content: "";
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     z-index: -1;
     background-size: cover;
+    background-position: center;
     background-repeat: no-repeat;
-    /* The Animation:
-       - 'parallaxPan': The name of the keyframe below
-       - 'linear': Moves at constant speed
-       - 'scroll()': The magic CSS function that links time to scrolling
-    */
-    animation: parallaxPan linear;
-    animation-timeline: scroll();
-    /* Fallback for browsers that don't support scroll-animations yet:
-       It will just stay fixed at the center-top. */
-    background-position: center top;
 }
 
-/* Define the movement: From Top Edge -> Bottom Edge */
-@keyframes parallaxPan {
-    0% {
-        background-position: center 0%;
-        /* Start at Top */
-    }
-
-    100% {
-        background-position: center 100%;
-        /* End at Bottom */
-    }
-}
-
-/* --- Page-Specific Images --- */
-/* 1. HOME */
+/* 2. Images */
+/* Home */
 body.bg-home::before {
     background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
         url('../images/bg-home.avif');
 }
 
-/* 2. PROJECTS */
+/* Projects */
 body.bg-projects::before {
     background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
         url('../images/bg-projects.avif');
 }
 
-/* 3. ABOUT */
+/* About */
 body.bg-about::before {
     background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)),
         url('../images/bg-about.avif');
 }
 
-/* 4. CONTACT */
+/* Contact */
 body.bg-contact::before {
     background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
         url('../images/bg-contact.avif');
 }
 
-/* Animation Keyframes */
-@keyframes cinematicPan {
-    0% {
-        transform: scale(1);
-    }
-
-    100% {
-        transform: scale(1.15);
-    }
-}
 
 /* ====================================================== */
 
@@ -376,8 +338,8 @@ html {
         /* Ensure it's tall enough to breathe */
     }
 
-    /* Reset the Bootstrap ratio hack */
-    .ratio::before {
+    /* Reset the Bootstrap ratio hack ONLY for 16x9 cards */
+    .ratio-16x9::before {
         display: none;
     }
 
@@ -432,6 +394,7 @@ body,
 
 a,
 button,
+button:hover,
 .btn,
 .nav-link,
 .card,
@@ -650,21 +613,35 @@ body.retro-mode #retro-controls {
 
 /* 1. Style the Button Box */
 body.retro-mode .navbar-toggler {
-    background-color: #c0c0c0 !important; /* Grey background */
-    border: 2px outset #ffffff !important; /* 3D Pop-out border */
-    border-radius: 0 !important; /* Square corners */
+    background-color: #c0c0c0 !important;
+    /* Grey background */
+    border: 2px outset #ffffff !important;
+    /* 3D Pop-out border */
+    border-radius: 0 !important;
+    /* Square corners */
     opacity: 1 !important;
 }
 
 /* 2. Pressed State (When you tap it) */
 body.retro-mode .navbar-toggler:active {
-    border: 2px inset #ffffff !important; /* 3D Sunken border */
+    border: 2px inset #ffffff !important;
+    /* 3D Sunken border */
 }
 
 /* 3. Color the Icon Black */
 body.retro-mode .navbar-toggler-icon {
     /* This filter flips the white icon to black so it's visible */
-    filter: invert(1) !important; 
+    filter: invert(1) !important;
+}
+
+/* --- DISABLE ANIMATIONS IN RETRO MODE --- */
+body.retro-mode [data-aos] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+    visibility: visible !important;
+    animation: none !important;
+    pointer-events: auto !important;
 }
 
 
@@ -697,5 +674,21 @@ body.retro-mode .navbar-toggler-icon {
     100% {
         bottom: -150px;
         /* Dive back down */
+    }
+}
+
+/* --- SQUISH DESKTOP WIDTH --- */
+@media (min-width: 992px) {
+
+    /* 1. Squish the main content for that "Mobile/App" feel */
+    .container {
+        max-width: 900px;
+    }
+
+    /* 2. EXCEPTION: Let the Navbar expand wider so buttons don't wrap */
+    /* This creates a nice "Wide Header, Focused Content" look */
+    nav.navbar .container {
+        max-width: 1100px;
+        /* Gives the header 200px more space than the text */
     }
 }

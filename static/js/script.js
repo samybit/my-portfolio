@@ -2,9 +2,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // --- 0. INITIALIZE AOS (SCROLL ANIMATIONS) ---
     AOS.init({
-        duration: 400,  // Animation lasts 400ms
+        duration: 800,  // Animation lasts 000ms
         once: true,     // Only animate once (don't fade out when scrolling up)
-        offset: 80      // Trigger animation 80px before element is visible
+        offset: 50      // Trigger animation 00px before element is visible
     });
 
     // --- 1. SPOTLIGHT EFFECT ---
