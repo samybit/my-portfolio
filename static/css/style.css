@@ -376,8 +376,8 @@ html {
         /* Ensure it's tall enough to breathe */
     }
 
-    /* Reset the Bootstrap ratio hack */
-    .ratio::before {
+    /* Reset the Bootstrap ratio hack ONLY for 16x9 cards */
+    .ratio-16x9::before {
         display: none;
     }
 
@@ -432,6 +432,7 @@ body,
 
 a,
 button,
+button:hover,
 .btn,
 .nav-link,
 .card,
@@ -650,21 +651,25 @@ body.retro-mode #retro-controls {
 
 /* 1. Style the Button Box */
 body.retro-mode .navbar-toggler {
-    background-color: #c0c0c0 !important; /* Grey background */
-    border: 2px outset #ffffff !important; /* 3D Pop-out border */
-    border-radius: 0 !important; /* Square corners */
+    background-color: #c0c0c0 !important;
+    /* Grey background */
+    border: 2px outset #ffffff !important;
+    /* 3D Pop-out border */
+    border-radius: 0 !important;
+    /* Square corners */
     opacity: 1 !important;
 }
 
 /* 2. Pressed State (When you tap it) */
 body.retro-mode .navbar-toggler:active {
-    border: 2px inset #ffffff !important; /* 3D Sunken border */
+    border: 2px inset #ffffff !important;
+    /* 3D Sunken border */
 }
 
 /* 3. Color the Icon Black */
 body.retro-mode .navbar-toggler-icon {
     /* This filter flips the white icon to black so it's visible */
-    filter: invert(1) !important; 
+    filter: invert(1) !important;
 }
 
 
