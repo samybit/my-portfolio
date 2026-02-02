@@ -634,6 +634,16 @@ body.retro-mode .navbar-toggler-icon {
     filter: invert(1) !important;
 }
 
+/* --- DISABLE ANIMATIONS IN RETRO MODE --- */
+body.retro-mode [data-aos] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+    visibility: visible !important;
+    animation: none !important;
+    pointer-events: auto !important;
+}
+
 
 /* --- MARIO EASTER EGG ANIMATION --- */
 .mario-jump-anim {
