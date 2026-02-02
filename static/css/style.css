@@ -704,3 +704,19 @@ body.retro-mode .navbar-toggler-icon {
         /* Dive back down */
     }
 }
+
+/* --- SQUISH DESKTOP WIDTH --- */
+@media (min-width: 992px) {
+
+    /* 1. Squish the main content for that "Mobile/App" feel */
+    .container {
+        max-width: 900px;
+    }
+
+    /* 2. EXCEPTION: Let the Navbar expand wider so buttons don't wrap */
+    /* This creates a nice "Wide Header, Focused Content" look */
+    nav.navbar .container {
+        max-width: 1100px;
+        /* Gives the header 200px more space than the text */
+    }
+}
