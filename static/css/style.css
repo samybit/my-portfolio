@@ -185,6 +185,28 @@ html {
     transition: all 0.3s ease;
 }
 
+/* --- Glassmorphism --- */
+.glass-project {
+    /* 1. Semi-transparent gradient */
+    background: linear-gradient(135deg,
+            rgba(255, 255, 255, 0.1) 0%,
+            rgba(255, 255, 255, 0.05) 100%) !important;
+
+    /* 2. The Blur */
+    /* backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px); */
+    /* For Safari */
+
+    /* 3. Glass Borders */
+    border-top: 1px solid rgba(255, 255, 255, 0.4) !important;
+    border-left: 1px solid rgba(255, 255, 255, 0.4) !important;
+    border-right: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+
+    /* 4. Depth Shadow */
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+}
+
 /* --- Card Hover Effects --- */
 
 /* 1. Make sure the cards can hold the absolute overlay */
@@ -516,13 +538,12 @@ body.retro-mode::-webkit-scrollbar-thumb {
 /* 5. The "Boxy" Layout */
 body.retro-mode .card,
 body.retro-mode .glass-card,
-body.retro-mode .ratio {
+body.retro-mode .ratio,
+body.retro-mode .glass-project {
     background: #ffffff !important;
     border: 2px solid #000000 !important;
     border-radius: 0 !important;
-    /* No rounded corners */
     box-shadow: 4px 4px 0px #888888 !important;
-    /* Hard shadow */
     backdrop-filter: none !important;
 }
 
