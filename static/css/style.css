@@ -6,6 +6,24 @@ body {
     position: relative;
 }
 
+/* --- 3D Background Canvas --- */
+#renderCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    touch-action: none;
+    outline: none;
+    pointer-events: none;
+}
+
+/* Hide 3D elements in Retro Mode */
+body.retro-mode #renderCanvas {
+    display: none !important;
+}
+
 /* ====================================================== */
 /* --- Base Background Setup
 /* ====================================================== */

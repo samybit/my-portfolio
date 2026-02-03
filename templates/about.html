@@ -5,6 +5,8 @@
 {% block body_class %}bg-about{% endblock %}
 
 {% block content %}
+<canvas id="renderCanvas"></canvas>
+
 <div class="container py-5">
   <div class="row align-items-center mb-5">
 
@@ -21,6 +23,10 @@
       <p class="text-secondary">
         Today, I focus on building complete, containerized applications using Docker, ensuring that what runs on my
         machine runs everywhere.
+      </p>
+      <p class="text-secondary">
+        When I'm not coding, you can find me exploring retro tech, playing classic games,
+        or experimenting with 3D web graphics.
       </p>
     </div>
 
@@ -84,4 +90,103 @@
   </div>
 
 </div>
+
+<script src="https://cdn.babylonjs.com/babylon.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const canvas = document.getElementById("renderCanvas");
+    if (!canvas) return;
+
+    const engine = new BABYLON.Engine(canvas, true, { preserveDrawingBuffer: true, stencil: true });
+
+    const createScene = function () {
+      const scene = new BABYLON.Scene(engine);
+      scene.clearColor = new BABYLON.Color4(0, 0, 0, 0); // Transparent
+
+      const camera = new BABYLON.UniversalCamera("camera", new BABYLON.Vector3(0, 0, -15), scene);
+      camera.setTarget(BABYLON.Vector3.Zero());
+
+      const light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(0, 1, 0), scene);
+      light.intensity = 2;
+
+      // --- CREATE 3 SHAPES ON THE RIGHT ---
+      const shapes = [];
+      const shapeCount = 3;
+
+      const mat = new BABYLON.StandardMaterial("mat", scene);
+      mat.wireframe = true;
+      mat.emissiveColor = new BABYLON.Color3(0, 1, 0.8); // Cyan Glow
+      mat.alpha = 0.4;
+
+      for (let i = 0; i < shapeCount; i++) {
+        // Create Polyhedron (Icosahedron type)
+        const mesh = BABYLON.MeshBuilder.CreatePolyhedron("shape" + i, { type: 1, size: 2 }, scene);
+        mesh.material = mat;
+
+        // POSITION: Vertical Column on the Right
+        // x = 7 (Right side), y = spread (5, 0, -5)
+        mesh.position.x = 6;
+        mesh.position.y = (i - 1) * 6; // Spacing: Top(6), Middle(0), Bottom(-6)
+        mesh.position.z = 0;
+
+        // HIGH SPEED SPIN
+        mesh.rotationSpeed = new BABYLON.Vector3(
+          Math.random() * 0.02 + 0.01, // Faster X
+          Math.random() * 0.02 + 0.01, // Faster Y
+          0
+        );
+
+        shapes.push(mesh);
+      }
+
+      // --- MOUSE INTERACTION VARIABLES ---
+      let mouseX = 0;
+      let mouseY = 0;
+
+      // Track Mouse Position
+      window.addEventListener("mousemove", function (e) {
+        // Normalize mouse position from -1 to 1
+        mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+        mouseY = (e.clientY / window.innerHeight) * 2 - 1;
+      });
+
+      scene.registerBeforeRender(function () {
+        for (let i = 0; i < shapes.length; i++) {
+          const m = shapes[i];
+
+          // 1. Base Spin (Always spinning fast)
+          m.rotation.x += m.rotationSpeed.x;
+          m.rotation.y += m.rotationSpeed.y;
+
+          // 2. Float gently
+          m.position.y += Math.sin(Date.now() * 0.002 + i) * 0.02;
+
+          // 3. MOUSE INTERACTION (Tilt towards mouse)
+          // add a small rotation offset based on mouse position
+          m.rotation.y += mouseX * 0.2;
+          m.rotation.x += mouseY * 0.2;
+        }
+      });
+
+      // Scroll Spin Boost
+      window.addEventListener("scroll", () => {
+        for (let i = 0; i < shapes.length; i++) {
+          shapes[i].rotation.y += 0.15; // Hard spin on scroll
+        }
+      });
+
+      return scene;
+    };
+
+    const scene = createScene();
+
+    engine.runRenderLoop(function () {
+      scene.render();
+    });
+
+    window.addEventListener("resize", function () {
+      engine.resize();
+    });
+  });
+</script>
 {% endblock %}
