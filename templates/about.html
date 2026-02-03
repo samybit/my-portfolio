@@ -5,7 +5,7 @@
 {% block body_class %}bg-about{% endblock %}
 
 {% block content %}
-<canvas id="renderCanvas"></canvas>
+<canvas id="renderCanvas" style="opacity: 0; transition: opacity 2s ease;"></canvas>
 
 <div class="container py-5">
   <div class="row align-items-center mb-5">
@@ -97,6 +97,22 @@
     const canvas = document.getElementById("renderCanvas");
     if (!canvas) return;
 
+    // --- SCROLL TO REVEAL ---
+    // check scroll position
+    function checkScrollReveal() {
+      // trigger when user is within 100px of the bottom
+      if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 400) {
+        // Reveal the canvas
+        canvas.style.opacity = "1";
+        // Remove listener so it stays visible once triggered
+        window.removeEventListener("scroll", checkScrollReveal);
+      }
+    }
+
+    // Attach the listener
+    window.addEventListener("scroll", checkScrollReveal);
+    // -----------------------------------
+
     const engine = new BABYLON.Engine(canvas, true, { preserveDrawingBuffer: true, stencil: true });
 
     const createScene = function () {
@@ -119,17 +135,23 @@
       mat.alpha = 0.4;
 
       for (let i = 0; i < shapeCount; i++) {
-        // Create Polyhedron (Icosahedron type)
-        const mesh = BABYLON.MeshBuilder.CreatePolyhedron("shape" + i, { type: 1, size: 2 }, scene);
+        // Abstract Torus Knot
+        const mesh = BABYLON.MeshBuilder.CreateTorusKnot("shape" + i, {
+          radius: 1.01,           // Overall size
+          tube: 0.3,           // Thickness of the "rope"
+          radialSegments: 74,  // Smoothness around the tube
+          tubularSegments: 8,  // Low segments here makes it look angular/techy in wireframe
+          p: 2,                // Winding number 1
+          q: 3                 // Winding number 2
+        }, scene);
         mesh.material = mat;
 
         // POSITION: Vertical Column on the Right
         // x = 7 (Right side), y = spread (5, 0, -5)
-        mesh.position.x = 6;
-        mesh.position.y = (i - 1) * 6; // Spacing: Top(6), Middle(0), Bottom(-6)
+        mesh.position.x = 8;
+        mesh.position.y = (i - 1) * 5; // Spacing: Top(6), Middle(0), Bottom(-6)
         mesh.position.z = 0;
 
-        // HIGH SPEED SPIN
         mesh.rotationSpeed = new BABYLON.Vector3(
           Math.random() * 0.02 + 0.01, // Faster X
           Math.random() * 0.02 + 0.01, // Faster Y
@@ -154,7 +176,7 @@
         for (let i = 0; i < shapes.length; i++) {
           const m = shapes[i];
 
-          // 1. Base Spin (Always spinning fast)
+          // 1. Base Spin
           m.rotation.x += m.rotationSpeed.x;
           m.rotation.y += m.rotationSpeed.y;
 
@@ -171,7 +193,7 @@
       // Scroll Spin Boost
       window.addEventListener("scroll", () => {
         for (let i = 0; i < shapes.length; i++) {
-          shapes[i].rotation.y += 0.15; // Hard spin on scroll
+          shapes[i].rotation.y += 0.25; // Hard spin on scroll
         }
       });
 
