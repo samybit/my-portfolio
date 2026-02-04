@@ -10,8 +10,6 @@ load_dotenv()
 
 app = Flask(__name__)
 
-print(f"📧 EMAIL_USER is set to: {os.environ.get('EMAIL_USER')}")
-
 # Config
 app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY")
 
