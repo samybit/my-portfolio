@@ -98,22 +98,22 @@
     if (!canvas) return;
 
     // --- SCROLL TO REVEAL ---
-    // check scroll position
     function checkScrollReveal() {
-      // trigger when user is within 100px of the bottom
-      if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 400) {
-        // Reveal the canvas
+      // Trigger when user is close to bottom
+      // Adjusted offset for mobile scrolling feel
+      if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 500) {
         canvas.style.opacity = "1";
         // Remove listener so it stays visible once triggered
         window.removeEventListener("scroll", checkScrollReveal);
       }
     }
 
-    // Attach the listener
     window.addEventListener("scroll", checkScrollReveal);
-    // -----------------------------------
 
+    // --- BABYLON ENGINE ---
     const engine = new BABYLON.Engine(canvas, true, { preserveDrawingBuffer: true, stencil: true });
+    // "Render at 1.33 resolution" (1 / 0.75 ≃ 1.33)
+    engine.setHardwareScalingLevel(0.75);
 
     const createScene = function () {
       const scene = new BABYLON.Scene(engine);
@@ -125,43 +125,62 @@
       const light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(0, 1, 0), scene);
       light.intensity = 2;
 
-      // --- CREATE 3 SHAPES ON THE RIGHT ---
+      // --- CREATE SHAPES ---
       const shapes = [];
       const shapeCount = 3;
 
       const mat = new BABYLON.StandardMaterial("mat", scene);
       mat.wireframe = true;
-      mat.emissiveColor = new BABYLON.Color3(0, 1, 0.8); // Cyan Glow
+      mat.emissiveColor = new BABYLON.Color3(0, 1, 0.8);
       mat.alpha = 0.4;
 
       for (let i = 0; i < shapeCount; i++) {
         // Abstract Torus Knot
         const mesh = BABYLON.MeshBuilder.CreateTorusKnot("shape" + i, {
-          radius: 1.01,           // Overall size
-          tube: 0.3,           // Thickness of the "rope"
-          radialSegments: 74,  // Smoothness around the tube
-          tubularSegments: 8,  // Low segments here makes it look angular/techy in wireframe
-          p: 2,                // Winding number 1
-          q: 3                 // Winding number 2
+          radius: 1.00,
+          tube: 0.3,
+          radialSegments: 64,
+          tubularSegments: 8,
+          p: 2,
+          q: 3
         }, scene);
         mesh.material = mat;
 
-        // POSITION: Vertical Column on the Right
-        // x = 7 (Right side), y = spread (5, 0, -5)
-        mesh.position.x = 8;
-        mesh.position.y = (i - 1) * 5; // Spacing: Top(6), Middle(0), Bottom(-6)
+        // Initial Y Position (Vertical Spread)
+        mesh.position.y = (i - 1) * 5;
         mesh.position.z = 0;
 
         mesh.rotationSpeed = new BABYLON.Vector3(
-          Math.random() * 0.02 + 0.01, // Faster X
-          Math.random() * 0.02 + 0.01, // Faster Y
+          Math.random() * 0.02 + 0.01,
+          Math.random() * 0.02 + 0.01,
           0
         );
 
         shapes.push(mesh);
       }
 
-      // --- MOUSE INTERACTION VARIABLES ---
+      // --- RESPONSIVE POSITIONING LOGIC ---
+      function updateShapePositions() {
+        const isMobile = window.innerWidth < 992; // Tablet/Mobile Breakpoint
+
+        shapes.forEach((mesh) => {
+          if (isMobile) {
+            // Mobile: Move to Center (0) so they are visible behind text
+            mesh.position.x = 0;
+            // Optional: Push back slightly on mobile so they don't dominate
+            mesh.position.z = 2;
+          } else {
+            // Desktop: Move to Right Side (8)
+            mesh.position.x = 10;
+            mesh.position.z = 0;
+          }
+        });
+      }
+
+      // Call it once on load
+      updateShapePositions();
+
+      // --- MOUSE & ANIMATION ---
       let mouseX = 0;
       let mouseY = 0;
 
@@ -193,9 +212,12 @@
       // Scroll Spin Boost
       window.addEventListener("scroll", () => {
         for (let i = 0; i < shapes.length; i++) {
-          shapes[i].rotation.y += 0.25; // Hard spin on scroll
+          shapes[i].rotation.y += 0.25;
         }
       });
+
+      // Make `updateShapePositions` available to the resize event
+      scene.updateShapePositions = updateShapePositions;
 
       return scene;
     };
@@ -208,6 +230,8 @@
 
     window.addEventListener("resize", function () {
       engine.resize();
+      // Update positions when screen size changes (rotate phone etc)
+      if (scene.updateShapePositions) scene.updateShapePositions();
     });
   });
 </script>
