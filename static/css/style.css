@@ -267,7 +267,7 @@ html {
     opacity: 1;
 }
 
-/* 4. Optional: Subtle Border Glow */
+/* 4. Subtle Border Glow */
 .card:hover,
 .ratio:hover {
     border-color: rgba(255, 255, 255, 0.4) !important;
@@ -355,18 +355,38 @@ html {
    ========================================= */
 @media (max-width: 991px) {
 
-    /* 1. Fix Hero Text Size */
+    /* 1. Fluid Hero Text */
     .hero-title {
-        font-size: 2.5rem;
-        /* Shrink from 3.5rem to 2.5rem */
-        word-wrap: break-word;
-        /* Prevent aggressive word breaking */
+        /* It stays at 1.6rem on tiny phones, 3.5rem on desktop, 
+           and scales smoothly in between. */
+        font-size: clamp(1.5rem, 8vw, 3.5rem) !important;
+
+        /* 2. Strict No-Break Rule */
+        word-break: keep-all !important;
+        /* Only breaks at spaces */
+        overflow-wrap: normal !important;
+        /* Disables mid-word wrapping */
+        hyphens: none !important;
+        /* Removes automatic dash-breaks */
+
+        line-height: 1.1;
+        padding: 0 1px;
     }
 
+    /* 2. Fluid Subtitle */
     .hero-subtitle {
-        font-size: 1rem;
+        /* Scales smoothly between 0.9rem (mobile) and 1.25rem (desktop) */
+        font-size: clamp(0.9rem, 3vw, 1.25rem) !important;
+
+        /* Improves readability on small screens */
+        line-height: 1.5;
         padding: 0 15px;
-        /* Add breathing room on sides */
+        /* Adds breathing room so text doesn't hit the edges */
+
+        /* Limits width to prevent long lines from stretching too far */
+        max-width: 90%;
+        margin-left: auto;
+        margin-right: auto;
     }
 
     /* 2. Fix the "Squashed" Project Card (YearWave) */
