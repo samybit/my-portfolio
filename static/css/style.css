@@ -427,6 +427,130 @@ html {
     button {
         cursor: auto !important;
     }
+
+    /* 1. The Animated Hamburger Button */
+    .navbar-toggler {
+        border: none !important;
+        padding: 0;
+        width: 30px;
+        height: 30px;
+        position: relative;
+        outline: none !important;
+        box-shadow: none !important;
+    }
+
+    /* Hide the default Bootstrap SVG icon */
+    .navbar-toggler-icon {
+        display: none;
+    }
+
+    /* Create our own 3 lines using pseudo-elements */
+    .navbar-toggler::before,
+    .navbar-toggler::after,
+    .navbar-toggler span {
+        content: '';
+        display: block;
+        width: 100%;
+        height: 2px;
+        background-color: white;
+        position: absolute;
+        left: 0;
+        transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        /* Bouncy animation */
+    }
+
+    /* Top Line */
+    .navbar-toggler::before {
+        top: 4px;
+    }
+
+    /* Middle Line (We create a span if needed, or stick to 2 line cross) */
+    /* Let's simulate 3 lines using box-shadow for the middle one on the ::before element? 
+   Actually, simpler approach: Just 2 lines that start apart and cross. */
+
+    /* REVISION: 3 Lines Concept */
+    .navbar-toggler::before {
+        top: 20%;
+    }
+
+    .navbar-toggler::after {
+        bottom: 20%;
+    }
+
+    /* The "Middle" line is trickier without an extra span, 
+   so let's make a cool "2-line" menu that looks modern. */
+
+    /* OPEN STATE (When the menu is active) */
+    /* Bootstrap removes the '.collapsed' class when open. 
+   So we target [not collapsed] */
+    .navbar-toggler:not(.collapsed)::before {
+        top: 50%;
+        transform: translateY(-50%) rotate(45deg);
+    }
+
+    .navbar-toggler:not(.collapsed)::after {
+        bottom: 50%;
+        transform: translateY(50%) rotate(-45deg);
+    }
+
+    /* 2. The Floating Glass Menu */
+    @media (max-width: 991px) {
+        .navbar-collapse {
+            /* ABSOLUTE POSITIONING: This stops it from pushing content down */
+            position: absolute;
+            top: 100%;
+            /* Starts right below the navbar */
+            left: 0;
+            right: 0;
+            z-index: 1000;
+
+            /* Floating Card Styling */
+            width: 90%;
+            /* Doesn't touch edges */
+            max-width: 400px;
+            margin: 10px auto;
+            /* Centers it floating in space */
+
+            /* Glass Effect */
+            background: rgba(15, 15, 15, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+
+            /* Animation origin (makes it expand from top) */
+            transform-origin: top center;
+        }
+
+        /* Inner Spacing */
+        .navbar-nav {
+            padding: 20px;
+            text-align: center;
+            gap: 15px;
+        }
+
+        /* Link Styling */
+        .navbar-nav .nav-link {
+            font-size: 1.1rem;
+            color: white !important;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            /* Subtle dividers */
+        }
+
+        /* Remove border from last link and button */
+        .navbar-nav .nav-link:last-child,
+        .navbar-nav .btn {
+            border-bottom: none;
+        }
+
+        /* Social Icons Row centered */
+        .navbar-nav .d-flex {
+            justify-content: center;
+            margin-top: 10px;
+        }
+    }
 }
 
 /*-- Custom Cursor (Diamond) --*/
@@ -731,6 +855,31 @@ body.retro-mode [data-aos] {
     pointer-events: auto !important;
 }
 
+/* --- RETRO MODE MENU RESET --- */
+body.retro-mode .navbar-collapse {
+    position: static !important;
+    /* Go back to pushing content down */
+    width: 100% !important;
+    margin: 0 !important;
+    background: #c0c0c0 !important;
+    /* Grey background */
+    border: 2px solid black !important;
+    box-shadow: none !important;
+    transform: none !important;
+    backdrop-filter: none !important;
+}
+
+/* Restore the default icon */
+body.retro-mode .navbar-toggler-icon {
+    display: block !important;
+    /* Show the pixelated icon */
+}
+
+body.retro-mode .navbar-toggler::before,
+body.retro-mode .navbar-toggler::after {
+    display: none !important;
+    /* Hide modern animated lines */
+}
 
 /* --- MARIO EASTER EGG ANIMATION --- */
 .mario-jump-anim {
