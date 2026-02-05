@@ -26,18 +26,18 @@
           </div>
           {% else %}
 
-          <form method="POST">
-            {{ form.hidden_tag() }} {% for field in form if field.type not in ['SubmitField', 'CSRFTokenField'] %}
-            <div class="mb-3">
+          <form method="POST" novalidate>
+            {{ form.hidden_tag() }}
+
+            {% for field in form if field.type not in ['SubmitField', 'CSRFTokenField'] %}
+            <div class="mb-3 position-relative">
+
               {{ field.label(class="form-label text-secondary") }}
-              {% if field.errors %}
-              {{ field(class="form-control is-invalid bg-transparent text-white border-secondary") }}
-              <div class="invalid-feedback">
-                {% for error in field.errors %}{{ error }}{% endfor %}
-              </div>
-              {% else %}
-              {{ field(class="form-control bg-transparent text-white border-secondary") }}
-              {% endif %}
+
+              {{ field(class="form-control bg-transparent text-white border-secondary", placeholder=field.label.text) }}
+
+              <div class="live-error-msg" id="error-{{ field.id }}"></div>
+
             </div>
             {% endfor %}
 
@@ -61,28 +61,113 @@
 <script>
   document.addEventListener("DOMContentLoaded", function () {
     const form = document.querySelector("form");
+    const inputs = document.querySelectorAll(".form-control");
     const iconWrapper = document.querySelector(".icon-wrapper");
     const btnText = document.querySelector(".btn-text");
 
+    // VALIDATION RULES
+    const validators = {
+      // 1. Name: Not empty, at least 2 chars
+      name: (val) => val.trim().length >= 2 ? null : "Name must be at least 2 characters.",
+
+      // 2. Email: Regex check
+      email: (val) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val) ? null : "Please enter a valid email address.",
+
+      // 3. Message: Not empty, at least 10 chars
+      message: (val) => val.trim().length >= 10 ? null : "Message is too short (min 10 chars)."
+    };
+
+    // HELPER: Validate a single field
+    function validateField(input) {
+      const fieldName = input.name.toLowerCase(); // 'name', 'email', or 'message'
+      const errorDiv = document.getElementById(`error-${input.id}`);
+
+      // If we don't have a specific rule, skip
+      if (!validators[fieldName]) return true;
+
+      const errorMessage = validators[fieldName](input.value);
+
+      if (errorMessage) {
+        // INVALID STATE
+        input.classList.add("is-invalid-custom");
+        input.classList.remove("is-valid-custom");
+        if (errorDiv) {
+          errorDiv.innerText = errorMessage;
+          errorDiv.classList.add("show");
+        }
+        return false;
+      } else {
+        // VALID STATE
+        input.classList.remove("is-invalid-custom");
+        input.classList.add("is-valid-custom");
+        if (errorDiv) {
+          errorDiv.classList.remove("show");
+        }
+        return true;
+      }
+    }
+
+    // ATTACH LISTENERS (Real-time check)
     if (form) {
+      inputs.forEach(input => {
+        // Check when user types
+        input.addEventListener("keyup", () => validateField(input));
+        // Check when user leaves the field
+        input.addEventListener("blur", () => validateField(input));
+      });
+
+      // SUBMIT HANDLER
       form.addEventListener("submit", function (e) {
-        // This event ONLY fires if the browser validation (required, email) Passes.
+        e.preventDefault(); // Stop everything first
 
-        // 1. Pause the actual sending for 0.6 seconds
-        e.preventDefault();
+        let isFormValid = true;
 
-        // 2. Play the Fly Animation
-        iconWrapper.classList.add("fly-away-active");
+        // 1. Check ALL fields one last time
+        inputs.forEach(input => {
+          const isValid = validateField(input);
+          if (!isValid) isFormValid = false;
+        });
 
-        // 3. Optional: Change text to show something is happening
-        btnText.innerText = "Sending...";
+        if (isFormValid) {
+          // SUCCESS: Play Animation & Submit
+          iconWrapper.classList.add("fly-away-active");
+          btnText.innerText = "Sending...";
 
-        // 4. Wait for animation, then submit for real
-        setTimeout(() => {
-          form.submit();
-        }, 600);
+          setTimeout(() => {
+            form.submit();
+          }, 600); // Wait for fly animation
+        } else {
+          // FAILURE: Shake the button
+          const btn = document.querySelector(".btn-slide-anim");
+          btn.classList.add("shake-anim");
+          setTimeout(() => btn.classList.remove("shake-anim"), 500);
+        }
       });
     }
   });
 </script>
+
+<style>
+  @keyframes shake {
+
+    0%,
+    100% {
+      transform: translateX(0);
+    }
+
+    25% {
+      transform: translateX(-5px);
+    }
+
+    75% {
+      transform: translateX(5px);
+    }
+  }
+
+  .shake-anim {
+    animation: shake 0.4s ease-in-out;
+    border-color: #ff4444 !important;
+    /* Flash red */
+  }
+</style>
 {% endblock %}
