@@ -25,7 +25,30 @@
             <a href="{{ url_for('home') }}" class="btn btn-outline-success mt-3">Back to Home</a>
           </div>
           {% else %}
-          {{ render_form(form, button_map={"submit": "light btn-lg w-100 mt-3"}) }}
+
+          <form method="POST">
+            {{ form.hidden_tag() }} {% for field in form if field.type not in ['SubmitField', 'CSRFTokenField'] %}
+            <div class="mb-3">
+              {{ field.label(class="form-label text-secondary") }}
+              {% if field.errors %}
+              {{ field(class="form-control is-invalid bg-transparent text-white border-secondary") }}
+              <div class="invalid-feedback">
+                {% for error in field.errors %}{{ error }}{% endfor %}
+              </div>
+              {% else %}
+              {{ field(class="form-control bg-transparent text-white border-secondary") }}
+              {% endif %}
+            </div>
+            {% endfor %}
+
+            <button type="submit" class="btn btn-outline-light btn-lg w-100 mt-3 btn-slide-anim">
+              <div class="btn-text">Send Message</div>
+              <div class="icon-wrapper">
+                <i class="bi bi-send-fill btn-icon"></i>
+              </div>
+            </button>
+
+          </form>
           {% endif %}
 
         </div>
@@ -34,4 +57,32 @@
     </div>
   </div>
 </div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const form = document.querySelector("form");
+    const iconWrapper = document.querySelector(".icon-wrapper");
+    const btnText = document.querySelector(".btn-text");
+
+    if (form) {
+      form.addEventListener("submit", function (e) {
+        // This event ONLY fires if the browser validation (required, email) Passes.
+
+        // 1. Pause the actual sending for 0.6 seconds
+        e.preventDefault();
+
+        // 2. Play the Fly Animation
+        iconWrapper.classList.add("fly-away-active");
+
+        // 3. Optional: Change text to show something is happening
+        btnText.innerText = "Sending...";
+
+        // 4. Wait for animation, then submit for real
+        setTimeout(() => {
+          form.submit();
+        }, 600);
+      });
+    }
+  });
+</script>
 {% endblock %}
