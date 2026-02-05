@@ -573,7 +573,7 @@ body.retro-mode::-webkit-scrollbar-thumb {
     border-radius: 0 !important;
 }
 
-/* 5. The "Boxy" Layout */
+/* 5. The Boxy Layout */
 body.retro-mode .card,
 body.retro-mode .glass-card,
 body.retro-mode .ratio,
@@ -583,6 +583,34 @@ body.retro-mode .glass-project {
     border-radius: 0 !important;
     box-shadow: 4px 4px 0px #888888 !important;
     backdrop-filter: none !important;
+    color: #000000 !important;
+}
+
+/* --- FIX INVISIBLE TEXT IN RETRO MODE --- */
+
+/* 1. Force grey text (text-secondary) to be Black */
+body.retro-mode .text-secondary {
+    color: #333333 !important;
+    /* Dark Grey for readability */
+}
+
+/* 2. Force Headings inside cards to be Black */
+body.retro-mode .glass-project h5,
+body.retro-mode .glass-project h6 {
+    color: #000000 !important;
+    font-weight: bold !important;
+}
+
+/* 3. Fix the Badges (Dates) */
+body.retro-mode .badge {
+    color: #000000 !important;
+    border-color: #000000 !important;
+    /* Make border visible */
+}
+
+/* 4. Fix Icons */
+body.retro-mode i.bi {
+    color: #000000 !important;
 }
 
 /* Remove gradient backgrounds from cards */
