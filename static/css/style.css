@@ -866,19 +866,25 @@ body:not(.retro-mode) .btn-slide-anim:hover {
 /* 3. Error Message Text */
 .live-error-msg {
     color: #ff6b6b;
-    font-size: 0.85rem;
-    margin-top: 5px;
-    height: 0;
+    font-size: 0.7rem;
+
+    /* Absolute positioning prevents layout shift */
+    position: absolute;
+    bottom: -20px;
+    /* Hangs below the input */
+    left: 0;
+    width: 100%;
+
     opacity: 0;
-    overflow: hidden;
-    transform: translateY(-5px);
-    transition: all 0.3s ease;
+    transform: translateY(-10px);
+    /* Slides down from inside the input */
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    pointer-events: none;
+    z-index: 10;
 }
 
-/* Reveal the error message */
+/* 4. Reveal the error message */
 .live-error-msg.show {
-    height: auto;
     opacity: 1;
     transform: translateY(0);
-    margin-bottom: 10px;
 }

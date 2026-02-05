@@ -30,7 +30,7 @@
             {{ form.hidden_tag() }}
 
             {% for field in form if field.type not in ['SubmitField', 'CSRFTokenField'] %}
-            <div class="mb-3 position-relative">
+            <div class="mb-4 position-relative">
 
               {{ field.label(class="form-label text-secondary") }}
 
