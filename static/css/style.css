@@ -145,13 +145,29 @@ html {
 .hero-section {
     padding: 100px 0;
     text-align: center;
+    /* Ensure no overflow issues on the parent */
+    max-width: 100%;
+    overflow-x: hidden;
 }
 
 .hero-title {
-    font-size: 3.5rem;
+    /* DESKTOP: Big and bold */
+    font-size: 4rem;
     font-weight: 700;
-    line-height: 1.2;
+    line-height: 1.1;
     margin-bottom: 20px;
+
+    /* THE NO-BREAK RULES */
+    word-break: normal !important;
+    /* Use standard break rules */
+    overflow-wrap: normal !important;
+    /* Never force-break a word */
+    -webkit-hyphens: none !important;
+    /* No dashes in Safari */
+    -ms-hyphens: none !important;
+    /* No dashes in Edge */
+    hyphens: none !important;
+    /* No dashes anywhere else */
 }
 
 .hero-subtitle {
@@ -357,20 +373,13 @@ html {
 
     /* 1. Fluid Hero Text */
     .hero-title {
-        /* It stays at 1.6rem on tiny phones, 3.5rem on desktop, 
-           and scales smoothly in between. */
-        font-size: clamp(1.5rem, 8vw, 3.5rem) !important;
+        /* This is the magic number. 
+           11vw means the text is always 11% of the screen width.
+           This ensures "Architecture" or "Deployments" always fits on one line 
+           without splitting. */
+        font-size: 11vw !important;
 
-        /* 2. Strict No-Break Rule */
-        word-break: keep-all !important;
-        /* Only breaks at spaces */
-        overflow-wrap: normal !important;
-        /* Disables mid-word wrapping */
-        hyphens: none !important;
-        /* Removes automatic dash-breaks */
-
-        line-height: 1.1;
-        padding: 0 1px;
+        line-height: 1.2;
     }
 
     /* 2. Fluid Subtitle */
