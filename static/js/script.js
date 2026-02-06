@@ -21,7 +21,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // --- 2. COOLORS TEXT EFFECT ---
     // Target the specific elements: Navbar Name & Hero Title
-    const textElements = document.querySelectorAll(".navbar-brand, .hero-title");
+    // const textElements = document.querySelectorAll(".navbar-brand, .hero-title");
+    const textElements = document.querySelectorAll(".navbar-brand, .glitch-word");
 
     // Bright neon palette for Dark Mode
     const colors = [
