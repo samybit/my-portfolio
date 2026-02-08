@@ -277,6 +277,12 @@ html {
     /* Lets clicks pass through to the buttons */
 }
 
+/* --- Disable Spotlight in Sidebar Only --- */
+.sticky-sidebar .card::after,
+.sticky-sidebar .ratio::after {
+    display: none !important;
+}
+
 /* 3. Reveal on Hover */
 .card:hover::after,
 .ratio:hover::after {
