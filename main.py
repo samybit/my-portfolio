@@ -87,6 +87,12 @@ my_projects = [
         "tech": ["Figma", "UI/UX", "Prototyping"],
         "url": "/design-system",
     },
+    {
+        "title": "C placehoder project",
+        "description": "lorem ipsum",
+        "tech": ["C", "Memory Management", "Structure"],
+        "url": "https://github.com/samybit",
+    },
 ]
 
 

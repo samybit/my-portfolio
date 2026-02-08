@@ -372,6 +372,33 @@ html {
     transform: translateY(0px) rotate(15deg);
 }
 
+/* --- C project Animation --- */
+/* 1. The Wrapper */
+.c-wrapper {
+    position: relative;
+    z-index: 1;
+}
+
+/* 2. The C Logo */
+.c-mascot {
+    position: absolute;
+    width: 65px;
+    top: -55px;
+    right: 40px;
+    z-index: -1;
+    transform: translateY(70px);
+    opacity: 0;
+
+    /* Transition: "Ease Out Quad" -> Smooth, precise, no bounce */
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* 3. Hover Effect: The Monolith Rise */
+.c-wrapper:hover .c-mascot {
+    opacity: 1;
+    transform: translateY(0);
+}
+
 /* =========================================
    MOBILE RESPONSIVENESS OVERRIDES
    ========================================= */
@@ -813,6 +840,7 @@ body.retro-mode .form-control {
 /* 4. Hide modern elements that break the illusion */
 body.retro-mode .snake-mascot,
 body.retro-mode .js-mascot,
+body.retro-mode .c-mascot,
 body.retro-mode .card::after {
     /* Hide the 3D peeping snake and spotlight glow */
     display: none !important;
