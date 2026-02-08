@@ -1190,3 +1190,35 @@ body.retro-mode .sticky-sidebar .badge {
     animation: blink 2s infinite ease-in-out;
     color: #ccffcc;
 }
+
+/* --- Material Design Sidebar Card --- */
+.material-card {
+    /* Material Dark Surface */
+    background: #1e1e1e;
+
+    width: 100%;
+
+    border-radius: 4px;
+    border: none;
+
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5), 0 2px 10px rgba(0, 0, 0, 0.3);
+
+    transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
+
+    position: relative;
+    z-index: 2;
+}
+
+/* Hover Effect: Raise the card (Depth level 2) */
+.material-card:hover {
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.6), 0 10px 10px rgba(0, 0, 0, 0.45);
+    transform: translateY(-5px);
+}
+
+/* Retro Mode Override */
+body.retro-mode .material-card {
+    background: #c0c0c0 !important;
+    box-shadow: 4px 4px 0px #000000 !important;
+    border: 2px solid #dfdfdf !important;
+    transform: none !important;
+}

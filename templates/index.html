@@ -11,16 +11,16 @@
     <div class="col-lg-4 mb-5 mb-lg-0">
       <div class="sticky-sidebar">
 
-        <div class="card bg-transparent border border-secondary p-4 glass-project text-center">
+        <div class="card p-4 material-card text-center">
 
           <div class="position-relative mx-auto mb-4" style="width: 160px;">
             <div class="ratio ratio-1x1 rounded-circle overflow-hidden border border-secondary">
               <img src="{{ url_for('static', filename='images/me.jpg') }}" alt="Samy Barsoum" class="bw-img"
                 style="object-fit: cover;">
             </div>
-
-            <div class="position-absolute translate-middle-x bottom-0 start-50 mb-2 me-2" style="z-index: 5;">
-              <span class="badge rounded-pill bg-success border border-white text-white shadow-sm">
+            <div class="position-absolute start-50 translate-middle-x"
+              style="bottom: -12px; z-index: 5; width: max-content;">
+              <span class="badge rounded-pill bg-success border border-white text-white shadow-sm py-2 px-3">
                 <i class="bi bi-circle-fill small me-1 blink-anim"></i> Open to Work
               </span>
             </div>
@@ -58,7 +58,7 @@
 
           <p class="small text-uppercase text-secondary tracking-wide mb-2">Core Stack</p>
           <div class="d-flex flex-wrap justify-content-center gap-2 mb-4">
-            <span class="badge border border-secondary text-secondary">Node.js</span>
+            <span class="badge border border-secondary text-secondary">Python</span>
             <span class="badge border border-secondary text-secondary">React.js</span>
             <span class="badge border border-secondary text-secondary">Flask</span>
             <span class="badge border border-secondary text-secondary">Docker</span>
@@ -67,7 +67,7 @@
 
           <div class="d-grid gap-2">
             <a href="{{ url_for('contact') }}" class="btn btn-outline-light rounded-pill">
-              <i class="bi bi-send me-2"></i> Hire Me
+              <i class="bi bi-send me-2"></i> eMail Me
             </a>
             <div class="d-flex gap-2 justify-content-center mt-2">
               <a href="https://github.com/samybit" target="_blank" class="btn btn-sm btn-dark border-secondary w-100">
@@ -80,6 +80,7 @@
             </div>
           </div>
         </div>
+
       </div>
     </div>
 
