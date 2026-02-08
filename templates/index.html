@@ -5,100 +5,162 @@
 {% block body_class %}bg-home{% endblock %}
 
 {% block content %}
-<div class="container">
+<div class="container-fluid px-lg-5">
+  <div class="row g-5">
 
-  <section class="hero-section text-center px-3" data-aos="fade-up" data-aos-duration="1000">
-    <p class="text-secondary text-uppercase small tracking-wide mb-3">MERN Stack & Python Developer</p>
-    <h1 class="hero-title display-3">
-      <span class="glitch-word" style="--i:1;">Scalable</span> 
-      <span class="glitch-word" style="--i:2;">Web</span> 
-      <span class="glitch-word" style="--i:3;">Apps</span> 
-      <br>
-      <span class="glitch-word" style="--i:4;">&</span> 
-      <span class="glitch-word" style="--i:5;">Dockerized</span> 
-      <span class="glitch-word" style="--i:6;">Infrastructure.</span>
-    </h1>
-    <p class="hero-subtitle mx-auto" style="max-width: 650px;">
-      I engineer full-stack solutions using <strong>React, Node.js, and Flask</strong>, 
-      with a focus on clean design and robust deployment.
-    </p>
-</section>
+    <div class="col-lg-4 mb-5 mb-lg-0">
+      <div class="sticky-sidebar">
 
-  <div class="row justify-content-center mb-5" data-aos="zoom-in" data-aos-delay="200">
-    <div class="col-lg-10">
-      <div class="ratio ratio-16x9 border border-secondary rounded-4 overflow-hidden position-relative shadow-lg">
-        <div class="d-flex flex-column align-items-center justify-content-center h-100 p-4 text-center glass-card"
-          style="border-top: 4px solid #1DB954;">
+        <div class="card bg-transparent border border-secondary p-4 glass-project text-center">
 
-          <span class="badge border border-success text-success bg-transparent mb-3">FEATURED PROJECT</span>
-          <h2 class="display-4 fw-bold text-white mb-2">YearWave</h2>
-          <p class="text-secondary mb-4">Spotify Playlist Generator using Billboard Charts</p>
+          <div class="position-relative mx-auto mb-4" style="width: 160px;">
+            <div class="ratio ratio-1x1 rounded-circle overflow-hidden border border-secondary">
+              <img src="{{ url_for('static', filename='images/me.jpg') }}" alt="Samy Barsoum" class="bw-img"
+                style="object-fit: cover;">
+            </div>
+            <div class="position-absolute bottom-0 end-0 mb-2 me-2">
+              <span class="badge rounded-pill bg-success border border-white text-white shadow-sm">
+                <i class="bi bi-circle-fill small me-1 blink-anim"></i> Open to Work
+              </span>
+            </div>
+          </div>
 
-          <a href="https://github.com/samybit/yearwave" target="_blank" class="btn btn-outline-light rounded-pill px-4">
-            View Source
-          </a>
+          <h2 class="fw-bold mb-1">Samy Barsoum</h2>
+          <p class="text-white mb-4">Full Stack Engineer</p>
 
-        </div>
-      </div>
-    </div>
-  </div>
+          <div class="text-start bg-dark bg-opacity-25 rounded-3 p-3 mb-4 border border-secondary border-opacity-25">
 
-  <div class="row text-center py-5 grayscale-logos align-items-center justify-content-center" data-aos="fade-in"
-    data-aos-delay="400">
-    <div class="col-6 col-md-2 text-secondary fw-bold fs-5 opacity-50 mb-3 mb-md-0">REACT</div>
-    <div class="col-6 col-md-2 text-secondary fw-bold fs-5 opacity-50 mb-3 mb-md-0">NODE.JS</div>
-    <div class="col-6 col-md-2 text-secondary fw-bold fs-5 opacity-50 mb-3 mb-md-0">PYTHON</div>
-    <div class="col-6 col-md-2 text-secondary fw-bold fs-5 opacity-50 mb-3 mb-md-0">FLASK</div>
-    <div class="col-6 col-md-2 text-secondary fw-bold fs-5 opacity-50 mb-3 mb-md-0">DOCKER</div>
-    <div class="col-6 col-md-2 text-secondary fw-bold fs-5 opacity-50 mb-3 mb-md-0">MONGODB</div>
-  </div>
+            <div class="d-flex align-items-start mb-3">
+              <i class="bi bi-geo-alt-fill text-danger me-3 fs-5"></i>
+              <div>
+                <strong class="d-block text-white">Based in Egypt</strong>
+                <span class="text-secondary small">Open to Remote / Relocation</span>
+              </div>
+            </div>
 
-  <div class="row g-4 mt-5">
+            <div class="d-flex align-items-start mb-3">
+              <i class="bi bi-patch-check-fill text-info me-3 fs-5"></i>
+              <div>
+                <strong class="d-block text-white">ITI Certified (Web & AI)</strong>
+                <span class="text-secondary small">Intensive Bootcamp Graduate</span>
+              </div>
+            </div>
 
-    <div class="col-md-6 snake-wrapper" data-aos="fade-up" data-aos-delay="100">
-      <img
-        src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/600px-Python-logo-notext.svg.png"
-        class="snake-mascot" alt="Python Logo">
-      <div class="card bg-transparent border border-secondary text-white h-100 overflow-hidden position-relative">
-        <div class="card-body p-5 d-flex flex-column justify-content-end"
-          style="background: linear-gradient(160deg, rgba(48, 105, 152, 0.25) 0%, #1a1a1a 100%); border-top: 4px solid #306998; min-height: 350px;">
+            <div class="d-flex align-items-start">
+              <i class="bi bi-briefcase-fill text-warning me-3 fs-5"></i>
+              <div>
+                <strong class="d-block text-white">Freelance Developer</strong>
+                <span class="text-secondary small">Available for full-time roles</span>
+              </div>
+            </div>
+          </div>
 
-          <h3 class="card-title">Data Extraction Tool</h3>
-          <p class="card-text text-secondary mb-4">
-            SaaS tool for automated e-commerce data extraction. Built with Flask, Docker, and Pandas.
-          </p>
-          <a href="https://github.com/samybit/lead-gen-tool" target="_blank"
-            class="btn btn-outline-light w-100 mt-auto stretched-link">View Project</a>
+          <p class="small text-uppercase text-secondary tracking-wide mb-2">Core Stack</p>
+          <div class="d-flex flex-wrap justify-content-center gap-2 mb-4">
+            <span class="badge border border-secondary text-secondary">Node.js</span>
+            <span class="badge border border-secondary text-secondary">React.js</span>
+            <span class="badge border border-secondary text-secondary">Flask</span>
+            <span class="badge border border-secondary text-secondary">Docker</span>
+            <span class="badge border border-secondary text-secondary">MongoDB</span>
+          </div>
 
-        </div>
-      </div>
-    </div>
-
-    <div class="col-md-6 js-wrapper" data-aos="fade-up" data-aos-delay="200">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/JavaScript-logo.png/600px-JavaScript-logo.png"
-        class="js-mascot" alt="JS Logo">
-      <div class="card bg-transparent border border-secondary text-white h-100 overflow-hidden position-relative">
-        <div class="card-body p-5 d-flex flex-column justify-content-end"
-          style="background: linear-gradient(160deg, rgba(240, 219, 79, 0.1) 0%, #1a1a1a 100%); border-top: 4px solid #F0DB4F; min-height: 350px;">
-
-          <h3 class="card-title">E-Commerce Website</h3>
-          <p class="card-text text-secondary mb-4">
-            A fully functional shopping site with role-based auth and local storage persistence.
-          </p>
-          <a href="https://github.com/samybit/vanilla-js-ecommerce" target="_blank"
-            class="btn btn-outline-light w-100 mt-auto stretched-link">View Project</a>
-
+          <div class="d-grid gap-2">
+            <a href="{{ url_for('contact') }}" class="btn btn-outline-light rounded-pill">
+              <i class="bi bi-send me-2"></i> Hire Me
+            </a>
+            <div class="d-flex gap-2 justify-content-center mt-2">
+              <a href="https://github.com/samybit" target="_blank" class="btn btn-sm btn-dark border-secondary w-100">
+                <i class="bi bi-github"></i> GitHub
+              </a>
+              <a href="https://linkedin.com/in/samybit" target="_blank"
+                class="btn btn-sm btn-dark border-secondary w-100">
+                <i class="bi bi-linkedin"></i> LinkedIn
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </div>
 
-  </div>
+    <div class="col-lg-8">
 
-  <div class="text-center mt-5 mb-5">
-    <a href="{{ url_for('projects') }}" class="text-secondary text-decoration-none small tracking-wide">
-      VIEW ALL PROJECTS &rarr;
-    </a>
-  </div>
+      <section class="text-start mb-5" data-aos="fade-up">
+        <p class="text-secondary text-uppercase small tracking-wide mb-2">MERN Stack & Python Engineer</p>
+        <h1 class="display-3 fw-bold mb-4">
+          <span class="glitch-word" style="--i:1;">Scalable</span>
+          <span class="glitch-word" style="--i:2;">Apps</span>
+          <span class="glitch-word" style="--i:3;">&</span>
+          <br>
+          <span class="glitch-word" style="--i:4;">Dockerized</span>
+          <span class="glitch-word" style="--i:5;">Infra.</span>
+        </h1>
+        <p class="text-secondary lead" style="max-width: 600px;">
+          I don't just write code; I engineer solutions. From automated extraction tools to full-scale e-commerce
+          platforms.
+        </p>
+      </section>
 
+      <div class="row g-4">
+
+        <div class="col-md-6 snake-wrapper" data-aos="fade-up">
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/600px-Python-logo-notext.svg.png"
+            class="snake-mascot" alt="Python">
+          <div class="card bg-transparent border border-secondary text-white h-100 p-4"
+            style="background: linear-gradient(160deg, rgba(29, 185, 84, 0.2) 0%, #1a1a1a 100%); border-top: 4px solid #1DB954;">
+            <h4 class="card-title mt-3">YearWave</h4>
+            <p class="text-secondary small mb-4">Spotify Playlist Generator using Billboard Charts and Spotipy.</p>
+            <a href="https://github.com/samybit/yearwave" target="_blank"
+              class="stretched-link text-white text-decoration-none small">View Project &rarr;</a>
+          </div>
+        </div>
+
+        <div class="col-md-6 snake-wrapper" data-aos="fade-up" data-aos-delay="100">
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/600px-Python-logo-notext.svg.png"
+            class="snake-mascot" alt="Python">
+          <div class="card bg-transparent border border-secondary text-white h-100 p-4"
+            style="background: linear-gradient(160deg, rgba(48, 105, 152, 0.25) 0%, #1a1a1a 100%); border-top: 4px solid #306998;">
+            <h4 class="card-title mt-3">Data Extraction Tool</h4>
+            <p class="text-secondary small mb-4">SaaS tool for automated e-commerce data extraction, excel ready.</p>
+            <a href="https://github.com/samybit/lead-gen-tool" target="_blank"
+              class="stretched-link text-white text-decoration-none small">View Project &rarr;</a>
+          </div>
+        </div>
+
+        <div class="col-md-6 snake-wrapper" data-aos="fade-up" data-aos-delay="200">
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/600px-Python-logo-notext.svg.png"
+            class="snake-mascot" alt="Python">
+          <div class="card bg-transparent border border-secondary text-white h-100 p-4"
+            style="background: linear-gradient(160deg, rgba(242, 47, 70, 0.2) 0%, #1a1a1a 100%); border-top: 4px solid #F22F46;">
+            <h4 class="card-title mt-3">BearBuzz</h4>
+            <p class="text-secondary small mb-4">Stock trading news alerts via SMS using Twilio & AlphaVantage.</p>
+            <a href="https://github.com/samybit/BearBuzz" target="_blank"
+              class="stretched-link text-white text-decoration-none small">View Project &rarr;</a>
+          </div>
+        </div>
+
+        <div class="col-md-6 js-wrapper" data-aos="fade-up" data-aos-delay="300">
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/JavaScript-logo.png/600px-JavaScript-logo.png"
+            class="js-mascot" alt="JS">
+          <div class="card bg-transparent border border-secondary text-white h-100 p-4"
+            style="background: linear-gradient(160deg, rgba(240, 219, 79, 0.1) 0%, #1a1a1a 100%); border-top: 4px solid #F0DB4F;">
+            <h4 class="card-title mt-3">E-Commerce Website</h4>
+            <p class="text-secondary small mb-4">Vanilla JS shopping site with local storage persistence.</p>
+            <a href="https://github.com/samybit/vanilla-js-ecommerce" target="_blank"
+              class="stretched-link text-white text-decoration-none small">View Project &rarr;</a>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="mt-5 text-end">
+        <a href="{{ url_for('projects') }}" class="btn btn-link text-white">View All Work &rarr;</a>
+      </div>
+
+    </div>
+  </div>
 </div>
 {% endblock %}

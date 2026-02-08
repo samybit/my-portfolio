@@ -1111,7 +1111,48 @@ body:not(.retro-mode) .btn-slide-anim:hover {
     100% {
         opacity: 1;
         transform: translateY(0);
-        color: inherit; 
+        color: inherit;
         text-shadow: none;
     }
+}
+
+
+/* --- Sticky Sidebar for Index Layout --- */
+@media (min-width: 992px) {
+    .sticky-sidebar {
+        position: sticky;
+        top: 2rem;
+        transition: top 0.3s ease;
+        z-index: 10;
+    }
+}
+
+/* Make sure the bio text is readable in Retro Mode */
+body.retro-mode .sticky-sidebar .text-white {
+    color: #000 !important;
+}
+
+body.retro-mode .sticky-sidebar .badge {
+    color: #000 !important;
+    border-color: #000 !important;
+}
+
+/* Blinking Dot for "Open to Work" */
+@keyframes blink {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.4;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.blink-anim {
+    animation: blink 2s infinite ease-in-out;
+    color: #ccffcc;
 }
