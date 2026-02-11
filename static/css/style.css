@@ -498,7 +498,6 @@ html {
         position: absolute;
         left: 0;
         transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-        /* Bouncy animation */
     }
 
     /* Top Line */
@@ -506,11 +505,7 @@ html {
         top: 4px;
     }
 
-    /* Middle Line (We create a span if needed, or stick to 2 line cross) */
-    /* Let's simulate 3 lines using box-shadow for the middle one on the ::before element? 
-   Actually, simpler approach: Just 2 lines that start apart and cross. */
-
-    /* REVISION: 3 Lines Concept */
+    /* Lines Concept */
     .navbar-toggler::before {
         top: 20%;
     }
@@ -518,9 +513,6 @@ html {
     .navbar-toggler::after {
         bottom: 20%;
     }
-
-    /* The "Middle" line is trickier without an extra span, 
-   so let's make a cool "2-line" menu that looks modern. */
 
     /* OPEN STATE (When the menu is active) */
     /* Bootstrap removes the '.collapsed' class when open. 
@@ -536,63 +528,65 @@ html {
     }
 
     /* 2. The Floating Glass Menu */
-    @media (max-width: 991px) {
-        .navbar-collapse {
-            /* ABSOLUTE POSITIONING: This stops it from pushing content down */
-            position: absolute;
-            top: 100%;
-            /* Starts right below the navbar */
-            left: 0;
-            right: 0;
-            z-index: 1000;
+    .navbar-collapse {
+        /* ABSOLUTE POSITIONING */
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        z-index: 1000;
 
-            /* Floating Card Styling */
-            width: 90%;
-            /* Doesn't touch edges */
-            max-width: 400px;
-            margin: 10px auto;
-            /* Centers it floating in space */
+        /* Floating Card Styling */
+        width: 90%;
+        max-width: 400px;
+        margin: 10px auto;
 
-            /* Glass Effect */
-            background: rgba(15, 15, 15, 0.95);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 16px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+        /* Glass Effect */
+        background: rgba(0, 0, 0, 0.98);
+        /* backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px); */
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 16px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
 
-            /* Animation origin (makes it expand from top) */
-            transform-origin: top center;
-        }
-
-        /* Inner Spacing */
-        .navbar-nav {
-            padding: 20px;
-            text-align: center;
-            gap: 15px;
-        }
-
-        /* Link Styling */
-        .navbar-nav .nav-link {
-            font-size: 1.1rem;
-            color: white !important;
-            padding: 10px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            /* Subtle dividers */
-        }
-
-        /* Remove border from last link and button */
-        .navbar-nav .nav-link:last-child,
-        .navbar-nav .btn {
-            border-bottom: none;
-        }
-
-        /* Social Icons Row centered */
-        .navbar-nav .d-flex {
-            justify-content: center;
-            margin-top: 10px;
-        }
+        transform-origin: top center;
     }
+
+    /* Inner Spacing */
+    .navbar-nav {
+        padding: 20px;
+        text-align: center;
+        gap: 15px;
+    }
+
+    /* Link Styling - The Separators */
+    .navbar-nav .nav-link {
+        font-size: 1.1rem;
+        color: white !important;
+        padding: 10px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        width: 100%;
+    }
+
+    /* Remove dividers from Social Icons */
+    .navbar-nav .d-flex .nav-link {
+        border-bottom: none;
+        width: auto;
+        padding: 0;
+    }
+
+    /* Remove divider from the last actual text link */
+    .navbar-nav .nav-item:nth-last-child(2) .nav-link {
+        border-bottom: none;
+    }
+
+    /* Social Icons Row centered */
+    .navbar-nav .d-flex {
+        justify-content: center;
+        margin-top: 5px;
+        gap: 20px;
+    }
+
 }
 
 /*-- Custom Cursor (Diamond) --*/
