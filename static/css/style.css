@@ -278,10 +278,10 @@ html {
 }
 
 /* --- Disable Spotlight in Sidebar Only --- */
-.sticky-sidebar .card::after,
+/* .sticky-sidebar .card::after,
 .sticky-sidebar .ratio::after {
     display: none !important;
-}
+} */
 
 /* 3. Reveal on Hover */
 .card:hover::after,
@@ -611,7 +611,7 @@ button,
     cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" transform="rotate(45 12 12)" fill="white" stroke="white" stroke-width="1"/></svg>') 12 12, pointer;
 } */
 
-/* --- Valorant Style --- */
+/* --- Valorant Style Mouse --- */
 html,
 body,
 .hover-char {
@@ -1191,9 +1191,16 @@ body.retro-mode .sticky-sidebar .badge {
     color: #ccffcc;
 }
 
-/* --- Material Design Sidebar Card --- */
+/* --- Material Sidebar Card --- */
 .material-card {
-    /* Material Dark Surface */
+    /* 1. Layout (Replaces .card behavior) */
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+
+    /* 2. Visuals */
     background:
         linear-gradient(to bottom, rgba(10, 10, 10, 0.85), rgba(10, 10, 10, 0.95)),
         url('../images/paper-texture.jpg');
@@ -1210,7 +1217,7 @@ body.retro-mode .sticky-sidebar .badge {
     z-index: 2;
 }
 
-/* Raise the card (Depth level 2) */
+/* Hover Effect: Lift */
 .material-card:hover {
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.6), 0 10px 10px rgba(0, 0, 0, 0.45);
     transform: translateY(-5px);
