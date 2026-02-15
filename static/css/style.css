@@ -45,8 +45,8 @@ body::before {
 /* 2. Images */
 /* Home */
 body.bg-home::before {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-        url('../images/bg-home.avif');
+    background-image: linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.7)),
+        url('../images/bg-home.jpg');
 }
 
 /* Projects */
@@ -64,7 +64,7 @@ body.bg-about::before {
 /* Contact */
 body.bg-contact::before {
     background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-        url('../images/bg-contact.avif');
+        url('../images/bg-contact.jpg');
 }
 
 
@@ -1217,7 +1217,7 @@ body.retro-mode .sticky-sidebar .badge {
 
     /* 2. Visuals */
     background:
-        linear-gradient(to bottom, rgba(10, 10, 10, 0.85), rgba(10, 10, 10, 0.95)),
+        linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)),
         url('../images/paper-texture.jpg');
     background-size: cover;
     background-position: center;
