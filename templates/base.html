@@ -31,7 +31,10 @@
 
   <nav class="navbar navbar-expand-lg navbar-dark bg-transparent py-4">
     <div class="container">
-      <a class="navbar-brand fw-bold fs-3 tracking-wide" href="{{ url_for('home') }}">Samy Barsoum.</a>
+      <a class="navbar-brand p-0" href="{{ url_for('home') }}">
+        <img src="{{ url_for('static', filename='images/logo.svg') }}" alt="Samy Barsoum"
+          style="height: 45px; width: auto;"> </a>
+      <!-- <a class="navbar-brand fw-bold fs-3 tracking-wide" href="{{ url_for('home') }}">Samy Barsoum.</a> -->
 
       <button class="navbar-toggler no-border collapsed" type="button" data-bs-toggle="collapse"
         data-bs-target="#navbarNav">
