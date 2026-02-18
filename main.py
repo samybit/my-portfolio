@@ -88,10 +88,10 @@ my_projects = [
         "url": "/design-system",
     },
     {
-        "title": "C placehoder project",
-        "description": "lorem ipsum",
+        "title": "Expense Tracker",
+        "description": "A terminal-based personal finance manager in C demonstrating structs, dynamic memory, and file I/O.",
         "tech": ["C", "Memory Management", "Structure"],
-        "url": "https://github.com/samybit",
+        "url": "https://github.com/samybit/cli-expense-tracker",
     },
 ]
 
