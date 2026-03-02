@@ -1166,12 +1166,11 @@ body:not(.retro-mode) .btn-slide-anim:hover {
 }
 
 
-/* --- Sticky Sidebar for Index Layout --- */
+/* --- Sidebar for Index Layout --- */
 @media (min-width: 992px) {
     .sticky-sidebar {
-        position: sticky;
-        top: 2rem;
-        transition: top 0.3s ease;
+        /* Removed position: sticky; so it scrolls naturally with the page */
+        position: static;
         z-index: 10;
     }
 }
