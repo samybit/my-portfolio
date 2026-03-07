@@ -117,6 +117,21 @@ my_projects = [
     },
 ]
 
+my_design_projects = [
+    {
+        "title": "Desktop UI Prototype",
+        "description": "High-fidelity interactive prototype created in Figma. Features modern typography and dark mode.",
+        "img": "https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=1000&auto=format&fit=crop",  # Replace with your image URL or static path
+        "url": "/design-system",
+    },
+    {
+        "title": "Mobile App Interface",
+        "description": "Clean and minimal mobile interface designed with a mobile-first approach.",
+        "img": "https://images.unsplash.com/photo-1616469829581-73993eb86b02?q=80&w=1000&auto=format&fit=crop",  # Replace with your image URL or static path
+        "url": "https://figma.com/...",
+    },
+]
+
 # d8888b.  .d88b.  db    db d888888b d88888b .d8888.
 # 88  `8D .8P  Y8. 88    88 `~~88~~' 88'     88'  YP
 # 88oobY' 88    88 88    88    88    88ooooo `8bo.
@@ -133,7 +148,7 @@ def inject_now():
 
 @app.route("/")
 def home():
-    return render_template("index.html", projects=my_projects)
+    return render_template("index.html", projects=my_projects, design_projects=my_design_projects)
 
 
 @app.route("/about")
