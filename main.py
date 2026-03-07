@@ -123,7 +123,7 @@ my_design_projects = [
     {
         "title": "Desktop UI Prototype",
         "description": "High-fidelity interactive prototype created in Figma. Features modern typography and dark mode.",
-        "img": "https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=1000&auto=format&fit=crop",
+        "img": "./static/images/brutalist-design.png",
         "url": "/design-system",
         "style": {
             "wrapper": "figma-wrapper",
