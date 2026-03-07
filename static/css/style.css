@@ -337,7 +337,6 @@ html {
 }
 
 /* --- JS Peek Animation --- */
-
 /* 1. The Wrapper */
 .js-wrapper {
     position: relative;
@@ -398,6 +397,35 @@ html {
     opacity: 1;
     transform: translateY(0);
 }
+
+/* --- Figma Mascot Animation --- */
+.figma-wrapper {
+    position: relative;
+    z-index: 1;
+}
+
+.figma-mascot {
+    position: absolute;
+    width: 45px;
+    top: -55px;
+    right: 45px;
+    z-index: -1;
+
+    /* Starts hidden, pushed down, slightly shrunk, and tilted */
+    transform: translateY(60px) rotate(-15deg) scale(0.8);
+    opacity: 0;
+
+    /* Bouncy pop-up transition */
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.figma-wrapper:hover .figma-mascot {
+    opacity: 1;
+    /* Pops up, straightens out, and scales to full size */
+    transform: translateY(0) rotate(0deg) scale(1);
+}
+
+
 
 /* =========================================
    MOBILE RESPONSIVENESS OVERRIDES

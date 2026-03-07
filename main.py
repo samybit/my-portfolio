@@ -104,31 +104,47 @@ my_projects = [
             "border": "#4B8BBE",  # Python Blue
         },
     },
-    {
-        "title": "Desktop UI Design",
-        "description": "High-fidelity interactive prototype created in Figma. Features modern typography and dark mode.",
-        "tech": ["Figma", "UI/UX", "Prototyping"],
-        "url": "/design-system",
-        "style": {
-            "wrapper": "",  # No mascot wrapper needed
-            "bg": "linear-gradient(160deg, rgba(242, 78, 30, 0.1) 0%, #1a1a1a 100%)",
-            "border": "#F24E1E",  # Figma Orange
-        },
-    },
+    # {
+    #     "title": "Desktop UI Design",
+    #     "description": "High-fidelity interactive prototype created in Figma. Features modern typography and dark mode.",
+    #     "tech": ["Figma", "UI/UX", "Prototyping"],
+    #     "url": "/design-system",
+    #     "style": {
+    #         "wrapper": "figma-wrapper",
+    #         "mascot": "figma-mascot",
+    #         "img": "https://upload.wikimedia.org/wikipedia/commons/3/33/Figma-logo.svg",
+    #         "bg": "linear-gradient(160deg, rgba(242, 78, 30, 0.1) 0%, #1a1a1a 100%)",
+    #         "border": "#F24E1E",
+    #     },
+    # },
 ]
 
 my_design_projects = [
     {
         "title": "Desktop UI Prototype",
         "description": "High-fidelity interactive prototype created in Figma. Features modern typography and dark mode.",
-        "img": "https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=1000&auto=format&fit=crop",  # Replace with your image URL or static path
+        "img": "https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=1000&auto=format&fit=crop",
         "url": "/design-system",
+        "style": {
+            "wrapper": "figma-wrapper",
+            "mascot": "figma-mascot",
+            "mascot_img": "https://upload.wikimedia.org/wikipedia/commons/3/33/Figma-logo.svg",
+            "bg": "linear-gradient(160deg, rgba(242, 78, 30, 0.1) 0%, #1a1a1a 100%)",
+            "border": "#F24E1E",
+        },
     },
     {
         "title": "Mobile App Interface",
         "description": "Clean and minimal mobile interface designed with a mobile-first approach.",
-        "img": "https://images.unsplash.com/photo-1616469829581-73993eb86b02?q=80&w=1000&auto=format&fit=crop",  # Replace with your image URL or static path
+        "img": "https://images.unsplash.com/photo-1616469829581-73993eb86b02?q=80&w=1000&auto=format&fit=crop",
         "url": "https://figma.com/...",
+        "style": {
+            "wrapper": "figma-wrapper",
+            "mascot": "figma-mascot",
+            "mascot_img": "https://upload.wikimedia.org/wikipedia/commons/3/33/Figma-logo.svg",
+            "bg": "linear-gradient(160deg, rgba(242, 78, 30, 0.1) 0%, #1a1a1a 100%)",
+            "border": "#F24E1E",
+        },
     },
 ]
 
@@ -148,7 +164,9 @@ def inject_now():
 
 @app.route("/")
 def home():
-    return render_template("index.html", projects=my_projects, design_projects=my_design_projects)
+    return render_template(
+        "index.html", projects=my_projects, design_projects=my_design_projects
+    )
 
 
 @app.route("/about")
