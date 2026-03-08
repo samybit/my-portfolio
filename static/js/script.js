@@ -281,10 +281,10 @@ document.addEventListener("DOMContentLoaded", function () {
         }, 6000);
     }
 
-    // Loop: Try to show Clippy every 20 seconds
+    // Loop: Try to show Clippy every 10 seconds
     setInterval(() => {
-        // 50% chance he actually shows up each cycle
-        if (Math.random() > 0.8) {
+        // 40% chance he actually shows up each cycle
+        if (Math.random() > 0.6) {
             showClippy();
         }
     }, 10000);
@@ -331,21 +331,22 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // --- 8. MOBILE SCROLL HOVER EFFECTS ---
-    if (window.innerWidth < 992) {
-        // rootMargin creates an invisible box. 
-        // middle 20% of the screen to activate.
-        const observerOptions = {
-            root: null,
-            rootMargin: "-40% 0px -40% 0px",
-            threshold: 0
-        };
+    // rootMargin creates an invisible box. 
+    // middle 20% of the screen to activate.
+    const observerOptions = {
+        root: null,
+        rootMargin: "-40% 0px -40% 0px",
+        threshold: 0
+    };
 
-        const scrollObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                const card = entry.target;
-                // parent wrapper, where the mascots live
-                const wrapper = card.closest('.col-md-6');
+    const scrollObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            const card = entry.target;
+            // parent wrapper, where the mascots live
+            const wrapper = card.closest('.col-md-6');
 
+            // DYNAMIC CHECK: Checks screen size continuously as you scroll
+            if (window.innerWidth < 992) {
                 if (entry.isIntersecting) {
                     card.classList.add('mobile-active');
                     if (wrapper) wrapper.classList.add('mobile-active');
@@ -353,12 +354,16 @@ document.addEventListener("DOMContentLoaded", function () {
                     card.classList.remove('mobile-active');
                     if (wrapper) wrapper.classList.remove('mobile-active');
                 }
-            });
-        }, observerOptions);
-
-        // Tell the observer to watch every project card
-        document.querySelectorAll('.project-card').forEach(card => {
-            scrollObserver.observe(card);
+            } else {
+                // If you drag the window back to desktop size, immediately turn the effects off
+                card.classList.remove('mobile-active');
+                if (wrapper) wrapper.classList.remove('mobile-active');
+            }
         });
-    }
+    }, observerOptions);
+
+    // Tell the observer to watch every project card (runs on all devices now, but only triggers on mobile)
+    document.querySelectorAll('.project-card').forEach(card => {
+        scrollObserver.observe(card);
+    });
 });
