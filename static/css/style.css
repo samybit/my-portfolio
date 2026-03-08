@@ -1269,10 +1269,13 @@ body.retro-mode .material-card {
     display: inline-flex;
     flex-direction: column;
     align-items: center;
-    box-shadow: 
-        0 10px 25px rgba(0,0,0,0.6),         /* Drop shadow on the dark wall */
-        inset 2px 2px 4px #ffffff,           /* Top-left plastic highlight */
-        inset -2px -2px 5px rgba(0,0,0,0.2); /* Bottom-right plastic shadow */
+    box-shadow:
+        0 10px 25px rgba(0, 0, 0, 0.6),
+        /* Drop shadow on the dark wall */
+        inset 2px 2px 4px #ffffff,
+        /* Top-left plastic highlight */
+        inset -2px -2px 5px rgba(0, 0, 0, 0.2);
+    /* Bottom-right plastic shadow */
     border: 1px solid #b8b6af;
     user-select: none;
 }
@@ -1291,9 +1294,9 @@ body.retro-mode .material-card {
     height: 10px;
     border-radius: 50%;
     background: linear-gradient(135deg, #a0a0a0, #707070);
-    box-shadow: 
-        inset 1px 1px 3px rgba(0,0,0,0.6), 
-        0 1px 1px rgba(255,255,255,0.7);
+    box-shadow:
+        inset 1px 1px 3px rgba(0, 0, 0, 0.6),
+        0 1px 1px rgba(255, 255, 255, 0.7);
     position: relative;
 }
 
@@ -1301,7 +1304,10 @@ body.retro-mode .material-card {
 .screw::after {
     content: '';
     position: absolute;
-    top: 50%; left: 10%; width: 80%; height: 1.5px;
+    top: 50%;
+    left: 10%;
+    width: 80%;
+    height: 1.5px;
     background: #333;
     transform: translateY(-50%);
 }
@@ -1313,9 +1319,9 @@ body.retro-mode .material-card {
     background: #b5b3ab;
     padding: 10px;
     border-radius: 4px;
-    box-shadow: 
-        inset 0 3px 6px rgba(0,0,0,0.5), 
-        0 1px 1px rgba(255,255,255,0.6);
+    box-shadow:
+        inset 0 3px 6px rgba(0, 0, 0, 0.5),
+        0 1px 1px rgba(255, 255, 255, 0.6);
 }
 
 .switch-wrapper {
@@ -1340,28 +1346,35 @@ body.retro-mode .material-card {
     cursor: pointer;
     position: relative;
     transition: all 0.15s cubic-bezier(0.4, 0.0, 0.2, 1);
-    
+
     /* UP STATE (Unpressed) */
-    box-shadow: 
-        0 6px 0 #b0aeaa,               /* 3D thickness */
-        0 10px 8px rgba(0,0,0,0.5),    /* Drop shadow below switch */
-        inset 0 2px 4px #ffffff;       /* Top edge highlight */
+    box-shadow:
+        0 6px 0 #b0aeaa,
+        /* 3D thickness */
+        0 10px 8px rgba(0, 0, 0, 0.5),
+        /* Drop shadow below switch */
+        inset 0 2px 4px #ffffff;
+    /* Top edge highlight */
     transform: translateY(-4px);
 }
 
 /* DOWN STATE (Pressed) */
-.switch-input:checked + .physical-switch {
+.switch-input:checked+.physical-switch {
     background: linear-gradient(to bottom, #e8e6df, #d1cfc7);
-    box-shadow: 
-        0 1px 0 #b0aeaa,               /* Reduced thickness */
-        0 2px 3px rgba(0,0,0,0.3),     /* Reduced shadow */
-        inset 0 -2px 4px #ffffff;      /* Bottom edge highlight */
+    box-shadow:
+        0 1px 0 #b0aeaa,
+        /* Reduced thickness */
+        0 2px 3px rgba(0, 0, 0, 0.3),
+        /* Reduced shadow */
+        inset 0 -2px 4px #ffffff;
+    /* Bottom edge highlight */
     transform: translateY(2px);
-    color: #222; /* Icon darkens to look "Active" */
+    color: #222;
+    /* Icon darkens to look "Active" */
 }
 
 /* Adds a tiny red indicator stripe on the top of the switch when pressed */
-.switch-input:checked + .physical-switch::before {
+.switch-input:checked+.physical-switch::before {
     content: '';
     position: absolute;
     top: 5px;
@@ -1369,14 +1382,15 @@ body.retro-mode .material-card {
     height: 3px;
     background-color: #ff4444;
     border-radius: 1px;
-    box-shadow: inset 0 1px 1px rgba(0,0,0,0.5);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.5);
 }
 
 /* Make the icon "click" into place visually */
 .physical-switch i {
     transition: transform 0.15s ease;
 }
-.switch-input:checked + .physical-switch i {
+
+.switch-input:checked+.physical-switch i {
     transform: scale(0.9);
 }
 
@@ -1387,11 +1401,13 @@ body.retro-mode .wall-switch-plate {
     border: 2px outset #fff !important;
     box-shadow: 4px 4px 0px #000 !important;
 }
+
 body.retro-mode .switch-mechanisms {
     background: #808080 !important;
     border: 2px inset #fff !important;
     box-shadow: none !important;
 }
+
 body.retro-mode .physical-switch {
     background: #c0c0c0 !important;
     border: 2px outset #fff !important;
@@ -1399,10 +1415,12 @@ body.retro-mode .physical-switch {
     box-shadow: none !important;
     transform: none !important;
 }
-body.retro-mode .switch-input:checked + .physical-switch {
+
+body.retro-mode .switch-input:checked+.physical-switch {
     border: 2px inset #fff !important;
     background: #a0a0a0 !important;
 }
-body.retro-mode .switch-input:checked + .physical-switch::before {
+
+body.retro-mode .switch-input:checked+.physical-switch::before {
     display: none;
 }
