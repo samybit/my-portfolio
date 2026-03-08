@@ -1258,3 +1258,54 @@ body.retro-mode .material-card {
     border: 2px solid #dfdfdf !important;
     transform: none !important;
 }
+
+/* --- Project Toggle Switch --- */
+.project-toggle-wrapper {
+    display: inline-flex;
+    position: relative;
+    /* Prevent text selection when tapping quickly */
+    user-select: none;
+}
+
+.toggle-label {
+    color: #aaaaaa;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+/* When a radio button is checked, style its sibling label */
+.btn-check:checked+.toggle-label {
+    background-color: #ffffff;
+    color: #0f0f0f !important;
+    font-weight: 600;
+    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.2);
+}
+
+/* Hover effect for unselected items */
+.btn-check:not(:checked)+.toggle-label:hover {
+    color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* --- Retro Mode Toggle Overrides --- */
+body.retro-mode .project-toggle-wrapper {
+    background: #c0c0c0 !important;
+    border: 2px inset #ffffff !important;
+    border-radius: 0 !important;
+    padding: 2px !important;
+}
+
+body.retro-mode .toggle-label {
+    border-radius: 0 !important;
+    color: #000000 !important;
+    border: 1px solid transparent !important;
+}
+
+body.retro-mode .btn-check:checked+.toggle-label {
+    background: #000080 !important;
+    /* Navy Blue */
+    color: #ffffff !important;
+    border: 2px outset #ffffff !important;
+    box-shadow: none !important;
+}

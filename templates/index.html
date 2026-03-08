@@ -84,7 +84,7 @@
           </div>
         </div>
 
-        <div class="mt-5 pt-2" data-aos="fade-up">
+        <!-- <div class="mt-5 pt-2" data-aos="fade-up">
           <h3
             class="h5 fw-bold mb-4 text-uppercase tracking-wide text-secondary border-bottom border-secondary border-opacity-25 pb-2">
             Design & UI
@@ -119,10 +119,12 @@
             </div>
           </div>
           {% endfor %}
-        </div>
+        </div> -->
 
       </div>
     </div>
+
+
 
     <div class="col-lg-8">
 
@@ -142,12 +144,29 @@
         </p>
       </section>
 
-      <div id="projects-section" class="mt-5 pt-4">
+
+      <div class="d-flex justify-content-start justify-content-md-center mb-4 mt-5 pt-2" data-aos="fade-up">
+        <div
+          class="project-toggle-wrapper bg-dark bg-opacity-50 p-1 rounded-pill border border-secondary border-opacity-25 shadow-sm">
+
+          <input type="radio" class="btn-check" name="projectToggle" id="toggle-code" autocomplete="off" checked>
+          <label class="btn btn-outline-light rounded-pill border-0 px-4 py-2 toggle-label" for="toggle-code">
+            <i class="bi bi-terminal me-2"></i>Engineering
+          </label>
+
+          <input type="radio" class="btn-check" name="projectToggle" id="toggle-design" autocomplete="off">
+          <label class="btn btn-outline-light rounded-pill border-0 px-4 py-2 toggle-label" for="toggle-design">
+            <i class="bi bi-palette me-2"></i>UI Design
+          </label>
+
+        </div>
+      </div>
+
+      <div id="main-projects-container">
         <h2 class="h3 fw-bold mb-4">Selected Work.</h2>
 
         <div class="row g-4">
           {% for project in projects %}
-
           <div class="col-md-6 {% if 'wrapper' in project.style %}{{ project.style.wrapper }}{% endif %}"
             data-aos="fade-up" data-aos-delay="{{ (loop.index0 % 4) * 100 }}">
 
@@ -178,7 +197,46 @@
         </div>
       </div>
 
+      <div id="design-projects-container" style="display: none;">
+        <h2 class="h3 fw-bold mb-4">Design & Prototypes.</h2>
+
+        <div class="row g-4">
+          {% for design in design_projects %}
+          <div
+            class="col-md-6 position-relative {% if 'style' in design and 'wrapper' in design.style %}{{ design.style.wrapper }}{% endif %}">
+
+            {% if 'style' in design and 'mascot_img' in design.style %}
+            <img src="{{ design.style.mascot_img }}" class="{{ design.style.mascot }}" alt="Figma Mascot">
+            {% endif %}
+
+            <div
+              class="card bg-transparent border-secondary border-opacity-25 text-white h-100 project-card overflow-hidden transition-hover"
+              style="{% if 'style' in design %}background: {{ design.style.bg }}; border-top: 4px solid {{ design.style.border }} !important;{% endif %}">
+
+              <div class="ratio ratio-16x9 bg-dark">
+                <img src="{{ design.img }}" alt="{{ design.title }}"
+                  style="object-fit: cover; width: 100%; height: 100%;">
+              </div>
+
+              <div class="card-body p-4 d-flex flex-column">
+                <h4 class="card-title h5 fw-bold mb-2">{{ design.title }}</h4>
+                <p class="text-secondary small mb-4 flex-grow-1">{{ design.description }}</p>
+
+                <a href="{{ design.url }}" target="_blank"
+                  class="btn btn-sm btn-outline-light w-100 stretched-link mt-auto">
+                  <i class="bi bi-brush me-1"></i> View Design
+                </a>
+              </div>
+
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+
     </div>
+
+
   </div>
 </div>
 {% endblock %}

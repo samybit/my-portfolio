@@ -287,12 +287,46 @@ document.addEventListener("DOMContentLoaded", function () {
         if (Math.random() > 0.8) {
             showClippy();
         }
-    }, 10000); 
+    }, 10000);
 
     // Also hide Clippy immediately if the user switches back to Modern Mode
     retroBtn.addEventListener("click", () => {
         if (!document.body.classList.contains("retro-mode")) {
-             if (clippyContainer) clippyContainer.style.display = "none";
+            if (clippyContainer) clippyContainer.style.display = "none";
         }
     });
+
+    // --- 7. PROJECT TOGGLE SWITCH ---
+    const toggleCode = document.getElementById("toggle-code");
+    const toggleDesign = document.getElementById("toggle-design");
+    const mainProjects = document.getElementById("main-projects-container");
+    const designProjects = document.getElementById("design-projects-container");
+
+    if (toggleCode && toggleDesign) {
+        toggleCode.addEventListener("change", () => {
+            if (toggleCode.checked) {
+                // Show Code, Hide Design
+                mainProjects.style.display = "block";
+                designProjects.style.display = "none";
+
+                // Refresh AOS so animations trigger on the newly visible elements
+                if (typeof AOS !== 'undefined') {
+                    AOS.refresh();
+                }
+            }
+        });
+
+        toggleDesign.addEventListener("change", () => {
+            if (toggleDesign.checked) {
+                // Show Design, Hide Code
+                mainProjects.style.display = "none";
+                designProjects.style.display = "block";
+
+                // Refresh AOS
+                if (typeof AOS !== 'undefined') {
+                    AOS.refresh();
+                }
+            }
+        });
+    }
 });
