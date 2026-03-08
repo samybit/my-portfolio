@@ -333,10 +333,10 @@ document.addEventListener("DOMContentLoaded", function () {
     // --- 8. MOBILE SCROLL HOVER EFFECTS ---
     if (window.innerWidth < 992) {
         // rootMargin creates an invisible box. 
-        // middle 30% of the screen to activate.
+        // middle 20% of the screen to activate.
         const observerOptions = {
             root: null,
-            rootMargin: "-35% 0px -35% 0px",
+            rootMargin: "-40% 0px -40% 0px",
             threshold: 0
         };
 
