@@ -1424,3 +1424,30 @@ body.retro-mode .switch-input:checked+.physical-switch {
 body.retro-mode .switch-input:checked+.physical-switch::before {
     display: none;
 }
+
+/* --- Design Project Image & GIF Previews --- */
+.preview-img,
+.hover-gif {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.hover-gif {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    z-index: 2;
+}
+
+/* When the user hovers anywhere on the card, fade the GIF in */
+.project-card:hover .hover-gif {
+    opacity: 1;
+}
+
+/* Disable the GIF effect in Retro Mode */
+body.retro-mode .hover-gif {
+    display: none !important;
+}

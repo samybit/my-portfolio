@@ -227,9 +227,14 @@
               class="card bg-transparent border-secondary border-opacity-25 text-white h-100 project-card overflow-hidden transition-hover"
               style="{% if 'style' in design %}background: {{ design.style.bg }}; border-top: 4px solid {{ design.style.border }} !important;{% endif %}">
 
-              <div class="ratio ratio-16x9 bg-dark">
-                <img src="{{ design.img }}" alt="{{ design.title }}"
-                  style="object-fit: cover; width: 100%; height: 100%;">
+              <div class="ratio ratio-16x9 bg-dark preview-container">
+
+                <img src="{{ design.img }}" class="preview-img" alt="{{ design.title }}">
+
+                {% if 'gif' in design and design.gif %}
+                <img src="{{ design.gif }}" class="hover-gif" alt="{{ design.title }} Animated">
+                {% endif %}
+
               </div>
 
               <div class="card-body p-4 d-flex flex-column">
