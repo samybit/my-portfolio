@@ -329,4 +329,36 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
     }
+
+    // --- 8. MOBILE SCROLL HOVER EFFECTS ---
+    if (window.innerWidth < 992) {
+        // rootMargin creates an invisible box. 
+        // middle 30% of the screen to activate.
+        const observerOptions = {
+            root: null,
+            rootMargin: "-35% 0px -35% 0px",
+            threshold: 0
+        };
+
+        const scrollObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                const card = entry.target;
+                // parent wrapper, where the mascots live
+                const wrapper = card.closest('.col-md-6');
+
+                if (entry.isIntersecting) {
+                    card.classList.add('mobile-active');
+                    if (wrapper) wrapper.classList.add('mobile-active');
+                } else {
+                    card.classList.remove('mobile-active');
+                    if (wrapper) wrapper.classList.remove('mobile-active');
+                }
+            });
+        }, observerOptions);
+
+        // Tell the observer to watch every project card
+        document.querySelectorAll('.project-card').forEach(card => {
+            scrollObserver.observe(card);
+        });
+    }
 });
