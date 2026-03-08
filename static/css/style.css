@@ -632,8 +632,9 @@ button:hover,
 .btn,
 .nav-link,
 .card,
-.ratio {
-    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path d="M4 2L10 21L13 14L22 10L4 2Z" fill="%2300ffcc" stroke="black" stroke-width="2" stroke-linejoin="miter"/></svg>') 4 2, pointer;
+.ratio,
+.physical-switch {
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path d="M4 2L10 21L13 14L22 10L4 2Z" fill="%2300ffcc" stroke="black" stroke-width="2" stroke-linejoin="miter"/></svg>') 4 2, pointer !important;
 }
 
 /* --- Liquid Glass --- */
@@ -1259,53 +1260,149 @@ body.retro-mode .material-card {
     transform: none !important;
 }
 
-/* --- Project Toggle Switch --- */
-.project-toggle-wrapper {
+/* --- Old Home Double Wall Switch (projects toggle) --- */
+.wall-switch-plate {
+    /* Vintage Ivory Plastic color */
+    background: linear-gradient(135deg, #e8e6df, #d1cfc7);
+    border-radius: 8px;
+    padding: 15px 20px;
     display: inline-flex;
-    position: relative;
-    /* Prevent text selection when tapping quickly */
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 
+        0 10px 25px rgba(0,0,0,0.6),         /* Drop shadow on the dark wall */
+        inset 2px 2px 4px #ffffff,           /* Top-left plastic highlight */
+        inset -2px -2px 5px rgba(0,0,0,0.2); /* Bottom-right plastic shadow */
+    border: 1px solid #b8b6af;
     user-select: none;
 }
 
-.toggle-label {
-    color: #aaaaaa;
-    font-weight: 500;
-    transition: all 0.3s ease;
+/* Screws */
+.screw-row {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0 15px;
+    margin: 6px 0;
+}
+
+.screw {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #a0a0a0, #707070);
+    box-shadow: 
+        inset 1px 1px 3px rgba(0,0,0,0.6), 
+        0 1px 1px rgba(255,255,255,0.7);
+    position: relative;
+}
+
+/* Flathead screw slot */
+.screw::after {
+    content: '';
+    position: absolute;
+    top: 50%; left: 10%; width: 80%; height: 1.5px;
+    background: #333;
+    transform: translateY(-50%);
+}
+
+/* The dark hole the switches sit inside */
+.switch-mechanisms {
+    display: flex;
+    gap: 15px;
+    background: #b5b3ab;
+    padding: 10px;
+    border-radius: 4px;
+    box-shadow: 
+        inset 0 3px 6px rgba(0,0,0,0.5), 
+        0 1px 1px rgba(255,255,255,0.6);
+}
+
+.switch-wrapper {
+    position: relative;
+}
+
+.switch-input {
+    display: none;
+}
+
+/* The actual physical switches */
+.physical-switch {
+    width: 45px;
+    height: 70px;
+    background: linear-gradient(to bottom, #fcfcfc, #e8e6df);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: #888;
     cursor: pointer;
+    position: relative;
+    transition: all 0.15s cubic-bezier(0.4, 0.0, 0.2, 1);
+    
+    /* UP STATE (Unpressed) */
+    box-shadow: 
+        0 6px 0 #b0aeaa,               /* 3D thickness */
+        0 10px 8px rgba(0,0,0,0.5),    /* Drop shadow below switch */
+        inset 0 2px 4px #ffffff;       /* Top edge highlight */
+    transform: translateY(-4px);
 }
 
-/* When a radio button is checked, style its sibling label */
-.btn-check:checked+.toggle-label {
-    background-color: #ffffff;
-    color: #0f0f0f !important;
-    font-weight: 600;
-    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.2);
+/* DOWN STATE (Pressed) */
+.switch-input:checked + .physical-switch {
+    background: linear-gradient(to bottom, #e8e6df, #d1cfc7);
+    box-shadow: 
+        0 1px 0 #b0aeaa,               /* Reduced thickness */
+        0 2px 3px rgba(0,0,0,0.3),     /* Reduced shadow */
+        inset 0 -2px 4px #ffffff;      /* Bottom edge highlight */
+    transform: translateY(2px);
+    color: #222; /* Icon darkens to look "Active" */
 }
 
-/* Hover effect for unselected items */
-.btn-check:not(:checked)+.toggle-label:hover {
-    color: #ffffff;
-    background-color: rgba(255, 255, 255, 0.05);
+/* Adds a tiny red indicator stripe on the top of the switch when pressed */
+.switch-input:checked + .physical-switch::before {
+    content: '';
+    position: absolute;
+    top: 5px;
+    width: 15px;
+    height: 3px;
+    background-color: #ff4444;
+    border-radius: 1px;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,0.5);
+}
+
+/* Make the icon "click" into place visually */
+.physical-switch i {
+    transition: transform 0.15s ease;
+}
+.switch-input:checked + .physical-switch i {
+    transform: scale(0.9);
 }
 
 /* --- Retro Mode Toggle Overrides --- */
-body.retro-mode .project-toggle-wrapper {
+body.retro-mode .wall-switch-plate {
+    border-radius: 0 !important;
     background: #c0c0c0 !important;
-    border: 2px inset #ffffff !important;
-    border-radius: 0 !important;
-    padding: 2px !important;
+    border: 2px outset #fff !important;
+    box-shadow: 4px 4px 0px #000 !important;
 }
-
-body.retro-mode .toggle-label {
-    border-radius: 0 !important;
-    color: #000000 !important;
-    border: 1px solid transparent !important;
-}
-
-body.retro-mode .btn-check:checked+.toggle-label {
-    background: #000080 !important;
-    /* Navy Blue */
-    color: #ffffff !important;
-    border: 2px outset #ffffff !important;
+body.retro-mode .switch-mechanisms {
+    background: #808080 !important;
+    border: 2px inset #fff !important;
     box-shadow: none !important;
+}
+body.retro-mode .physical-switch {
+    background: #c0c0c0 !important;
+    border: 2px outset #fff !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    transform: none !important;
+}
+body.retro-mode .switch-input:checked + .physical-switch {
+    border: 2px inset #fff !important;
+    background: #a0a0a0 !important;
+}
+body.retro-mode .switch-input:checked + .physical-switch::before {
+    display: none;
 }

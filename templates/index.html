@@ -145,22 +145,36 @@
       </section>
 
 
-      <div class="d-flex justify-content-start justify-content-md-center mb-4 mt-5 pt-2" data-aos="fade-up">
-        <div
-          class="project-toggle-wrapper bg-dark bg-opacity-50 p-1 rounded-pill border border-secondary border-opacity-25 shadow-sm">
+      <div class="d-flex justify-content-start justify-content-md-center mb-5 mt-5 pt-2" data-aos="fade-up">
+        <div class="wall-switch-plate" title="Toggle Projects">
+          <div class="screw-row">
+            <div class="screw" style="transform: rotate(15deg);"></div>
+            <div class="screw" style="transform: rotate(-45deg);"></div>
+          </div>
 
-          <input type="radio" class="btn-check" name="projectToggle" id="toggle-code" autocomplete="off" checked>
-          <label class="btn btn-outline-light rounded-pill border-0 px-4 py-2 toggle-label" for="toggle-code">
-            <i class="bi bi-terminal me-2"></i>Engineering
-          </label>
+          <div class="switch-mechanisms">
+            <div class="switch-wrapper">
+              <input type="radio" class="switch-input" name="projectToggle" id="toggle-code" autocomplete="off" checked>
+              <label class="physical-switch" for="toggle-code" title="Engineering Projects">
+                <i class="bi bi-terminal"></i>
+              </label>
+            </div>
 
-          <input type="radio" class="btn-check" name="projectToggle" id="toggle-design" autocomplete="off">
-          <label class="btn btn-outline-light rounded-pill border-0 px-4 py-2 toggle-label" for="toggle-design">
-            <i class="bi bi-palette me-2"></i>UI Design
-          </label>
+            <div class="switch-wrapper">
+              <input type="radio" class="switch-input" name="projectToggle" id="toggle-design" autocomplete="off">
+              <label class="physical-switch" for="toggle-design" title="UI Design Projects">
+                <i class="bi bi-palette"></i>
+              </label>
+            </div>
+          </div>
 
+          <div class="screw-row">
+            <div class="screw" style="transform: rotate(70deg);"></div>
+            <div class="screw" style="transform: rotate(-10deg);"></div>
+          </div>
         </div>
       </div>
+
 
       <div id="main-projects-container">
         <h2 class="h3 fw-bold mb-4">Selected Work.</h2>
