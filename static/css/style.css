@@ -110,6 +110,7 @@ html {
     transition: all 0.3s ease;
 }
 
+
 /* ==========================================================================
    ██████████████████████████████████████████████████████████████████████████
 
@@ -117,72 +118,6 @@ html {
    
    ██████████████████████████████████████████████████████████████████████████
 ========================================================================== */
-
-
-
-/* ==========================================================================
-   ██████████████████████████████████████████████████████████████████████████
-
-   [ 03 ] LAYOUT & NAVIGATION
-   
-   ██████████████████████████████████████████████████████████████████████████
-========================================================================== */
-
-
-
-/* ==========================================================================
-   ██████████████████████████████████████████████████████████████████████████
-
-   [ 04 ] UI COMPONENTS & FORMS
-   
-   ██████████████████████████████████████████████████████████████████████████
-========================================================================== */
-
-
-
-/* ==========================================================================
-   ██████████████████████████████████████████████████████████████████████████
-
-   [ 05 ] PROJECTS, EFFECTS & EASTER EGGS
-   
-   ██████████████████████████████████████████████████████████████████████████
-========================================================================== */
-
-
-
-/* ==========================================================================
-   ██████████████████████████████████████████████████████████████████████████
-
-   [ 06 ] CUSTOM CURSORS
-   
-   ██████████████████████████████████████████████████████████████████████████
-========================================================================== */
-
-
-
-/* ==========================================================================
-   ██████████████████████████████████████████████████████████████████████████
-
-   [ 07 ] MOBILE RESPONSIVENESS
-   
-   ██████████████████████████████████████████████████████████████████████████
-========================================================================== */
-
-
-
-/* ==========================================================================
-   ██████████████████████████████████████████████████████████████████████████
-
-   [ 08 ] RETRO MODE (THEME OVERRIDES)
-   
-   ██████████████████████████████████████████████████████████████████████████
-========================================================================== */
-
-
-
-
-
-
 /* --- 3D Background Canvas --- */
 #renderCanvas {
     position: fixed;
@@ -196,15 +131,7 @@ html {
     pointer-events: none;
 }
 
-/* Hide 3D elements in Retro Mode */
-body.retro-mode #renderCanvas {
-    display: none !important;
-}
-
-/* ====================================================== */
-/* --- Base Background Setup
-/* ====================================================== */
-
+/* --- Base Background Setup --- */
 /* 1. The Background Layer */
 body::before {
     content: "";
@@ -245,14 +172,29 @@ body.bg-contact::before {
 }
 
 
-/* ====================================================== */
+/* ==========================================================================
+   ██████████████████████████████████████████████████████████████████████████
 
+   [ 03 ] LAYOUT & NAVIGATION
+   
+   ██████████████████████████████████████████████████████████████████████████
+========================================================================== */
+/* --- Navigation --- */
+.navbar-brand {
+    font-weight: 700;
+    letter-spacing: -1px;
+}
 
+.nav-link {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #aaa !important;
+    transition: color 0.3s ease;
+}
 
-
-
-
-
+.nav-link:hover {
+    color: #fff !important;
+}
 
 /* --- Hero Section Styling --- */
 .hero-section {
@@ -289,25 +231,36 @@ body.bg-contact::before {
     margin-bottom: 40px;
 }
 
-/* --- Navigation --- */
-.navbar-brand {
-    font-weight: 700;
-    letter-spacing: -1px;
+
+
+/* Blinking Dot for "Open to Work" */
+@keyframes blink {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.4;
+    }
+
+    100% {
+        opacity: 1;
+    }
 }
 
-.nav-link {
-    font-size: 0.95rem;
-    font-weight: 500;
-    color: #aaa !important;
-    transition: color 0.3s ease;
-}
-
-.nav-link:hover {
-    color: #fff !important;
+.blink-anim {
+    animation: blink 2s infinite ease-in-out;
+    color: #ccffcc;
 }
 
 
+/* ==========================================================================
+   ██████████████████████████████████████████████████████████████████████████
 
+   [ 04 ] UI COMPONENTS & FORMS
+   
+   ██████████████████████████████████████████████████████████████████████████
+========================================================================== */
 /* --- Glassmorphism --- */
 .glass-project {
     /* 1. Semi-transparent gradient */
@@ -330,8 +283,128 @@ body.bg-contact::before {
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
 }
 
-/* --- Card Hover Effects --- */
+/* --- Material Sidebar Card --- */
+.material-card {
+    /* 1. Layout (Replaces .card behavior) */
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
 
+    /* 2. Visuals */
+    background:
+        linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)),
+        url('../images/paper-texture.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    width: 100%;
+    border-radius: 1px;
+    border: none;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5), 0 2px 10px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
+    position: relative;
+    z-index: 2;
+}
+
+/* Hover Effect: Lift */
+.material-card:hover {
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.6), 0 10px 10px rgba(0, 0, 0, 0.45);
+    transform: translateY(-5px);
+}
+
+/* --- Sliding Contact Button --- */
+.btn-slide-anim {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    z-index: 1;
+}
+
+/* The Text Wrapper */
+.btn-text {
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+/* Slide Text Left on Hover */
+.btn-slide-anim:hover .btn-text {
+    transform: translateX(-20px);
+}
+
+/* The Icon Wrapper */
+.icon-wrapper {
+    position: absolute;
+    top: 50%;
+    right: 35%;
+    transform: translate(75px, -50%);
+    /* Start hidden to the right */
+    opacity: 0;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    pointer-events: none;
+}
+
+/* Slide Icon In on Hover */
+.btn-slide-anim:hover .icon-wrapper {
+    opacity: 1;
+    transform: translate(35px, -50%);
+}
+
+/* --- Real-Time Validation --- */
+
+/* 1. Success State */
+.form-control.is-valid-custom {
+    border-color: #00d0c7 !important;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%2300d0c7' d='M2.3 6.73L.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1z'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right calc(0.375em + 0.1875rem) center;
+    background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+    box-shadow: 0 0 10px rgba(0, 208, 199, 0.2) !important;
+}
+
+/* 2. Error State */
+.form-control.is-invalid-custom {
+    border-color: #ff4444 !important;
+    box-shadow: 0 0 10px rgba(255, 68, 68, 0.2) !important;
+}
+
+/* 3. Error Message Text */
+.live-error-msg {
+    color: #ff6b6b;
+    font-size: 0.7rem;
+
+    /* Absolute positioning prevents layout shift */
+    position: absolute;
+    bottom: -20px;
+    /* Hangs below the input */
+    left: 0;
+    width: 100%;
+
+    opacity: 0;
+    transform: translateY(-10px);
+    /* Slides down from inside the input */
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    pointer-events: none;
+    z-index: 10;
+}
+
+/* 4. Reveal the error message */
+.live-error-msg.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* ==========================================================================
+   ██████████████████████████████████████████████████████████████████████████
+
+   [ 05 ] PROJECTS, EFFECTS & EASTER EGGS
+   
+   ██████████████████████████████████████████████████████████████████████████
+========================================================================== */
+/* --- Card Hover Effects --- */
 /* 1. Make sure the cards can hold the absolute overlay */
 .card,
 .ratio {
@@ -386,7 +459,6 @@ body.bg-contact::before {
 }
 
 /* --- Snake Peek Animation --- */
-
 /* 1. The Wrapper */
 /* This contains both the card and the hidden snake */
 .snake-wrapper {
@@ -514,7 +586,373 @@ body.bg-contact::before {
     transform: translateY(0) rotate(0deg) scale(1);
 }
 
+/* --- Old Home Double Wall Switch (projects toggle) --- */
+.wall-switch-plate {
+    /* Vintage Ivory Plastic color */
+    background: linear-gradient(135deg, #e8e6df, #d1cfc7);
+    border-radius: 8px;
+    padding: 15px 20px;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow:
+        0 10px 25px rgba(0, 0, 0, 0.6),
+        /* Drop shadow on the dark wall */
+        inset 2px 2px 4px #ffffff,
+        /* Top-left plastic highlight */
+        inset -2px -2px 5px rgba(0, 0, 0, 0.2);
+    /* Bottom-right plastic shadow */
+    border: 1px solid #b8b6af;
+    user-select: none;
+}
 
+/* Screws */
+.screw-row {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0 15px;
+    margin: 6px 0;
+}
+
+.screw {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #a0a0a0, #707070);
+    box-shadow:
+        inset 1px 1px 3px rgba(0, 0, 0, 0.6),
+        0 1px 1px rgba(255, 255, 255, 0.7);
+    position: relative;
+}
+
+/* Flathead screw slot */
+.screw::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 10%;
+    width: 80%;
+    height: 1.5px;
+    background: #333;
+    transform: translateY(-50%);
+}
+
+/* The dark hole the switches sit inside */
+.switch-mechanisms {
+    display: flex;
+    gap: 15px;
+    background: #b5b3ab;
+    padding: 10px;
+    border-radius: 4px;
+    box-shadow:
+        inset 0 3px 6px rgba(0, 0, 0, 0.5),
+        0 1px 1px rgba(255, 255, 255, 0.6);
+}
+
+.switch-wrapper {
+    position: relative;
+}
+
+.switch-input {
+    display: none;
+}
+
+/* The actual physical switches */
+.physical-switch {
+    width: 45px;
+    height: 70px;
+    background: linear-gradient(to bottom, #fcfcfc, #e8e6df);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: #888;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.15s cubic-bezier(0.4, 0.0, 0.2, 1);
+
+    /* UP STATE (Unpressed) */
+    box-shadow:
+        0 6px 0 #b0aeaa,
+        /* 3D thickness */
+        0 10px 8px rgba(0, 0, 0, 0.5),
+        /* Drop shadow below switch */
+        inset 0 2px 4px #ffffff;
+    /* Top edge highlight */
+    transform: translateY(-4px);
+}
+
+/* DOWN STATE (Pressed) */
+.switch-input:checked+.physical-switch {
+    background: linear-gradient(to bottom, #e8e6df, #d1cfc7);
+    box-shadow:
+        0 1px 0 #b0aeaa,
+        /* Reduced thickness */
+        0 2px 3px rgba(0, 0, 0, 0.3),
+        /* Reduced shadow */
+        inset 0 -2px 4px #ffffff;
+    /* Bottom edge highlight */
+    transform: translateY(2px);
+    color: #222;
+    /* Icon darkens to look "Active" */
+}
+
+/* Adds a tiny red indicator stripe on the top of the switch when pressed */
+.switch-input:checked+.physical-switch::before {
+    content: '';
+    position: absolute;
+    top: 5px;
+    width: 15px;
+    height: 3px;
+    background-color: #ff4444;
+    border-radius: 1px;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.5);
+}
+
+/* Make the icon "click" into place visually */
+.physical-switch i {
+    transition: transform 0.15s ease;
+}
+
+.switch-input:checked+.physical-switch i {
+    transform: scale(0.9);
+}
+
+/* --- Design Project Image & GIF Previews --- */
+.preview-img,
+.hover-gif {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.hover-gif {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    z-index: 2;
+}
+
+/* When the user hovers anywhere on the card, fade the GIF in */
+.project-card:hover .hover-gif {
+    opacity: 1;
+}
+
+/* --- Glitch Rise Animation --- */
+.glitch-word {
+    display: inline-block;
+    /* Required for transform to work */
+    opacity: 0;
+    /* Start hidden */
+    transform: translateY(100px);
+    /* Start from bottom */
+
+    /* Animation: Name | Duration | Timing | Fill Mode */
+    animation: glitchRise 1.0s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+
+    /* Stagger the start time based on the index variable --i */
+    animation-delay: calc(0.15s * var(--i));
+
+    /* Hardware acceleration for smoother text rendering */
+    will-change: transform, opacity, text-shadow, color;
+}
+
+@keyframes glitchRise {
+    0% {
+        opacity: 0;
+        transform: translateY(100px);
+        color: white;
+        text-shadow: none;
+    }
+
+    /* 30% - First Glitch (RED Shift) */
+    30% {
+        opacity: 1;
+        transform: translateY(20px);
+        color: rgba(255, 0, 0, 0.8);
+        text-shadow: -2px 0 blue;
+    }
+
+    /* 50% - Second Glitch (BLUE Shift) */
+    50% {
+        transform: translateY(-10px);
+        color: rgba(0, 255, 255, 0.8);
+        text-shadow: 2px 0 red;
+    }
+
+    /* 70% - Stabilize */
+    70% {
+        transform: translateY(0);
+        color: white;
+        text-shadow: -1px 0 red, 1px 0 blue;
+    }
+
+    /* 100% - Clean Finish */
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+        color: inherit;
+        text-shadow: none;
+    }
+}
+
+/* --- Fly Away Animation --- */
+.fly-away-active {
+    /* Fly Up and Right, Fade Out */
+    animation: flyOut 0.6s cubic-bezier(0.55, 0.085, 0.68, 0.53) forwards;
+}
+
+@keyframes flyOut {
+    0% {
+        transform: translate(25px, -50%);
+        /* Start from "Hover" position */
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(200px, -200px) rotate(-45deg);
+        /* End off-screen */
+        opacity: 0;
+    }
+}
+
+@keyframes shake {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-5px);
+    }
+
+    75% {
+        transform: translateX(5px);
+    }
+}
+
+.shake-anim {
+    animation: shake 0.4s ease-in-out;
+    border-color: #ff4444 !important;
+}
+
+/* --- MARIO EASTER EGG ANIMATION --- */
+.mario-jump-anim {
+    animation: marioJumpSequence 2s ease-in-out forwards;
+}
+
+@keyframes marioJumpSequence {
+    0% {
+        bottom: -150px;
+        /* Start Hidden */
+    }
+
+    25% {
+        bottom: 200px;
+        /* Peak of Jump */
+    }
+
+    50% {
+        bottom: -10px;
+        /* Land on bottom edge (adjust -10px if he floats too high) */
+    }
+
+    75% {
+        bottom: -10px;
+        /* HOLD: Stay on bottom edge */
+    }
+
+    100% {
+        bottom: -150px;
+        /* Dive back down */
+    }
+}
+
+/* ==========================================================================
+   ██████████████████████████████████████████████████████████████████████████
+
+   [ 06 ] CUSTOM CURSORS
+   
+   ██████████████████████████████████████████████████████████████████████████
+========================================================================== */
+/*-- Custom Cursor (Diamond) --*/
+/* html,
+body,
+.hover-char {
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><rect x="7" y="7" width="10" height="10" transform="rotate(45 12 12)" fill="none" stroke="white" stroke-width="2"/></svg>') 12 12, auto;
+}
+
+a,
+button,
+.btn,
+.nav-link,
+.card,
+.ratio {
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" transform="rotate(45 12 12)" fill="white" stroke="white" stroke-width="1"/></svg>') 12 12, pointer;
+} */
+
+/* --- Valorant Style Mouse --- */
+html,
+body,
+.hover-char {
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path d="M4 2L10 21L13 14L22 10L4 2Z" fill="white" stroke="black" stroke-width="2" stroke-linejoin="miter"/></svg>') 4 2, auto;
+}
+
+a,
+button,
+button:hover,
+.btn,
+.nav-link,
+.card,
+.ratio,
+.physical-switch,
+.physical-switch *,
+.physical-switch i {
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path d="M4 2L10 21L13 14L22 10L4 2Z" fill="%2300ffcc" stroke="black" stroke-width="2" stroke-linejoin="miter"/></svg>') 4 2, pointer !important;
+}
+
+/* --- Liquid Glass --- */
+/* a, button, .btn, .nav-link, .card, .ratio {
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="rgba(255,255,255,0.2)" stroke="white" stroke-width="1.5"/></svg>') 12 12, pointer;
+} */
+
+
+/* ==========================================================================
+   ██████████████████████████████████████████████████████████████████████████
+
+   [ 07 ] MOBILE RESPONSIVENESS
+   
+   ██████████████████████████████████████████████████████████████████████████
+========================================================================== */
+/* --- Sidebar for Index Layout --- */
+@media (min-width: 992px) {
+    .sticky-sidebar {
+        /* Remove position: sticky; so it scrolls naturally with the page */
+        position: static;
+        z-index: 10;
+    }
+}
+
+/* --- SQUISH DESKTOP WIDTH --- */
+@media (min-width: 992px) {
+
+    /* 1. Squish the main content for that "Mobile/App" feel */
+    .container {
+        max-width: 900px;
+    }
+
+    /* 2. EXCEPTION: Let the Navbar expand wider so buttons don't wrap */
+    /* This creates a nice "Wide Header, Focused Content" look */
+    nav.navbar .container {
+        max-width: 1100px;
+        /* Gives the header 200px more space than the text */
+    }
+}
 
 /* =========================================
    MOBILE RESPONSIVENESS OVERRIDES
@@ -692,46 +1130,58 @@ body.bg-contact::before {
 
 }
 
-/*-- Custom Cursor (Diamond) --*/
-/* html,
-body,
-.hover-char {
-    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><rect x="7" y="7" width="10" height="10" transform="rotate(45 12 12)" fill="none" stroke="white" stroke-width="2"/></svg>') 12 12, auto;
+/* =========================================
+   MOBILE SCROLL "HOVER" SIMULATION
+   ========================================= */
+
+/* 1. White Border Glow */
+.card.mobile-active,
+.ratio.mobile-active {
+    border-color: rgba(255, 255, 255, 0.4) !important;
 }
 
-a,
-button,
-.btn,
-.nav-link,
-.card,
-.ratio {
-    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" transform="rotate(45 12 12)" fill="white" stroke="white" stroke-width="1"/></svg>') 12 12, pointer;
-} */
-
-/* --- Valorant Style Mouse --- */
-html,
-body,
-.hover-char {
-    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path d="M4 2L10 21L13 14L22 10L4 2Z" fill="white" stroke="black" stroke-width="2" stroke-linejoin="miter"/></svg>') 4 2, auto;
+/* 2. Play the GIF */
+.project-card.mobile-active .hover-gif {
+    opacity: 1;
 }
 
-a,
-button,
-button:hover,
-.btn,
-.nav-link,
-.card,
-.ratio,
-.physical-switch,
-.physical-switch *,
-.physical-switch i {
-    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path d="M4 2L10 21L13 14L22 10L4 2Z" fill="%2300ffcc" stroke="black" stroke-width="2" stroke-linejoin="miter"/></svg>') 4 2, pointer !important;
+/* 3. Mascot Pop-ups */
+.snake-wrapper.mobile-active .snake-mascot {
+    opacity: 1;
+    transform: translateY(0px) rotate(-15deg);
 }
 
-/* --- Liquid Glass --- */
-/* a, button, .btn, .nav-link, .card, .ratio {
-    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="rgba(255,255,255,0.2)" stroke="white" stroke-width="1.5"/></svg>') 12 12, pointer;
-} */
+.js-wrapper.mobile-active .js-mascot {
+    opacity: 1;
+    transform: translateY(0px) rotate(15deg);
+}
+
+.c-wrapper.mobile-active .c-mascot {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.figma-wrapper.mobile-active .figma-mascot {
+    opacity: 1;
+    transform: translateY(0) rotate(0deg) scale(1);
+}
+
+
+/* ==========================================================================
+   ██████████████████████████████████████████████████████████████████████████
+
+   [ 08 ] RETRO MODE (THEME OVERRIDES)
+   
+   ██████████████████████████████████████████████████████████████████████████
+========================================================================== */
+
+/* Hide 3D elements in Retro Mode */
+body.retro-mode #renderCanvas {
+    display: none !important;
+}
+
+
+
 
 
 /* =========================================
@@ -1024,10 +1474,7 @@ body.retro-mode .navbar-toggler::after {
     /* Hide modern animated lines */
 }
 
-/* --- MARIO EASTER EGG ANIMATION --- */
-.mario-jump-anim {
-    animation: marioJumpSequence 2s ease-in-out forwards;
-}
+
 
 /* Disable Glitch in Retro Mode */
 body.retro-mode .glitch-word {
@@ -1038,56 +1485,9 @@ body.retro-mode .glitch-word {
     text-shadow: 2px 2px #aaa !important;
 }
 
-@keyframes marioJumpSequence {
-    0% {
-        bottom: -150px;
-        /* Start Hidden */
-    }
 
-    25% {
-        bottom: 200px;
-        /* Peak of Jump */
-    }
 
-    50% {
-        bottom: -10px;
-        /* Land on bottom edge (adjust -10px if he floats too high) */
-    }
 
-    75% {
-        bottom: -10px;
-        /* HOLD: Stay on bottom edge */
-    }
-
-    100% {
-        bottom: -150px;
-        /* Dive back down */
-    }
-}
-
-/* --- SQUISH DESKTOP WIDTH --- */
-@media (min-width: 992px) {
-
-    /* 1. Squish the main content for that "Mobile/App" feel */
-    .container {
-        max-width: 900px;
-    }
-
-    /* 2. EXCEPTION: Let the Navbar expand wider so buttons don't wrap */
-    /* This creates a nice "Wide Header, Focused Content" look */
-    nav.navbar .container {
-        max-width: 1100px;
-        /* Gives the header 200px more space than the text */
-    }
-}
-
-/* --- Sliding Contact Button --- */
-.btn-slide-anim {
-    position: relative;
-    overflow: hidden;
-    transition: all 0.3s ease;
-    z-index: 1;
-}
 
 /* Hover State: Cyan Gradient */
 body:not(.retro-mode) .btn-slide-anim:hover {
@@ -1097,189 +1497,12 @@ body:not(.retro-mode) .btn-slide-anim:hover {
     box-shadow: 0 0 20px rgba(0, 208, 199, 0.4);
 }
 
-/* The Text Wrapper */
-.btn-text {
-    display: inline-block;
-    transition: transform 0.3s ease;
-}
-
-/* Slide Text Left on Hover */
-.btn-slide-anim:hover .btn-text {
-    transform: translateX(-20px);
-}
-
-/* The Icon Wrapper */
-.icon-wrapper {
-    position: absolute;
-    top: 50%;
-    right: 35%;
-    transform: translate(75px, -50%);
-    /* Start hidden to the right */
-    opacity: 0;
-    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    pointer-events: none;
-}
-
-/* Slide Icon In on Hover */
-.btn-slide-anim:hover .icon-wrapper {
-    opacity: 1;
-    transform: translate(35px, -50%);
-}
-
-/* --- Fly Away Animation --- */
-.fly-away-active {
-    /* Fly Up and Right, Fade Out */
-    animation: flyOut 0.6s cubic-bezier(0.55, 0.085, 0.68, 0.53) forwards;
-}
-
-@keyframes flyOut {
-    0% {
-        transform: translate(25px, -50%);
-        /* Start from "Hover" position */
-        opacity: 1;
-    }
-
-    100% {
-        transform: translate(200px, -200px) rotate(-45deg);
-        /* End off-screen */
-        opacity: 0;
-    }
-}
-
-@keyframes shake {
-
-    0%,
-    100% {
-        transform: translateX(0);
-    }
-
-    25% {
-        transform: translateX(-5px);
-    }
-
-    75% {
-        transform: translateX(5px);
-    }
-}
-
-.shake-anim {
-    animation: shake 0.4s ease-in-out;
-    border-color: #ff4444 !important;
-}
-
-/* --- Real-Time Validation --- */
-
-/* 1. Success State */
-.form-control.is-valid-custom {
-    border-color: #00d0c7 !important;
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%2300d0c7' d='M2.3 6.73L.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1z'/%3e%3c/svg%3e");
-    background-repeat: no-repeat;
-    background-position: right calc(0.375em + 0.1875rem) center;
-    background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
-    box-shadow: 0 0 10px rgba(0, 208, 199, 0.2) !important;
-}
-
-/* 2. Error State */
-.form-control.is-invalid-custom {
-    border-color: #ff4444 !important;
-    box-shadow: 0 0 10px rgba(255, 68, 68, 0.2) !important;
-}
-
-/* 3. Error Message Text */
-.live-error-msg {
-    color: #ff6b6b;
-    font-size: 0.7rem;
-
-    /* Absolute positioning prevents layout shift */
-    position: absolute;
-    bottom: -20px;
-    /* Hangs below the input */
-    left: 0;
-    width: 100%;
-
-    opacity: 0;
-    transform: translateY(-10px);
-    /* Slides down from inside the input */
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-    pointer-events: none;
-    z-index: 10;
-}
-
-/* 4. Reveal the error message */
-.live-error-msg.show {
-    opacity: 1;
-    transform: translateY(0);
-}
 
 
-/* --- Glitch Rise Animation --- */
-
-.glitch-word {
-    display: inline-block;
-    /* Required for transform to work */
-    opacity: 0;
-    /* Start hidden */
-    transform: translateY(100px);
-    /* Start from bottom */
-
-    /* Animation: Name | Duration | Timing | Fill Mode */
-    animation: glitchRise 1.0s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
-
-    /* Stagger the start time based on the index variable --i */
-    animation-delay: calc(0.15s * var(--i));
-
-    /* Hardware acceleration for smoother text rendering */
-    will-change: transform, opacity, text-shadow, color;
-}
-
-@keyframes glitchRise {
-    0% {
-        opacity: 0;
-        transform: translateY(100px);
-        color: white;
-        text-shadow: none;
-    }
-
-    /* 30% - First Glitch (RED Shift) */
-    30% {
-        opacity: 1;
-        transform: translateY(20px);
-        color: rgba(255, 0, 0, 0.8);
-        text-shadow: -2px 0 blue;
-    }
-
-    /* 50% - Second Glitch (BLUE Shift) */
-    50% {
-        transform: translateY(-10px);
-        color: rgba(0, 255, 255, 0.8);
-        text-shadow: 2px 0 red;
-    }
-
-    /* 70% - Stabilize */
-    70% {
-        transform: translateY(0);
-        color: white;
-        text-shadow: -1px 0 red, 1px 0 blue;
-    }
-
-    /* 100% - Clean Finish */
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-        color: inherit;
-        text-shadow: none;
-    }
-}
 
 
-/* --- Sidebar for Index Layout --- */
-@media (min-width: 992px) {
-    .sticky-sidebar {
-        /* Removed position: sticky; so it scrolls naturally with the page */
-        position: static;
-        z-index: 10;
-    }
-}
+
+
 
 /* Make sure the bio text is readable in Retro Mode */
 body.retro-mode .sticky-sidebar .text-white {
@@ -1291,57 +1514,7 @@ body.retro-mode .sticky-sidebar .badge {
     border-color: #000 !important;
 }
 
-/* Blinking Dot for "Open to Work" */
-@keyframes blink {
-    0% {
-        opacity: 1;
-    }
 
-    50% {
-        opacity: 0.4;
-    }
-
-    100% {
-        opacity: 1;
-    }
-}
-
-.blink-anim {
-    animation: blink 2s infinite ease-in-out;
-    color: #ccffcc;
-}
-
-/* --- Material Sidebar Card --- */
-.material-card {
-    /* 1. Layout (Replaces .card behavior) */
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    min-width: 0;
-    word-wrap: break-word;
-
-    /* 2. Visuals */
-    background:
-        linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)),
-        url('../images/paper-texture.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-
-    width: 100%;
-    border-radius: 1px;
-    border: none;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5), 0 2px 10px rgba(0, 0, 0, 0.3);
-    transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
-    position: relative;
-    z-index: 2;
-}
-
-/* Hover Effect: Lift */
-.material-card:hover {
-    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.6), 0 10px 10px rgba(0, 0, 0, 0.45);
-    transform: translateY(-5px);
-}
 
 /* Retro Mode Override */
 body.retro-mode .material-card {
@@ -1351,139 +1524,7 @@ body.retro-mode .material-card {
     transform: none !important;
 }
 
-/* --- Old Home Double Wall Switch (projects toggle) --- */
-.wall-switch-plate {
-    /* Vintage Ivory Plastic color */
-    background: linear-gradient(135deg, #e8e6df, #d1cfc7);
-    border-radius: 8px;
-    padding: 15px 20px;
-    display: inline-flex;
-    flex-direction: column;
-    align-items: center;
-    box-shadow:
-        0 10px 25px rgba(0, 0, 0, 0.6),
-        /* Drop shadow on the dark wall */
-        inset 2px 2px 4px #ffffff,
-        /* Top-left plastic highlight */
-        inset -2px -2px 5px rgba(0, 0, 0, 0.2);
-    /* Bottom-right plastic shadow */
-    border: 1px solid #b8b6af;
-    user-select: none;
-}
 
-/* Screws */
-.screw-row {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    padding: 0 15px;
-    margin: 6px 0;
-}
-
-.screw {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, #a0a0a0, #707070);
-    box-shadow:
-        inset 1px 1px 3px rgba(0, 0, 0, 0.6),
-        0 1px 1px rgba(255, 255, 255, 0.7);
-    position: relative;
-}
-
-/* Flathead screw slot */
-.screw::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 10%;
-    width: 80%;
-    height: 1.5px;
-    background: #333;
-    transform: translateY(-50%);
-}
-
-/* The dark hole the switches sit inside */
-.switch-mechanisms {
-    display: flex;
-    gap: 15px;
-    background: #b5b3ab;
-    padding: 10px;
-    border-radius: 4px;
-    box-shadow:
-        inset 0 3px 6px rgba(0, 0, 0, 0.5),
-        0 1px 1px rgba(255, 255, 255, 0.6);
-}
-
-.switch-wrapper {
-    position: relative;
-}
-
-.switch-input {
-    display: none;
-}
-
-/* The actual physical switches */
-.physical-switch {
-    width: 45px;
-    height: 70px;
-    background: linear-gradient(to bottom, #fcfcfc, #e8e6df);
-    border-radius: 4px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5rem;
-    color: #888;
-    cursor: pointer;
-    position: relative;
-    transition: all 0.15s cubic-bezier(0.4, 0.0, 0.2, 1);
-
-    /* UP STATE (Unpressed) */
-    box-shadow:
-        0 6px 0 #b0aeaa,
-        /* 3D thickness */
-        0 10px 8px rgba(0, 0, 0, 0.5),
-        /* Drop shadow below switch */
-        inset 0 2px 4px #ffffff;
-    /* Top edge highlight */
-    transform: translateY(-4px);
-}
-
-/* DOWN STATE (Pressed) */
-.switch-input:checked+.physical-switch {
-    background: linear-gradient(to bottom, #e8e6df, #d1cfc7);
-    box-shadow:
-        0 1px 0 #b0aeaa,
-        /* Reduced thickness */
-        0 2px 3px rgba(0, 0, 0, 0.3),
-        /* Reduced shadow */
-        inset 0 -2px 4px #ffffff;
-    /* Bottom edge highlight */
-    transform: translateY(2px);
-    color: #222;
-    /* Icon darkens to look "Active" */
-}
-
-/* Adds a tiny red indicator stripe on the top of the switch when pressed */
-.switch-input:checked+.physical-switch::before {
-    content: '';
-    position: absolute;
-    top: 5px;
-    width: 15px;
-    height: 3px;
-    background-color: #ff4444;
-    border-radius: 1px;
-    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.5);
-}
-
-/* Make the icon "click" into place visually */
-.physical-switch i {
-    transition: transform 0.15s ease;
-}
-
-.switch-input:checked+.physical-switch i {
-    transform: scale(0.9);
-}
 
 /* --- Retro Mode Toggle Overrides --- */
 body.retro-mode .wall-switch-plate {
@@ -1516,65 +1557,8 @@ body.retro-mode .switch-input:checked+.physical-switch::before {
     display: none;
 }
 
-/* --- Design Project Image & GIF Previews --- */
-.preview-img,
-.hover-gif {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.hover-gif {
-    position: absolute;
-    top: 0;
-    left: 0;
-    opacity: 0;
-    transition: opacity 0.3s ease-in-out;
-    z-index: 2;
-}
-
-/* When the user hovers anywhere on the card, fade the GIF in */
-.project-card:hover .hover-gif {
-    opacity: 1;
-}
 
 /* Disable the GIF effect in Retro Mode */
 body.retro-mode .hover-gif {
     display: none !important;
-}
-
-/* =========================================
-   MOBILE SCROLL "HOVER" SIMULATION
-   ========================================= */
-
-/* 1. White Border Glow */
-.card.mobile-active,
-.ratio.mobile-active {
-    border-color: rgba(255, 255, 255, 0.4) !important;
-}
-
-/* 2. Play the GIF */
-.project-card.mobile-active .hover-gif {
-    opacity: 1;
-}
-
-/* 3. Mascot Pop-ups */
-.snake-wrapper.mobile-active .snake-mascot {
-    opacity: 1;
-    transform: translateY(0px) rotate(-15deg);
-}
-
-.js-wrapper.mobile-active .js-mascot {
-    opacity: 1;
-    transform: translateY(0px) rotate(15deg);
-}
-
-.c-wrapper.mobile-active .c-mascot {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.figma-wrapper.mobile-active .figma-mascot {
-    opacity: 1;
-    transform: translateY(0) rotate(0deg) scale(1);
 }
