@@ -79,6 +79,32 @@ my_projects = [
         },
     },
     {
+        "title": "Game Completion Board",
+        "description": "A full-stack web application designed to track video game progression and achievements. Users can add games, log specific milestones, and visually track their completion percentage through a dynamic, responsive dashboard.",
+        "tech": ["MERN Stack", "React", "Node.js"],
+        "url": "https://github.com/samybit/game-completion-board",
+        "style": {
+            "wrapper": "js-wrapper",
+            "mascot": "js-mascot",
+            "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/JavaScript-logo.png/600px-JavaScript-logo.png",
+            "bg": "linear-gradient(160deg, rgba(240, 219, 79, 0.1) 0%, #1a1a1a 100%)",
+            "border": "#F0DB4F",
+        },
+    },
+    {
+        "title": "Solar Orbital Engine",
+        "description": "A full-stack, high-fidelity 3D Solar System simulation built with the MERN stack and React Three Fiber. This project demonstrates complex state management, 3D mathematical rendering, and decoupled physical systems.",
+        "tech": ["React Three Fiber", "MERN", "3D Rendering"],
+        "url": "https://github.com/samybit/solar-orbital-engine",
+        "style": {
+            "wrapper": "js-wrapper",
+            "mascot": "js-mascot",
+            "img": "https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg",
+            "bg": "linear-gradient(160deg, rgba(97, 218, 251, 0.15) 0%, #1a1a1a 100%)",
+            "border": "#61DAFB",
+        },
+    },
+    {
         "title": "YearWave",
         "description": "Generates Spotify playlists from historical Billboard Hot 100 charts using Spotipy.",
         "tech": ["Python", "Spotipy", "Spotify API"],
