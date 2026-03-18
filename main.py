@@ -81,14 +81,14 @@ my_projects = [
     {
         "title": "Game Completion Board",
         "description": "A full-stack web application designed to track video game progression and achievements. Users can add games, log specific milestones, and visually track their completion percentage through a dynamic, responsive dashboard.",
-        "tech": ["MERN Stack", "React", "Node.js"],
+        "tech": ["MERN Stack", "Gemini API", "Tailwind CSS"],
         "url": "https://github.com/samybit/game-completion-board",
         "style": {
-            "wrapper": "js-wrapper",
-            "mascot": "js-mascot",
-            "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/JavaScript-logo.png/600px-JavaScript-logo.png",
-            "bg": "linear-gradient(160deg, rgba(240, 219, 79, 0.1) 0%, #1a1a1a 100%)",
-            "border": "#F0DB4F",
+            "wrapper": "gemini-wrapper",
+            "mascot": "gemini-mascot",
+            "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Google_Gemini_icon_2025.svg",
+            "bg": "linear-gradient(160deg, rgba(66, 133, 244, 0.15) 0%, rgba(142, 36, 170, 0.05) 100%)",
+            "border": "#4285F4",
         },
     },
     {
