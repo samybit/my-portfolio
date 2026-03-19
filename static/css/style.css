@@ -1439,6 +1439,8 @@ body.retro-mode .form-control {
 body.retro-mode .snake-mascot,
 body.retro-mode .js-mascot,
 body.retro-mode .c-mascot,
+body.retro-mode .figma-mascot,
+body.retro-mode .gemini-mascot,
 body.retro-mode .card::after {
     /* Hide the 3D peeping snake and spotlight glow */
     display: none !important;
