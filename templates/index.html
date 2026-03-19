@@ -83,44 +83,12 @@
             </div>
           </div>
         </div>
-
-        <!-- <div class="mt-5 pt-2" data-aos="fade-up">
-          <h3
-            class="h5 fw-bold mb-4 text-uppercase tracking-wide text-secondary border-bottom border-secondary border-opacity-25 pb-2">
-            Design & UI
-          </h3>
-
-          {% for design in design_projects %}
-          <div
-            class="position-relative {% if 'style' in design and 'wrapper' in design.style %}{{ design.style.wrapper }}{% endif %} mb-4">
-
-            {% if 'style' in design and 'mascot_img' in design.style %}
-            <img src="{{ design.style.mascot_img }}" class="{{ design.style.mascot }}" alt="Figma Mascot">
-            {% endif %}
-
-            <div
-              class="card bg-transparent border-secondary border-opacity-25 text-white project-card overflow-hidden transition-hover"
-              style="{% if 'style' in design %}background: {{ design.style.bg }}; border-top: 4px solid {{ design.style.border }} !important;{% endif %}">
-
-              <div class="ratio ratio-16x9 bg-dark">
-                <img src="{{ design.img }}" alt="{{ design.title }}"
-                  style="object-fit: cover; width: 100%; height: 100%;">
-              </div>
-
-              <div class="card-body p-3">
-                <h5 class="card-title h6 fw-bold mb-1">{{ design.title }}</h5>
-                <p class="text-secondary small mb-3">{{ design.description }}</p>
-
-                <a href="{{ design.url }}" target="_blank" class="btn btn-sm btn-outline-light w-100 stretched-link">
-                  <i class="bi bi-brush me-1"></i> View Design
-                </a>
-              </div>
-
-            </div>
-          </div>
-          {% endfor %}
-        </div> -->
-
+      </div>
+      <div class="mt-4 text-center" data-aos="fade-up" data-aos-delay="200">
+        <a href="{{ url_for('static', filename='cv.pdf') }}" target="_blank"
+          class="btn btn-outline-secondary btn-sm rounded-pill px-4 transition-hover" style="border-style: dashed;">
+          <i class="bi bi-file-earmark-arrow-down me-2"></i>Download Résumé
+        </a>
       </div>
     </div>
 
@@ -128,9 +96,9 @@
 
     <div class="col-lg-8">
       <section class="text-start mb-0 mb-xl-5" data-aos="fade-up">
-        
+
         <div class="d-flex flex-column flex-xl-row justify-content-between align-items-xl-center mb-0">
-          
+
           <div class="pe-xl-4">
             <h1 class="display-3 fw-bold mb-4">
               <span class="glitch-word" style="--i:1;">Scalable</span>
@@ -140,7 +108,7 @@
               <span class="glitch-word" style="--i:4;">Dockerized</span>
               <span class="glitch-word" style="--i:5;">Infra.</span>
             </h1>
-            
+
             <p class="text-secondary lead mb-0" style="max-width: 600px;">
               I value art and clean design, delivering robust deployments across diverse projects<br>
               —from automation utilities to e-commerce systems.
@@ -156,7 +124,8 @@
 
               <div class="switch-mechanisms">
                 <div class="switch-wrapper">
-                  <input type="radio" class="switch-input" name="projectToggle" id="toggle-code" autocomplete="off" checked>
+                  <input type="radio" class="switch-input" name="projectToggle" id="toggle-code" autocomplete="off"
+                    checked>
                   <label class="physical-switch" for="toggle-code" title="Engineering Projects">
                     <i class="bi bi-terminal"></i>
                   </label>
