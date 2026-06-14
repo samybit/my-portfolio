@@ -100,6 +100,36 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     };
 
+    function ensureAudioSrc() {
+        if (audio && !audio.src) {
+            audio.src = audio.getAttribute("data-src");
+        }
+    }
+
+    // Attach Winamp controls event listeners
+    const winampPlay = document.getElementById("retro-play");
+    const winampPause = document.getElementById("retro-pause");
+    const winampStop = document.getElementById("retro-stop");
+
+    if (winampPlay && audio) {
+        winampPlay.addEventListener("click", () => {
+            ensureAudioSrc();
+            audio.play().catch(e => console.log("Audio play blocked:", e));
+        });
+    }
+
+    if (winampPause && audio) {
+        winampPause.addEventListener("click", () => {
+            audio.pause();
+        });
+    }
+
+    if (winampStop && audio) {
+        winampStop.addEventListener("click", () => {
+            window.stopMusic();
+        });
+    }
+
     if (volumeSlider && audio) {
         volumeSlider.addEventListener("input", (e) => {
             audio.volume = e.target.value;
@@ -176,6 +206,7 @@ document.addEventListener("DOMContentLoaded", function () {
             if (retroPlayer) retroPlayer.style.display = "flex";
 
             if (audio) {
+                ensureAudioSrc();
                 audio.volume = 0.3;
                 if (volumeSlider) volumeSlider.value = 0.3;
                 audio.play().catch(e => console.log(e));
@@ -204,15 +235,6 @@ document.addEventListener("DOMContentLoaded", function () {
             location.reload();
         }
     });
-    // Helper function to toggle music manually
-    // window.toggleMusic = function () {
-    //     const audio = document.getElementById("retro-audio");
-    //     if (audio.paused) {
-    //         audio.play();
-    //     } else {
-    //         audio.pause();
-    //     }
-    // };
 
     // --- 4. MARIO EASTER EGG (7 "A" PRESSES) ---
     let jumpKeyCount = 0;

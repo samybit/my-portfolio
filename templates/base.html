@@ -16,6 +16,11 @@
 </head>
 
 <body class="d-flex flex-column min-vh-100 {% block body_class %}{% endblock %}">
+  <script>
+    if (localStorage.getItem("theme") === "retro") {
+      document.body.classList.add("retro-mode");
+    }
+  </script>
   <!-- Retro Header -->
   <div class="retro-header"
     style="display: none; background: #000080; color: yellow; font-family: 'Comic Sans MS', cursive; padding: 5px; border-bottom: 2px solid white;">
@@ -25,9 +30,7 @@
   </div>
 
   <!-- Retro Music -->
-  <audio id="retro-audio" loop preload="none">
-    <source src="{{ url_for('retro_music') }}" type="audio/mpeg">
-  </audio>
+  <audio id="retro-audio" loop preload="none" data-src="{{ url_for('retro_music') }}"></audio>
 
   <nav class="navbar navbar-expand-lg navbar-dark bg-transparent py-4">
     <div class="container">
@@ -110,11 +113,11 @@
       <div style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 2px;">
 
         <div style="display: flex; gap: 2px;">
-          <button onclick="document.getElementById('retro-audio').play()"
+          <button id="retro-play"
             style="width: 25px; height: 18px; background: linear-gradient(#dcdcdc, #808080); border: 1px solid #000; font-size: 9px; cursor: pointer;">►</button>
-          <button onclick="document.getElementById('retro-audio').pause()"
+          <button id="retro-pause"
             style="width: 25px; height: 18px; background: linear-gradient(#dcdcdc, #808080); border: 1px solid #000; font-size: 9px; cursor: pointer;">||</button>
-          <button onclick="stopMusic()"
+          <button id="retro-stop"
             style="width: 25px; height: 18px; background: linear-gradient(#dcdcdc, #808080); border: 1px solid #000; font-size: 9px; cursor: pointer;">■</button>
         </div>
 
