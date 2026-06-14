@@ -1612,3 +1612,200 @@ body.retro-mode .btn-cv {
     border-radius: 0 !important;
     transform: none !important;
 }
+
+/* --- Creative No Image Placeholder --- */
+.creative-no-image {
+    position: absolute !important;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(circle at center, rgba(20, 20, 20, 0.4) 0%, #080808 100%),
+        linear-gradient(rgba(0, 208, 199, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 208, 199, 0.05) 1px, transparent 1px);
+    background-size: 100% 100%, 15px 15px, 15px 15px;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+/* Scanline effect */
+.creative-no-image::after {
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(0, 208, 199, 0.03), rgba(0, 0, 0, 0), rgba(0, 208, 199, 0.03));
+    z-index: 2;
+    background-size: 100% 4px, 4px 100%;
+    pointer-events: none;
+}
+
+/* Radar Sweep effect */
+.creative-no-image .radar-sweep {
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    background: conic-gradient(from 0deg at 50% 50%, rgba(0, 208, 199, 0.1) 0deg, transparent 120deg);
+    border-radius: 50%;
+    animation: radar-sweep-anim 5s linear infinite;
+    transform-origin: center;
+    z-index: 1;
+    pointer-events: none;
+}
+
+@keyframes radar-sweep-anim {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Floating SVG icon style */
+.creative-no-image .profile-placeholder-icon {
+    color: rgba(0, 208, 199, 0.55);
+    filter: drop-shadow(0 0 6px rgba(0, 208, 199, 0.4));
+    animation: placeholder-float 4s ease-in-out infinite;
+    z-index: 3;
+}
+
+@keyframes placeholder-float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+}
+
+.creative-no-image .terminal-text {
+    z-index: 3;
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+    color: #00d0c7;
+    text-shadow: 0 0 8px rgba(0, 208, 199, 0.6);
+    font-weight: 700;
+    user-select: none;
+}
+
+.creative-no-image .terminal-text .status {
+    display: block;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    animation: text-glitch 4s infinite;
+}
+
+.creative-no-image .terminal-text .label {
+    display: block;
+    font-family: 'Courier New', Courier, monospace;
+    text-transform: uppercase;
+    opacity: 0.8;
+    letter-spacing: 1px;
+}
+
+.creative-no-image .terminal-text .cursor {
+    display: inline-block;
+    width: 8px;
+    height: 12px;
+    background-color: #00d0c7;
+    animation: cursor-blink 1s step-end infinite;
+    vertical-align: middle;
+    margin-left: 2px;
+}
+
+/* Sizing Modifiers */
+.creative-no-image.mini .profile-placeholder-icon {
+    width: 36px;
+    height: 36px;
+    margin-bottom: 4px;
+}
+.creative-no-image.mini .terminal-text .status {
+    font-size: 1.25rem;
+}
+.creative-no-image.mini .terminal-text .label {
+    font-size: 0.55rem;
+    letter-spacing: 0.5px;
+}
+.creative-no-image.mini .terminal-text .cursor {
+    width: 5px;
+    height: 8px;
+}
+
+.creative-no-image.large .profile-placeholder-icon {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 12px;
+}
+.creative-no-image.large .terminal-text .status {
+    font-size: 2.5rem;
+}
+.creative-no-image.large .terminal-text .label {
+    font-size: 1rem;
+    margin-top: 2px;
+}
+.creative-no-image.large .terminal-text .cursor {
+    width: 8px;
+    height: 14px;
+}
+
+@keyframes cursor-blink {
+    from, to { background-color: transparent }
+    50% { background-color: #00d0c7 }
+}
+
+@keyframes text-glitch {
+    0%, 100% { transform: none; opacity: 1; }
+    92% { transform: none; opacity: 1; }
+    93% { transform: skewX(12deg); opacity: 0.6; color: #ff4444; }
+    94% { transform: skewY(-6deg); opacity: 0.8; color: #00ffff; }
+    95% { transform: none; opacity: 1; }
+}
+
+/* --- Retro Mode overrides for Creative No Image --- */
+body.retro-mode .creative-no-image {
+    position: absolute !important;
+    background: #c0c0c0 !important;
+    background-image: none !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+body.retro-mode .creative-no-image::after {
+    display: none !important;
+}
+
+body.retro-mode .creative-no-image .radar-sweep {
+    display: none !important;
+}
+
+body.retro-mode .creative-no-image .profile-placeholder-icon {
+    display: none !important;
+}
+
+body.retro-mode .creative-no-image .terminal-text {
+    color: #000000 !important;
+    text-shadow: none !important;
+    font-family: "Courier New", monospace !important;
+}
+
+body.retro-mode .creative-no-image .terminal-text .status {
+    color: #000000 !important;
+    animation: none !important;
+}
+
+body.retro-mode .creative-no-image .terminal-text .label {
+    color: #000000 !important;
+    font-size: 0.75rem !important;
+}
+
+body.retro-mode .creative-no-image.large .terminal-text .label {
+    font-size: 1.1rem !important;
+}
+
+body.retro-mode .creative-no-image .terminal-text .cursor {
+    background-color: #000000 !important;
+    animation: cursor-blink-retro 1s step-end infinite !important;
+}
+
+@keyframes cursor-blink-retro {
+    from, to { background-color: transparent }
+    50% { background-color: #000000 }
+}

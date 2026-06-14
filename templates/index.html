@@ -15,8 +15,17 @@
 
           <div class="position-relative mx-auto mb-4" style="width: 160px;">
             <div class="ratio ratio-1x1 rounded-circle overflow-hidden border border-secondary">
-              <img src="{{ url_for('static', filename='images/me.jpg') }}" alt="Samy Barsoum" class="bw-img"
-                style="object-fit: cover;">
+              <div class="creative-no-image mini">
+                <div class="radar-sweep"></div>
+                <svg class="profile-placeholder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <circle cx="12" cy="8" r="4" />
+                  <path d="M4 20C4 16.6863 6.68629 14 10 14H14C17.3137 14 20 16.6863 20 20" />
+                </svg>
+                <div class="terminal-text">
+                  <span class="status">404</span>
+                  <span class="label">NO_IMAGE<span class="cursor"></span></span>
+                </div>
+              </div>
             </div>
             <div class="position-absolute start-50 translate-middle-x"
               style="bottom: -12px; z-index: 5; width: max-content;">
