@@ -163,7 +163,7 @@ my_design_projects = [
     {
         "title": "Mobile App Interface",
         "description": "Clean and minimal mobile interface designed with a mobile-first approach.",
-        "img": "https://images.unsplash.com/photo-1616469829581-73993eb86b02?q=80&w=1000&auto=format&fit=crop",
+        "img": "",
         "gif": "https://media.giphy.com/media/your-gif-link/giphy.gif",
         "url": "https://figma.com/...",
         "style": {

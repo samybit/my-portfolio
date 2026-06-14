@@ -212,9 +212,16 @@
 
               <div class="ratio ratio-16x9 bg-dark preview-container">
 
+                {% if design.img %}
                 <img src="{{ design.img }}" class="preview-img" alt="{{ design.title }}">
+                {% else %}
+                <div class="missing-project-image">
+                  <i class="bi bi-image-fill fs-3 mb-2 text-secondary opacity-50 icon-float"></i>
+                  <span class="text-secondary small tracking-wide text-uppercase" style="font-size: 0.65rem;">[ missing image ]</span>
+                </div>
+                {% endif %}
 
-                {% if 'gif' in design and design.gif %}
+                {% if 'gif' in design and design.gif and design.img %}
                 <img src="{{ design.gif }}" class="hover-gif" alt="{{ design.title }} Animated">
                 {% endif %}
 
