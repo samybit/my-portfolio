@@ -163,18 +163,23 @@
     const canvas = document.getElementById("renderCanvas");
     if (!canvas) return;
 
-    // --- SCROLL TO REVEAL ---
-    function checkScrollReveal() {
-      // Trigger when user is close to bottom
-      // Adjusted offset for mobile scrolling feel
-      if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 500) {
-        canvas.style.opacity = "1";
-        // Remove listener so it stays visible once triggered
-        window.removeEventListener("scroll", checkScrollReveal);
-      }
+    // --- SCROLL TO REVEAL (IntersectionObserver) ---
+    const footer = document.querySelector("footer");
+    if (footer) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            canvas.style.opacity = "1";
+            observer.disconnect();
+          }
+        });
+      }, {
+        rootMargin: "0px 0px 500px 0px"
+      });
+      observer.observe(footer);
+    } else {
+      canvas.style.opacity = "1";
     }
-
-    window.addEventListener("scroll", checkScrollReveal);
 
     // --- BABYLON ENGINE ---
     const engine = new BABYLON.Engine(canvas, true, { preserveDrawingBuffer: true, stencil: true });
@@ -269,32 +274,33 @@
         mouseY = (e.clientY / window.innerHeight) * 2 - 1;
       });
 
+      let scrollSpinVelocity = 0;
       scene.registerBeforeRender(function () {
         for (let i = 0; i < shapes.length; i++) {
           const m = shapes[i];
           // Skip logic if hidden
           if (!m.isEnabled()) continue;
 
-          // 1. Base Spin
+          // 1. Base Spin + Scroll Spin Velocity
           m.rotation.x += m.rotationSpeed.x;
-          m.rotation.y += m.rotationSpeed.y;
+          m.rotation.y += m.rotationSpeed.y + scrollSpinVelocity;
 
           // 2. Float gently
           m.position.y += Math.sin(Date.now() * 0.002 + i) * 0.02;
 
           // 3. MOUSE INTERACTION (Tilt towards mouse)
-          // add a small rotation offset based on mouse position
           m.rotation.y += mouseX * 0.2;
           m.rotation.x += mouseY * 0.2;
         }
+
+        // Decay scroll spin velocity
+        scrollSpinVelocity *= 0.92;
       });
 
       // Scroll Spin Boost
       window.addEventListener("scroll", () => {
-        for (let i = 0; i < shapes.length; i++) {
-          shapes[i].rotation.y += 0.25;
-        }
-      });
+        scrollSpinVelocity += 0.05;
+      }, { passive: true });
 
       // Make `updateShapePositions` available to the resize event
       scene.updateShapePositions = updateShapePositions;
@@ -304,8 +310,27 @@
 
     const scene = createScene();
 
-    engine.runRenderLoop(function () {
+    function renderLoop() {
       scene.render();
+    }
+
+    let isRendering = !document.body.classList.contains("retro-mode");
+    if (isRendering) {
+      engine.runRenderLoop(renderLoop);
+    }
+
+    window.addEventListener("themeChanged", function (e) {
+      if (e.detail.theme === "retro") {
+        if (isRendering) {
+          engine.stopRenderLoop();
+          isRendering = false;
+        }
+      } else {
+        if (!isRendering) {
+          engine.runRenderLoop(renderLoop);
+          isRendering = true;
+        }
+      }
     });
 
     window.addEventListener("resize", function () {

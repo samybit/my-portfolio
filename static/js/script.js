@@ -111,7 +111,10 @@ document.addEventListener("DOMContentLoaded", function () {
         body.classList.add("retro-mode");
         retroBtn.innerText = "[ Back to Future ]";
         if (retroPlayer) retroPlayer.style.display = "flex";
-        startVisualizer(); // Start effects immediately if loaded in retro mode
+        // Show static placeholders initially
+        if (bitrateEl) bitrateEl.innerText = "---";
+        if (khzEl) khzEl.innerText = "--";
+        if (stereoEl) stereoEl.style.visibility = "hidden";
     }
 
     function startVisualizer() {
@@ -144,6 +147,25 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
+    // Audio Event Listeners to tie Visualizer status to actual play/pause states
+    if (audio) {
+        audio.addEventListener("play", () => {
+            startVisualizer();
+        });
+        audio.addEventListener("pause", () => {
+            stopVisualizer();
+            if (bitrateEl) bitrateEl.innerText = "---";
+            if (khzEl) khzEl.innerText = "--";
+            if (stereoEl) stereoEl.style.visibility = "hidden";
+        });
+        audio.addEventListener("ended", () => {
+            stopVisualizer();
+            if (bitrateEl) bitrateEl.innerText = "---";
+            if (khzEl) khzEl.innerText = "--";
+            if (stereoEl) stereoEl.style.visibility = "hidden";
+        });
+    }
+
     retroBtn.addEventListener("click", () => {
         body.classList.toggle("retro-mode");
 
@@ -153,8 +175,6 @@ document.addEventListener("DOMContentLoaded", function () {
             retroBtn.innerText = "[ Back to Future ]";
             if (retroPlayer) retroPlayer.style.display = "flex";
 
-            startVisualizer();
-
             if (audio) {
                 audio.volume = 0.3;
                 if (volumeSlider) volumeSlider.value = 0.3;
@@ -163,6 +183,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
             // Disable AOS
             document.querySelectorAll('[data-aos]').forEach(el => el.removeAttribute('data-aos'));
+
+            // Dispatch theme change event
+            window.dispatchEvent(new CustomEvent("themeChanged", { detail: { theme: "retro" } }));
 
         } else {
             // SWITCHING BACK
@@ -176,6 +199,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 audio.pause();
                 audio.currentTime = 0;
             }
+            // Dispatch theme change event
+            window.dispatchEvent(new CustomEvent("themeChanged", { detail: { theme: "modern" } }));
             location.reload();
         }
     });
